@@ -37,13 +37,13 @@ void box(void)
 void names_of_menu(void)
 {
     gotoxy(40,11);
-    printf("[1]start game");
+    printf("          [1]start game");
     gotoxy(40,12);
-    printf("[2]load game");
+    printf("          [2]load game");
     gotoxy(40,13);
-    printf("[3]top scores");
+    printf("          [3]top scores");
     gotoxy(40,14);
-    printf("[4]exit");
+    printf("          [4]exit");
 }
 
 int main(){
@@ -53,17 +53,32 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     names_of_menu();
     int pos=1;
     char ch;
+    
+    
+    
     while(1){
-    SetConsoleTextAttribute(console,10);
-    gotoxy(40,11);printf("[1]start game");gotoxy(40,15);
-    ch=getch();
-    if(ch!=-32)
-    switch(pos){
-        case 1:break;
-        case 2:break;
-        case 3:break;
-        case 4:break;
-    }
+        SetConsoleTextAttribute(console,10);
+        gotoxy(40,11);printf("          [1]start game");
+        ch=getch();
+        
+        if(ch==72)
+        {
+            pos--;
+            if(pos==0)pos=4;
+        }
+        if(ch==80)
+        {
+            pos++;
+            if(pos==5)pos=1;
+        }
+        
+        switch(pos)
+        {
+            case 1:SetConsoleTextAttribute(console,10);gotoxy(40,11);printf("          [1]start game");break;
+            case 2:SetConsoleTextAttribute(console,10);gotoxy(40,12);printf("          [2]load game");break;
+            case 3:SetConsoleTextAttribute(console,10);gotoxy(40,13);printf("          [3]top scores");break;
+            case 4:SetConsoleTextAttribute(console,10);gotoxy(40,14);printf("          [4]exit");break;
+        }
     }
 
     //return default colour
