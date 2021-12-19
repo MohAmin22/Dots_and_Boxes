@@ -57,7 +57,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     
     
     while(1){
-        SetConsoleTextAttribute(console,10);
+        SetConsoleTextAttribute(console,12);
         gotoxy(40,11);printf("          [1]start game");
         ch=getch();
         
@@ -74,10 +74,10 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         
         switch(pos)
         {
-            case 1:SetConsoleTextAttribute(console,10);gotoxy(40,11);printf("          [1]start game");break;
-            case 2:SetConsoleTextAttribute(console,10);gotoxy(40,12);printf("          [2]load game");break;
-            case 3:SetConsoleTextAttribute(console,10);gotoxy(40,13);printf("          [3]top scores");break;
-            case 4:SetConsoleTextAttribute(console,10);gotoxy(40,14);printf("          [4]exit");break;
+            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
+            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("          [2]load game");break;
+            case 3:SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
+            case 4:SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
         }
     }
 
