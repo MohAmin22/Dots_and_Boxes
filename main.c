@@ -82,6 +82,8 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     box();
     int selection1=menu1();
     printf("%d",selection1);
+    gotoxy(39,10);
+    printf(" ");
 
     //return default colour
     SetConsoleTextAttribute(console,15);
