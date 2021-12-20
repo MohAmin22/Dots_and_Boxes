@@ -34,33 +34,31 @@ void box(void)
     printf("%c",188);
 }
 
-void names_of_menu(void)
+int menu1(void)
 {
-    gotoxy(40,11);
-    printf("          [1]start game");
-    gotoxy(40,12);
-    printf("          [2]load game");
-    gotoxy(40,13);
-    printf("          [3]top scores");
-    gotoxy(40,14);
-    printf("          [4]exit");
-}
-
-int main(){
-
+    
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    box();
-    names_of_menu();
     int pos=1;
     char ch;
     
     
-    
-    while(1){
-        SetConsoleTextAttribute(console,12);
-        gotoxy(40,11);printf("          [1]start game");
-        ch=getch();
+    do
+    {
+        SetConsoleTextAttribute(console,15);
         
+        gotoxy(40,11);printf("          [1]start game");
+        gotoxy(40,12);printf("          [2]load game");
+        gotoxy(40,13);printf("          [3]top scores");
+        gotoxy(40,14);printf("          [4]exit");
+        
+        switch(pos)
+        {
+            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
+            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("          [2]load game");break;
+            case 3:SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
+            case 4:SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
+        }
+        ch=getch(); 
         if(ch==72)
         {
             pos--;
@@ -72,14 +70,18 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             if(pos==5)pos=1;
         }
         
-        switch(pos)
-        {
-            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
-            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("          [2]load game");break;
-            case 3:SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
-            case 4:SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
-        }
-    }
+    }while(ch!=13);
+    gotoxy(39,16);
+    return pos;
+
+}
+
+int main(){
+
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    box();
+    int selection1=menu1();
+    printf("%d",selection1);
 
     //return default colour
     SetConsoleTextAttribute(console,15);
