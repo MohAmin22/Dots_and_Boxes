@@ -25,13 +25,31 @@ int main(){
     int selection=menu1(); //selection is the variable that contains the player's choice from the main menu
     //return default colour
     reset();
+    
     switch(selection)
     {
         
         case 1:  //case that player choice [1]start game
-        demm();
-        gotoxy(1,1);
-        printf("the second start");
+        delete_main_menu();
+        drawing_2x2grid();        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         case 2:  //case that player choice [2]load a previous game
        
 

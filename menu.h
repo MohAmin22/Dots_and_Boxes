@@ -106,7 +106,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
 //function for deleting the main menu
-void demm(void){
+void delete_main_menu(void){
     
     int j,i;
     for(j=0;j<6;j++)
@@ -114,4 +114,35 @@ void demm(void){
         gotoxy(39,10+j);
         for(i=1;i<=37;i++)printf(" ");
     }
+}
+
+void drawing_2x2grid(void){
+    // first box in the first row
+    gotoxy(3,2);printf("%d",1);
+    gotoxy(2,3);printf("%d",1);
+    gotoxy(3,3);printf("%c",254);
+    //the middle box in the first row
+    gotoxy(8,2);printf("%d",2);
+    gotoxy(8,3);printf("%c",254);
+    //the the third and the last box in the first row
+    gotoxy(13,2);printf("%d",3);
+    gotoxy(13,3);printf("%c",254);
+
+    //row 2 column 1
+    gotoxy(2,8);printf("%d",2);
+    gotoxy(3,8);printf("%c",254);
+    //row 2 column 2
+    gotoxy(8,8);printf("%c",254);
+    //row 2 column 3
+    gotoxy(13,8);printf("%c",254);
+
+
+    // first box in the third and the last row
+    gotoxy(2,13);printf("%d",3);
+    gotoxy(3,13);printf("%c",254);
+    // second box in the third and the last row
+    gotoxy(8,13);printf("%c",254);
+    // third box in the third and the last row
+    gotoxy(13,13);printf("%c",254);
+
 }
