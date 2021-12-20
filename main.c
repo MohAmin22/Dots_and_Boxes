@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include<windows.h>
 #include<string.h>
-#include<stdlib.h>
+
 #include "menu.h"
 
 typedef struct {
@@ -51,7 +51,7 @@ int main(){
 
 
         case 2:  //case that player choice [2]load a previous game
-       
+        printf("that is the second case");
 
         case 3: //the case that the player choice top scorers
 
