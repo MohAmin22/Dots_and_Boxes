@@ -30,11 +30,6 @@ void gotoxy(int x,int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
 }
 
-//function of position
-
-int position(void){
-
-}
 
 
 //the code of the starting of the main menu
@@ -99,7 +94,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             if(pos==5)pos=1;
         }
         
-    }while(ch!=13);
+    }while(ch!=' ');
     gotoxy(39,16);
     return pos;
 
