@@ -4,10 +4,23 @@
 #include<stdlib.h>
 #include "menu.h"
 
+typedef struct {
+   int score;
+   int lines_remainig ;
+   int number_of_moves ;
+    char  player_name[100];
+
+
+}player;
+player player1 ={0,12,0};
+player player2 ={0,12,0};
+
+
+
 
 
 int main(){
-
+    
     box();
     int selection=menu1(); //selection is the variable that contains the player's choice from the main menu
     //return default colour
@@ -16,8 +29,9 @@ int main(){
     {
         
         case 1:  //case that player choice [1]start game
-        
-        
+        demm();
+        gotoxy(1,1);
+        printf("the second start");
         case 2:  //case that player choice [2]load a previous game
        
 

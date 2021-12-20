@@ -104,3 +104,14 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     return pos;
 
 }
+
+//function for deleting the main menu
+void demm(void){
+    
+    int j,i;
+    for(j=0;j<6;j++)
+    {
+        gotoxy(39,10+j);
+        for(i=1;i<=37;i++)printf(" ");
+    }
+}
