@@ -94,7 +94,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             if(pos==5)pos=1;
         }
         
-    }while(ch!='a');
+    }while(ch!=13);
     gotoxy(39,16);
     return pos;
 
