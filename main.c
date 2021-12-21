@@ -18,9 +18,9 @@ player player1 ={0,12,0};
 player player2 ={0,12,0};
 
 //Global variable
-int counter;
+int counter=0;
 int Total_remaining=12;
-
+int checkScore =2;
 int selection2=1;
 int selection3=1;
 int row1,row2,col1,col2;
@@ -92,10 +92,12 @@ int main(){
                                                          } 
                                                      else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_1;
                                                  }
-                                                 
-                                                
-
-
+                                                checkScore = check_score();
+                                                if(checkScore == 1){
+                                                        player1.score++;
+                                                        Total_remaining--;
+                                                        goto player_1;
+                                                }
 
 
                                                 Total_remaining--;
