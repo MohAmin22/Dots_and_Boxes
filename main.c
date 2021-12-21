@@ -73,7 +73,7 @@ int main(){
                                             //  Game loop 
                                             while(Total_remaining>0){
                                                 
-                                                player1:
+                                                player_1:
                                                   gotoxy(1,14);
                                                   printf("Player 1 role : \n");
                                                   printf("Enter R1 R2 C1 C2 : \n");
@@ -85,17 +85,24 @@ int main(){
                                                   //printf("%d %d %d %d",row1,row2,col1,col2);
                                                  // if(((row1 == row2 ) && (abs(col1 - col2)) )||(col1 == col2))
                                                  red();
-                                                 draw_lines2x2(row1,row2,col1,col2);
-                                                 gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+                                                 while(1){
+                                                     if(draw_lines2x2(row1,row2,col1,col2) == 1){
+                                                         gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+                                                           break;
+                                                         } 
+                                                     else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_1;
+                                                 }
+                                                 
+                                                
 
 
 
 
                                                 Total_remaining--;
 
-                                                player2:
+                                               
 
-                                                Total_remaining--;
+                                                /*Total_remaining--;*/
                                             }
 
                                             

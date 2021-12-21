@@ -145,11 +145,11 @@ if(r1 ==1 &&c1==1 && r2==1 && c2 ==2){  //hor   1
 
 } */
 
-void draw_lines2x2(int r1,int r2 ,int c1, int c2){
+int draw_lines2x2(int r1,int r2 ,int c1, int c2){
     int indc=0,indr=0,c=0,r=0;
     int i=0,ct=0,rt=0;
     
-    while(1){
+   
     if (r1 ==r2 && abs(c1-c2)==1){
         ct= c1>c2 ? c2 : c1;
         if(grid2x2[r1-1][(ct-1)*2+1]==' '){
@@ -157,10 +157,10 @@ void draw_lines2x2(int r1,int r2 ,int c1, int c2){
         indr =3+5*(r1-1);
         indc =3+10*(c-1);
         gotoxy(indc+1,indr);
-        for(i=0;i<9;i++)printf("%c",205);
+        for(i=0;i<9;i++)  printf("%c",205);
         grid2x2[r1-1][(ct-1)*2+1]=205;
         reset();
-        break;
+        return 1;
         }
         
     }
@@ -170,17 +170,18 @@ void draw_lines2x2(int r1,int r2 ,int c1, int c2){
         r= r1>r2 ? r2 : r1;
         indc =3+10*(c1-1);
         indr =3+5*(r-1);
-        for(i=0;i<4;i++){gotoxy(indc,indr+1+i);printf("%c",186);}
+        for(i=0;i<4;i++){
+            gotoxy(indc,indr+1+i); 
+            printf("%c",186);
+            }
         grid2x2[(rt-1)*2+1][c1-1]=186;
-        break;
         reset();
+        return 1;
         }
     }else {
         reset();
         gotoxy(1,16);
         printf("please enter a valid coordinates :");
-
-        break;
-    }
-    }
+        return 2;
+     }
 }
