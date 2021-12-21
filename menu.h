@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include "game5x5.h"
 //the colors
 void red () {
   system("");
@@ -21,7 +22,7 @@ void reset (void) {
   printf("\033[0m");
 }
 
-//the code of gotoxy function
+
 void gotoxy(int x,int y)
 {
     COORD coord= {0,0};
@@ -29,8 +30,6 @@ void gotoxy(int x,int y)
     coord.Y=y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
 }
-
-
 
 //the code of the starting of the main menu
 
@@ -191,36 +190,83 @@ void delete_main_menu(int a){
     }
 }
 
-void drawing_2x2grid(void){
-    // first box in the first row
-    gotoxy(3,2);printf("%d",1);
-    gotoxy(2,3);printf("%d",1);
-    gotoxy(3,3);printf("%c",254);
-    //the middle box in the first row
-    gotoxy(13,2);printf("%d",2);
-    gotoxy(13,3);printf("%c",254);
-    //the the third and the last box in the first row
-    gotoxy(23,2);printf("%d",3);
-    gotoxy(23,3);printf("%c",254);
 
-    //row 2 column 1
-    gotoxy(2,8);printf("%d",2);
-    gotoxy(3,8);printf("%c",254);
-    //row 2 column 2
-    gotoxy(13,8);printf("%c",254);
-    //row 2 column 3
-    gotoxy(23,8);printf("%c",254);
+//game edit:
 
+void game_box(void){
+    int i,j;
+    //start of box
+    gotoxy(1,17);
+    printf("%c",201);
+    for(i=1;i<=5;i++)printf("%c",205);
+    printf("%c",187);
+    
+    gotoxy(1,18);
+    printf("%c",186);
+    for(j=1;j<=5;j++)printf(" ");
+    printf("%c",186);
+    gotoxy(1,19);
+    printf("%c",186);
+    for(j=1;j<=5;j++)printf(" ");
+    printf("%c",186);
+    gotoxy(1,20);
+    printf("%c",186);
+    for(j=1;j<=5;j++)printf(" ");
+    printf("%c",186);
+    
+    gotoxy(1,21);
+    printf("%c",200);
+    for(i=1;i<=5;i++)printf("%c",205);
+    printf("%c",188);
+}
 
-    // first box in the third and the last row
-    gotoxy(2,13);printf("%d",3);
-    gotoxy(3,13);printf("%c",254);
-    // second box in the third and the last row
-    gotoxy(13,13);printf("%c",254);
-    // third box in the third and the last row
-    gotoxy(23,13);printf("%c",254);
+int choice_menu(void)
+{
+    
+HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    int pos=1;
+    char ch;
+    
+    
+    do
+    {
+        SetConsoleTextAttribute(console,15);
+        
+        gotoxy(2,18);printf(" [1] ");
+        gotoxy(2,19);printf(" [2] ");
+        gotoxy(2,20);printf(" [3] ");
+        switch(pos)
+        {
+            case 1:SetConsoleTextAttribute(console,12);gotoxy(2,18);printf(" [1] ");break;
+            case 2:SetConsoleTextAttribute(console,12);gotoxy(2,19);printf(" [2] ");break;
+            case 3:SetConsoleTextAttribute(console,12);gotoxy(2,20);printf(" [3] ");break;
 
+        }
+        ch=getch(); 
+        if(ch==72)
+        {
+            pos--;
+            if(pos==0)pos=3;
+        }
+        if(ch==80)
+        {
+            pos++;
+            if(pos==4)pos=1;
+        }
+        
+    }while(ch!=13);
+    gotoxy(1,21);
+    reset();
+    return pos;
 
 
 }
-
+void delete_choice_menu(void){
+    int i,j;
+    for(i=0;i<5;i++){
+        gotoxy(1,16+i);
+        for(j=1;j<=7;j++){
+            printf(" ");
+        }
+    }
+}

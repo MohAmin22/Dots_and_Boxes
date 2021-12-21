@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include<windows.h>
 #include<string.h>
-
+#include <conio.h>
+#include "game2x2.h"
+#include "game5x5.h"
 #include "menu.h"
 
 typedef struct {
@@ -15,10 +17,13 @@ typedef struct {
 player player1 ={0,12,0};
 player player2 ={0,12,0};
 
-
+//Global variable
+int counter;
+int Total_remaining=12;
 
 int selection2=1;
 int selection3=1;
+int row1,row2,col1,col2;
 
 int main(){
     
@@ -45,14 +50,57 @@ int main(){
                                     switch(selection3){
                                         case 1: // vs computer in (2x2)
                                             reset();
+                                            delete_main_menu(4);
                                             gotoxy(39,17);
+
                                             printf("the first selection");
 
 
                                         break;
                                         case 2: // vs player in (2x2)
                                             reset();
-                                            gotoxy(39,17);
+                                            delete_main_menu(4);
+                                            gotoxy(1,1);
+
+                                            
+                                            printf("Player  1 name : ");
+                                            gets(player1.player_name);
+                                            printf("Player  2 name : ");
+                                            gets(player2.player_name);
+                                            system("cls");
+                                            drawing_2x2grid();
+                                            printf("\n");
+                                            //  Game loop 
+                                            while(Total_remaining>0){
+                                                
+                                                player1:
+                                                  gotoxy(1,14);
+                                                  printf("Player 1 role : \n");
+                                                  printf("Enter R1 R2 C1 C2 : \n");
+                                                  game_box();
+                                                  row1=choice_menu();
+                                                  row2=choice_menu();
+                                                  col1=choice_menu();
+                                                  col2=choice_menu();
+                                                  //printf("%d %d %d %d",row1,row2,col1,col2);
+                                                 // if(((row1 == row2 ) && (abs(col1 - col2)) )||(col1 == col2))
+                                                 red();
+                                                 draw_lines2x2(row1,row2,col1,col2);
+                                                 gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+
+
+
+
+                                                Total_remaining--;
+
+                                                player2:
+
+                                                Total_remaining--;
+                                            }
+
+                                            
+
+
                                             printf("the second selection");
 
 
