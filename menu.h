@@ -1,6 +1,9 @@
+#ifndef MENU
+#define MENU
 #include <stdio.h>
 #include <windows.h>
 #include "game5x5.h"
+#include<math.h>
 //the colors
 void red () {
   system("");
@@ -42,7 +45,7 @@ void box(int a)
     printf("%c",201);
     for(i=1;i<=35;i++)printf("%c",205);
     printf("%c",187);
-    
+
     //spaces
     for(i=0;i<a;i++){
     gotoxy(39,11+i);
@@ -59,21 +62,21 @@ void box(int a)
 
 int main_menu(void)
 {
-    
+
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-    
-    
+
+
     do
     {
         SetConsoleTextAttribute(console,15);
-        
+
         gotoxy(40,11);printf("          [1]start game");
         gotoxy(40,12);printf("          [2]load game");
         gotoxy(40,13);printf("          [3]top scores");
         gotoxy(40,14);printf("          [4]exit");
-        
+
         switch(pos)
         {
             case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
@@ -81,7 +84,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             case 3:SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
             case 4:SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
         }
-        ch=getch(); 
+        ch=getch();
         if(ch==72)
         {
             pos--;
@@ -92,7 +95,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             pos++;
             if(pos==5)pos=1;
         }
-        
+
     }while(ch!=13);
     gotoxy(39,16);
     return pos;
@@ -102,26 +105,26 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 int level_menu(void)
 {
-    
+
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-    
-    
+
+
     do
     {
         SetConsoleTextAttribute(console,15);
-        
+
         gotoxy(40,11);printf("       [1]Beginner mode(2x2)");
         gotoxy(40,12);printf("       [2]Expert mode(5x5)");
-        
+
         switch(pos)
         {
             case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Beginner mode(2x2)");break;
             case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Expert mode(5x5)");break;
-            
+
         }
-        ch=getch(); 
+        ch=getch();
         if(ch==72)
         {
             pos--;
@@ -132,7 +135,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             pos++;
             if(pos==3)pos=1;
         }
-        
+
     }while(ch!=13);
     gotoxy(39,16);
     return pos;
@@ -142,26 +145,26 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 //the menu of vs
 int vs_menu(void)
 {
-    
+
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-    
-    
+
+
     do
     {
         SetConsoleTextAttribute(console,15);
-        
+
         gotoxy(40,11);printf("       [1]Vs Computer");
         gotoxy(40,12);printf("       [2]Vs Player");
-        
+
         switch(pos)
         {
             case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Vs Computer");break;
             case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Vs Player");break;
-            
+
         }
-        ch=getch(); 
+        ch=getch();
         if(ch==72)
         {
             pos--;
@@ -172,7 +175,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             pos++;
             if(pos==3)pos=1;
         }
-        
+
     }while(ch!=13);
     gotoxy(39,16);
     return pos;
@@ -181,7 +184,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 //function for deleting the main menu
 void delete_main_menu(int a){
-    
+
     int j,i;
     for(j=0;j<a+2;j++)
     {
@@ -200,7 +203,7 @@ void game_box(void){
     printf("%c",201);
     for(i=1;i<=5;i++)printf("%c",205);
     printf("%c",187);
-    
+
     gotoxy(1,18);
     printf("%c",186);
     for(j=1;j<=5;j++)printf(" ");
@@ -213,7 +216,7 @@ void game_box(void){
     printf("%c",186);
     for(j=1;j<=5;j++)printf(" ");
     printf("%c",186);
-    
+
     gotoxy(1,21);
     printf("%c",200);
     for(i=1;i<=5;i++)printf("%c",205);
@@ -222,16 +225,16 @@ void game_box(void){
 
 int choice_menu(void)
 {
-    
+
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-    
-    
+
+
     do
     {
         SetConsoleTextAttribute(console,15);
-        
+
         gotoxy(2,18);printf(" [1] ");
         gotoxy(2,19);printf(" [2] ");
         gotoxy(2,20);printf(" [3] ");
@@ -242,7 +245,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             case 3:SetConsoleTextAttribute(console,12);gotoxy(2,20);printf(" [3] ");break;
 
         }
-        ch=getch(); 
+        ch=getch();
         if(ch==72)
         {
             pos--;
@@ -253,7 +256,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
             pos++;
             if(pos==4)pos=1;
         }
-        
+
     }while(ch!=13);
     gotoxy(1,21);
     reset();
@@ -270,3 +273,4 @@ void delete_choice_menu(void){
         }
     }
 }
+#endif // end of menu

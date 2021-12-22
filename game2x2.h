@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#ifndef GAME2X2
+#define GAME2X2
+#include "menu.h"
+
 
 int score_4 [2][2]={0};
 
@@ -19,17 +20,17 @@ void drawing_2x2grid(void){
     gotoxy(2,8);printf("%d",2);
     gotoxy(23,2);printf("%d",3);
     gotoxy(2,13);printf("%d",3);
-    
+
     gotoxy(3,3);printf("%c",254);
     //the middle box in the first row
-    
+
     gotoxy(13,3);printf("%c",254);
     //the the third and the last box in the first row
-    
+
     gotoxy(23,3);printf("%c",254);
 
     //row 2 column 1
-    
+
     gotoxy(3,8);printf("%c",254);
     //row 2 column 2
     gotoxy(13,8);printf("%c",254);
@@ -38,7 +39,7 @@ void drawing_2x2grid(void){
 
 
     // first box in the third and the last row
-    
+
     gotoxy(3,13);printf("%c",254);
     // second box in the third and the last row
     gotoxy(13,13);printf("%c",254);
@@ -79,7 +80,7 @@ if(r1 ==1 &&c1==1 && r2==1 && c2 ==2){  //hor   1
     for(i=0;i<9;i++)    printf("%c",205);
     grid2x2[0][1] = 205;
     }else goto else1;
-}else if(r1 ==1 &&c1==1 && r2==2 && c2 ==1){ //ver  2 
+}else if(r1 ==1 &&c1==1 && r2==2 && c2 ==1){ //ver  2
     if(grid2x2[1][0]==' '){
     gotoxy(3,4);
     for(i=0;i<4;i++)    {gotoxy(3,4+i);printf("%c",186);}
@@ -146,10 +147,10 @@ if(r1 ==1 &&c1==1 && r2==1 && c2 ==2){  //hor   1
 } */
 
 int draw_lines2x2(int r1,int r2 ,int c1, int c2){
-    int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is index of x axis , indr is the index of y axis 
+    int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is index of x axis , indr is the index of y axis
     int i=0,ct=0,rt=0;
-    
-   
+
+
     if (r1 ==r2 && abs(c1-c2)==1){
         ct= c1>c2 ? c2 : c1;
             if(grid2x2[(r1-1)*2][(ct-1)*2+1]==' '){
@@ -167,10 +168,10 @@ int draw_lines2x2(int r1,int r2 ,int c1, int c2){
                 else if(r1==3 && ct==1)  score_4[1][0]++;
                 else if(r1==3 && ct==2)  score_4[1][1]++;
 
-                
+
                 return 1;
             }else goto else1;
-        
+
     }
     else if(c1 ==c2 && abs(r1-r2)==1){
         rt= r1>r2 ? r2 : r1;
@@ -179,7 +180,7 @@ int draw_lines2x2(int r1,int r2 ,int c1, int c2){
         indc =3+10*(c1-1);
         indr =3+5*(r-1);
         for(i=0;i<4;i++){
-            gotoxy(indc,indr+1+i); 
+            gotoxy(indc,indr+1+i);
             printf("%c",186);
             }
         grid2x2[(rt-1)*2+1][(c1-1)*2]=186;
@@ -192,7 +193,7 @@ int draw_lines2x2(int r1,int r2 ,int c1, int c2){
                 else if(c1==3 && rt==2)  score_4[1][1]++;
         return 1;
         } else goto else1;
-    }else { 
+    }else {
         else1:
         reset();
         gotoxy(1,16);
@@ -212,3 +213,4 @@ int check_score(void){
     }
     return ch;
 }
+#endif //end definition
