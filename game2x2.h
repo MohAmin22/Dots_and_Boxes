@@ -52,7 +52,7 @@ void drawing_2x2grid(void){
 
 
 
-
+/*
 
 int scan_valid_integer_1_or_2(){
  while(1){
@@ -69,6 +69,7 @@ int scan_valid_integer_1_or_2(){
     }
  }
 }
+*/
 /*
 void draw_lines_2x2 (int r1,int r2,int c1,int c2){
 int i=0;
