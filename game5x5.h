@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-/*void drawing_grid5x5(void){
+void drawing_grid5x5(void){
     
     int i,j;
     for(i=0;i<=10;i=i+2){
@@ -101,7 +101,7 @@ char grid5x5[11][11] ={{254,' ',254,' ',254,' ',254,' ',254,' ',254},
                      {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                      {254,' ',254,' ',254,' ',254,' ',254,' ',254}
                     };
-*/
+
 
 int draw_lines5x5(int r1,int r2 ,int c1, int c2){
     int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is index of x axis , indr is the index of y axis 
