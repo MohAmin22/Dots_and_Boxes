@@ -1,7 +1,9 @@
-#ifndef GAME2X2
-#define GAME2X2
-#include "menu.h"
-
+#ifndef MENU
+#define MENU
+#include <stdio.h>
+#include <string.h>
+#include "game5x5.h"
+#include <math.h>
 
 int score_4 [2][2]={0};
 
@@ -201,16 +203,16 @@ int draw_lines2x2(int r1,int r2 ,int c1, int c2){
         return 2;
      }
 }
-int check_score(void){
-    int i,j=0,ch=0;
+void check_score(int *ch,int *row,int *col){
+    int i,j=0;
+    *ch=0,*row=-1,*col=-1;
     for(i=0;i<2;i++){
         for(j=0;j<2;j++){
             if(score_4[i][j] ==4 ){
                 score_4[i][j] = 6;
-                ch=1;
+                *ch=1;*row=i;*col=j;
             }
         }
     }
-    return ch;
 }
-#endif //end definition
+#endif //end of 2x2

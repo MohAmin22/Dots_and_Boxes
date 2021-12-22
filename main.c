@@ -7,14 +7,14 @@
 #include "game5x5.h"
 #include "menu.h"
 //Global variable
-int counter=0;
+int counter=0,i=0;
 int Total_remaining=12;
 int checkScore =2;
 int selection2=1;
 int selection3=1;
 int row1,row2,col1,col2;
-
-
+//**
+int row_change_color2x2=0,col_change_color2x2=0;
 
 typedef struct {
    int score;
@@ -25,6 +25,8 @@ typedef struct {
 }player;
 player player1 = {.score=0,.number_of_moves =0};
 player player2 = {.score=0,.number_of_moves =0};
+
+
 void print_info(){
 gotoxy(27,3);
 printf("The number of moves of %s : %d",player1.player_name,player1.number_of_moves);
@@ -33,7 +35,7 @@ printf("The number of moves of %s : %d",player2.player_name,player2.number_of_mo
 gotoxy(27,5);
 printf("Score %d - %d",player1.score,player2.score);
 gotoxy(27,6);
-printf("The number of Remaining lines : %d" ,Total_remaining=12);
+printf("The number of Remaining lines : %d " ,Total_remaining);
 gotoxy(27,7);
 printf("Time since starting : ");
 }
@@ -85,7 +87,7 @@ int main(){
                                             printf("\n");
                                             //  Game loop
                                             while(Total_remaining>0){
-
+//**player1
                                                 player_1:
 
                                                   print_info();
@@ -110,21 +112,34 @@ int main(){
                                                          }
                                                      else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_1;
                                                  }
-                                                checkScore = check_score();
-                                                if(checkScore == 1){
+//**
+                                                check_score(&checkScore,&row_change_color2x2,&col_change_color2x2);
+                                                if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
                                                         player1.score++;
+                                                        //change the color of the box:
+                                                        red();
+                                                        gotoxy((3+1)+10*(col_change_color2x2),3+5*(row_change_color2x2));
+                                                        for(i=0;i<9;i++)printf("%c",205);
+                                                        gotoxy((3+1)+10*(col_change_color2x2),(3+5)+5*(row_change_color2x2));
+                                                        for(i=0;i<9;i++)printf("%c",205);
+                                                        gotoxy(3+10*(col_change_color2x2),(3+1)+5*(row_change_color2x2));
+                                                        for(i=0;i<4;i++){gotoxy(3+10*(col_change_color2x2),(3+i+1)+5*(row_change_color2x2));printf("%c",186);}
+                                                        gotoxy((3+10)+10*(col_change_color2x2),(3+1)+5*(row_change_color2x2));
+                                                        for(i=0;i<4;i++){gotoxy((3+10)+10*(col_change_color2x2),(3+i+1)+5*(row_change_color2x2));printf("%c",186);}
+                                                        reset();
                                                         Total_remaining--;
                                                         goto player_1;
                                                 }
 
 
                                                 Total_remaining--;
-                                                //if(Total_remaining == 0)
+                                                if(Total_remaining == 0)
+                                                    break;
 
 
 
 
-
+//**player2
                                                player_2:
 
 
@@ -145,35 +160,44 @@ int main(){
                                                  while(1){
                                                      if(draw_lines2x2(row1,row2,col1,col2) == 1){
                                                          gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
-                                                         player1.number_of_moves++;
-
+                                                         player2.number_of_moves++;
                                                            break;
                                                          }
                                                      else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_2;
                                                  }
-                                                checkScore = check_score();
-                                                if(checkScore == 1){
+                                                 check_score(&(checkScore),&(row_change_color2x2),&(col_change_color2x2));
+                                                if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
                                                         player2.score++;
+                                                        //change the color of the box:
+                                                        cyan();
+                                                        gotoxy((3+1)+10*(col_change_color2x2),3+5*(row_change_color2x2));
+                                                        for(i=0;i<9;i++)printf("%c",205);
+                                                        gotoxy((3+1)+10*(col_change_color2x2),(3+5)+5*(row_change_color2x2));
+                                                        for(i=0;i<9;i++)printf("%c",205);
+                                                        gotoxy(3+10*(col_change_color2x2),(3+1)+5*(row_change_color2x2));
+                                                        for(i=0;i<4;i++){gotoxy(3+10*(col_change_color2x2),(3+i+1)+5*(row_change_color2x2));printf("%c",186);}
+                                                        gotoxy((3+10)+10*(col_change_color2x2),(3+1)+5*(row_change_color2x2));
+                                                        for(i=0;i<4;i++){gotoxy((3+10)+10*(col_change_color2x2),(3+i+1)+5*(row_change_color2x2));printf("%c",186);}
+                                                        reset();
                                                         Total_remaining--;
                                                         goto player_2;
                                                 }
 
 
                                                 Total_remaining--;
-                                                //if(Total_remaining == 0)
+                                               if(Total_remaining == 0)
+                                                    break;
 
 
                                             }
-                                           // print_info();
+                                          print_info(); // to update info after the final line
 
-                                            //winner
-
-
-
-
-                                            printf("the second selection");
-
-
+                                            //determining winner
+                                            if(player1.score > player2.score)
+                                               printf("The winner is %s :",player1.player_name);
+                                            else if(player1.score < player2.score)
+                                                printf("The winner is %s :",player2.player_name);
+                                            else printf("There are no winner the game is draw ");
 
                                         break;
 
