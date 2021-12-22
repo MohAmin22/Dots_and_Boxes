@@ -1,5 +1,5 @@
-#ifndef MENU
-#define MENU
+#ifndef GAME2X2
+#define GAME2X2
 #include <stdio.h>
 #include <string.h>
 #include "game5x5.h"
