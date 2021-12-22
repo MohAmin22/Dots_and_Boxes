@@ -110,13 +110,13 @@ int draw_lines5x5(int r1,int r2 ,int c1, int c2){
    
     if (r1 ==r2 && abs(c1-c2)==1){
         ct= c1>c2 ? c2 : c1;
-            if(grid2x2[(r1-1)*2][(ct-1)*2+1]==' '){
+            if(grid5x5[(r1-1)*2][(ct-1)*2+1]==' '){
                 c= c1>c2 ? c2 : c1;
                 indr =3+2*(r1-1);
                 indc =3+4*(c-1);
                 gotoxy(indc+1,indr);
                 for(i=0;i<3;i++)  printf("%c",205);
-                grid2x2[(r1-1)*2][(ct-1)*2+1]=205;
+                grid5x5[(r1-1)*2][(ct-1)*2+1]=205;
                 reset();
                 /*if(r1==1 && ct==1)  score_4[0][0]++;
                 else if(r1==1 && ct==2)  score_4[0][1]++;
@@ -132,12 +132,12 @@ int draw_lines5x5(int r1,int r2 ,int c1, int c2){
     }
     else if(c1 ==c2 && abs(r1-r2)==1){
         rt= r1>r2 ? r2 : r1;
-        if(grid2x2[(rt-1)*2+1][(c1-1)*2]==' '){
+        if(grid5x5[(rt-1)*2+1][(c1-1)*2]==' '){
         r= r1>r2 ? r2 : r1;
         indc =3+4*(c1-1);
         indr =3+2*(r-1);
         for(i=0;i<2;i++){gotoxy(indc,indr+1+i); printf("%c",186);}
-        grid2x2[(rt-1)*2+1][(c1-1)*2]=186;
+        grid5x5[(rt-1)*2+1][(c1-1)*2]=186;
         reset();
                 /*if(c1==1 && rt==1)  score_4[0][0]++;
                 else if(c1==1 && rt==2)  score_4[1][0]++;
