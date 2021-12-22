@@ -1,5 +1,3 @@
-#ifndef GAME2X2
-#define GAME2X2
 #include <stdio.h>
 #include <string.h>
 #include "game5x5.h"
@@ -215,4 +213,3 @@ void check_score(int *ch,int *row,int *col){
         }
     }
 }
-#endif //end of 2x2

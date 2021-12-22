@@ -3,9 +3,12 @@
 #include<string.h>
 #include <conio.h>
 #include<math.h>
+#include <time.h>
 #include "game2x2.h"
 #include "game5x5.h"
 #include "menu.h"
+
+
 //Global variable
 int counter=0,i=0;
 int Total_remaining=12;
@@ -13,6 +16,7 @@ int checkScore =2;
 int selection2=1;
 int selection3=1;
 int row1,row2,col1,col2;
+clock_t start,end1,end2, diff,seconds,minutes;
 //**
 int row_change_color2x2=0,col_change_color2x2=0;
 
@@ -36,8 +40,7 @@ gotoxy(27,5);
 printf("Score %d - %d",player1.score,player2.score);
 gotoxy(27,6);
 printf("The number of Remaining lines : %d " ,Total_remaining);
-gotoxy(27,7);
-printf("Time since starting : ");
+
 }
 
 int main(){
@@ -86,6 +89,10 @@ int main(){
                                             drawing_2x2grid();
                                             printf("\n");
                                             //  Game loop
+                                            start = clock();
+                                            gotoxy(27,7);
+                                            printf("Time since starting %d : %d",minutes,seconds);
+
                                             while(Total_remaining>0){
 //**player1
                                                 player_1:
@@ -130,6 +137,15 @@ int main(){
                                                         Total_remaining--;
                                                         goto player_1;
                                                 }
+                                               //timer update after player's role
+                                                end1 = clock();
+                                                diff = (int)(end1 - start)/CLOCKS_PER_SEC;
+                                                seconds = diff % 60;
+                                                minutes  = diff /60;
+                                                gotoxy(27,7);
+                                                printf("Time since starting %d : %d",minutes,seconds);
+
+
 
 
                                                 Total_remaining--;
@@ -182,7 +198,13 @@ int main(){
                                                         Total_remaining--;
                                                         goto player_2;
                                                 }
-
+                                                //timer update after player's role
+                                                end2 = clock();
+                                                diff = (int)(end2 - start)/CLOCKS_PER_SEC;
+                                                seconds = diff % 60;
+                                                minutes  = diff /60;
+                                                gotoxy(27,7);
+                                                printf("Time since starting %d : %d",minutes,seconds);
 
                                                 Total_remaining--;
                                                if(Total_remaining == 0)
