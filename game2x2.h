@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include "game5x5.h"
 #include <math.h>
 
 int score_4 [2][2]={0};
