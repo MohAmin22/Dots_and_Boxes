@@ -4,7 +4,7 @@
 void drawing_grid5x5(void){
 
     int i,j;
-    for(i=0;i<=10;i=i+2){
+    for(i=1;i<=10;i=i+2){
         gotoxy(3,3+i);
         for(j=0;j<=20;j=j+4){
             gotoxy(3+j,3+i);
