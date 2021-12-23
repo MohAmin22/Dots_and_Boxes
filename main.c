@@ -18,7 +18,7 @@ int selection3=1;
 int row1,row2,col1,col2;
 clock_t start,end1,end2, diff,seconds,minutes;
 //**
-int row_change_color2x2=0,col_change_color2x2=0;
+int row_cc=0,col_cc=0,row_cc1=0;col_cc1=0;
 
 typedef struct {
    int score;
@@ -77,40 +77,40 @@ int main(){
                                         break;
                                         case 2: // vs player in (2x2)
                                             reset();
-                                            delete_main_menu(4);
+                                            system("cls");
                                             gotoxy(1,1);
-
-
                                             printf("Player  1 name : ");
                                             gets(player1.player_name);
                                             printf("Player  2 name : ");
                                             gets(player2.player_name);
                                             system("cls");
-                                            drawing_grid(3);
+                                            drawing_grid(2);
+                                            arr_start_grid(2);
                                             printf("\n");
                                             //  Game loop
                                             start = clock();
                                             gotoxy(27,7);
                                             printf("Time since starting %d : %d",minutes,seconds);
-
+                                            Total_remaining=12;
                                             while(Total_remaining>0){
 //**player1
                                                 player_1:
 
                                                   print_info();
                                                   gotoxy(1,14);
+                                                  red();
                                                   printf("%s's Turn : \n",player1.player_name);
                                                   printf("Enter R1 R2 C1 C2 : \n");
-                                                  game_box();
-                                                  gotoxy(10,19);printf("%c%c choose row 1        ",174,61);
-                                                  row1=choice_menu();
-                                                  gotoxy(10,19);printf("%c%c choose row 2       ",174,61);
-                                                  row2=choice_menu();
-                                                  gotoxy(10,19);printf("%c%c choose column 1",174,61);
-                                                  col1=choice_menu();
-                                                  gotoxy(10,19);printf("%c%c choose column 2",174,61);
-                                                  col2=choice_menu();
-                                                  red();
+
+                                                  gotoxy(1,19);printf("Enter row 1:");
+                                                  row1=scan_valid_integer(2,1);
+                                                  gotoxy(1,20);printf("Enter row 2:");
+                                                  row2=scan_valid_integer(2,2);
+                                                  gotoxy(1,21);printf("Enter col 1:");
+                                                  col1=scan_valid_integer(2,3);
+                                                  gotoxy(1,22);printf("Enter col 2:");
+                                                  col2=scan_valid_integer(2,4);
+
                                                  while(1){
                                                      if(draw_lines2x2(row1,row2,col1,col2,2) == 1){
                                                          gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
@@ -120,26 +120,31 @@ int main(){
                                                      else if(draw_lines2x2(row1,row2,col1,col2,2) == 2) goto player_1;
                                                  }
 //**
-                                                check_score(&checkScore,&row_change_color2x2,&col_change_color2x2);
-                                                if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
+
+                                                check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1);
+                                                if( checkScore == 1 ){
                                                         player1.score++;
                                                         //change the color of the box:
-                                                        red();
-                                                        gotoxy((3+1)+4*(col_change_color2x2),3+2*(row_change_color2x2));
-                                                        for(i=0;i<3;i++)printf("%c",205);
-                                                        gotoxy((3+1)+4*(col_change_color2x2),(3+2)+2*(row_change_color2x2));
-                                                        for(i=0;i<3;i++)printf("%c",205);
-                                                        gotoxy(3+4*(col_change_color2x2),(3+1)+2*(row_change_color2x2));
-                                                        for(i=0;i<1;i++){gotoxy(3+4*(col_change_color2x2),(3+i+1)+2*(row_change_color2x2));printf("%c",186);}
-                                                        gotoxy((3+4)+4*(col_change_color2x2),(3+1)+2*(row_change_color2x2));
-                                                        for(i=0;i<1;i++){gotoxy((3+4)+4*(col_change_color2x2),(3+i+1)+2*(row_change_color2x2));printf("%c",186);}
-                                                        reset();
+                                                        red(); color_box(row_cc,col_cc); reset();
                                                         Total_remaining--;
                                                         if(Total_remaining ==0){
                                                             goto after_game;
                                                         }
                                                         goto player_1;
                                                 }
+                                                if(checkScore==2){
+                                                    player1.score+=2;
+                                                    red();
+                                                    color_box(row_cc,col_cc);
+                                                    color_box(row_cc1,col_cc1);
+                                                    reset();
+                                                    Total_remaining--;
+                                                        if(Total_remaining ==0){
+                                                            goto after_game;
+                                                        }
+                                                        goto player_1;
+                                                }
+
                                                //timer update after player's role
                                                 end1 = clock();
                                                 diff = (int)(end1 - start)/CLOCKS_PER_SEC;
@@ -147,10 +152,6 @@ int main(){
                                                 minutes  = diff /60;
                                                 gotoxy(27,7);
                                                 printf("Time since starting %d : %d",minutes,seconds);
-
-
-
-
                                                 Total_remaining--;
                                                 gotoxy(30,25);
                                                 printf("%d",Total_remaining);
@@ -169,18 +170,18 @@ int main(){
 
                                                   print_info();
                                                   gotoxy(1,14);
+                                                  cyan();
                                                   printf("%s's Turn : \n",player2.player_name);
                                                   printf("Enter R1 R2 C1 C2 : \n");
-                                                  game_box();
-                                                    gotoxy(10,19);printf("%c%c choose row 1       ",174,61);
-                                                  row1=choice_menu();
-                                                    gotoxy(10,19);printf("%c%c choose row 2      ",174,61);
-                                                  row2=choice_menu();
-                                                    gotoxy(10,19);printf("%c%c choose column 1",174,61);
-                                                  col1=choice_menu();
-                                                    gotoxy(10,19);printf("%c%c choose column 2",174,61);
-                                                  col2=choice_menu();
-                                                 cyan();
+                                                  gotoxy(1,19);printf("Enter row 1:");
+                                                  row1=scan_valid_integer(2,1);
+                                                  gotoxy(1,20);printf("Enter row 2:");
+                                                  row2=scan_valid_integer(2,2);
+                                                  gotoxy(1,21);printf("Enter col 1:");
+                                                  col1=scan_valid_integer(2,3);
+                                                  gotoxy(1,22);printf("Enter col 2:");
+                                                  col2=scan_valid_integer(2,4);
+
                                                  while(1){
                                                      if(draw_lines2x2(row1,row2,col1,col2,2) == 1){
                                                          gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
@@ -189,26 +190,30 @@ int main(){
                                                          }
                                                      else if(draw_lines2x2(row1,row2,col1,col2,2) == 2) goto player_2;
                                                  }
-                                                 check_score(&(checkScore),&(row_change_color2x2),&(col_change_color2x2));
-                                                if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
+                                                  check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1);
+                                                if( checkScore == 1 ){
                                                         player2.score++;
                                                         //change the color of the box:
-                                                        cyan();
-                                                       gotoxy((3+1)+4*(col_change_color2x2),3+2*(row_change_color2x2));
-                                                        for(i=0;i<3;i++)printf("%c",205);
-                                                        gotoxy((3+1)+4*(col_change_color2x2),(3+2)+2*(row_change_color2x2));
-                                                        for(i=0;i<3;i++)printf("%c",205);
-                                                        gotoxy(3+4*(col_change_color2x2),(3+1)+2*(row_change_color2x2));
-                                                        for(i=0;i<1;i++){gotoxy(3+4*(col_change_color2x2),(3+i+1)+2*(row_change_color2x2));printf("%c",186);}
-                                                        gotoxy((3+4)+4*(col_change_color2x2),(3+1)+2*(row_change_color2x2));
-                                                        for(i=0;i<1;i++){gotoxy((3+4)+4*(col_change_color2x2),(3+i+1)+2*(row_change_color2x2));printf("%c",186);}
-                                                        reset();
+                                                        cyan(); color_box(row_cc,col_cc); reset();
                                                         Total_remaining--;
                                                         if(Total_remaining ==0){
                                                             goto after_game;
                                                         }
                                                         goto player_2;
                                                 }
+                                                if(checkScore==2){
+                                                    player2.score+=2;
+                                                    cyan();
+                                                    color_box(row_cc,col_cc);
+                                                    color_box(row_cc1,col_cc1);
+                                                    reset();
+                                                    Total_remaining--;
+                                                        if(Total_remaining ==0){
+                                                            goto after_game;
+                                                        }
+                                                        goto player_2;
+                                                }
+
                                                 //timer update after player's role
                                                 end2 = clock();
                                                 diff = (int)(end2 - start)/CLOCKS_PER_SEC;
@@ -292,5 +297,3 @@ int main(){
     }
     return 0;
 }
-
-
