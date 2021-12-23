@@ -112,14 +112,14 @@ int main(){
                                                   col2=choice_menu();
                                                   red();
                                                  while(1){
-                                                     if(draw_lines2x2(row1,row2,col1,col2) == 1){
+                                                     if(draw_lines2x2(row1,row2,col1,col2,2) == 1){
                                                          gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
                                                          player1.number_of_moves++;
                                                            break;
                                                          }
-                                                     else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_1;
+                                                     else if(draw_lines2x2(row1,row2,col1,col2,2) == 2) goto player_1;
                                                  }
-                                                for(counter=0;counter<2;counter++){
+//**
                                                 check_score(&checkScore,&row_change_color2x2,&col_change_color2x2);
                                                 if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
                                                         player1.score++;
@@ -134,7 +134,6 @@ int main(){
                                                         gotoxy((3+4)+4*(col_change_color2x2),(3+1)+2*(row_change_color2x2));
                                                         for(i=0;i<1;i++){gotoxy((3+4)+4*(col_change_color2x2),(3+i+1)+2*(row_change_color2x2));printf("%c",186);}
                                                         reset();
-                                                }
                                                         Total_remaining--;
                                                         if(Total_remaining ==0){
                                                             goto after_game;
@@ -183,12 +182,12 @@ int main(){
                                                   col2=choice_menu();
                                                  cyan();
                                                  while(1){
-                                                     if(draw_lines2x2(row1,row2,col1,col2) == 1){
+                                                     if(draw_lines2x2(row1,row2,col1,col2,2) == 1){
                                                          gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
                                                          player2.number_of_moves++;
                                                            break;
                                                          }
-                                                     else if(draw_lines2x2(row1,row2,col1,col2) == 2) goto player_2;
+                                                     else if(draw_lines2x2(row1,row2,col1,col2,2) == 2) goto player_2;
                                                  }
                                                  check_score(&(checkScore),&(row_change_color2x2),&(col_change_color2x2));
                                                 if( (checkScore == 1) && (row_change_color2x2!=-1) && (col_change_color2x2!=-1) ){
@@ -293,3 +292,5 @@ int main(){
     }
     return 0;
 }
+
+

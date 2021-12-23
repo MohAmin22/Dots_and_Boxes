@@ -1,9 +1,10 @@
-#include <stdio.h>
-#include "menu.h"
-#include "game5x5.h"
+#include<stdio.h>
 
-int main(){
-   
-                                              
 
+void main(void){
+    int n;
+    printf("the size of game is:");
+    scanf("%d",&n);
+    arr_grid(n);
+    
 }
