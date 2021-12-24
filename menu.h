@@ -97,7 +97,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         }
 
     }while(ch!=13);
-    gotoxy(39,16);
+    gotoxy(39,16);printf("please wait the terminal is killed");
     return pos;
 
 }
@@ -137,7 +137,7 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         }
 
     }while(ch!=13);
-    gotoxy(39,16);
+    gotoxy(39,16);printf("please wait the terminal is killed");
     return pos;
 
 }

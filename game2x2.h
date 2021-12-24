@@ -1,9 +1,13 @@
+#ifndef GAME2X2
+#define GAME2X2
+
 #include <stdio.h>
 #include <string.h>
 #include "game5x5.h"
 #include <math.h>
 
 int score_4 [9][9]={0};
+char score_4_name [9][9]={'0'};
 char grid[20][20]={0} ;
 void arr_start_grid(int n){
 
@@ -89,13 +93,77 @@ int draw_lines2x2(int r1,int r2 ,int c1, int c2,int size_of_game){
      }
 }
 
-void check_score(int *ch,int *row,int *col,int *k1,int *k2){
+
+
+
+/////////for deleting the repeated line in both two boxes
+
+
+
+void delete_ver(int y,int z){
+int deleted_row = 2*y+1;
+int deleted_col = 2*z+2;
+
+gotoxy(deleted_col*2+3,deleted_row+3);
+printf(" ");
+
+}
+
+void delete_hor(int y,int z){
+int deleted_row = 2*y+2;
+int deleted_col = 2*z+1;
+
+gotoxy(deleted_col*2+2,3+deleted_row);
+printf("   ");
+
+
+}
+
+
+
+
+void delete_common(int num_boxes,char name){
+int y=0;
+int z=0;
+    for(y=0;y<num_boxes;y++){
+        for(z=0;z<num_boxes -1;z++){
+            if(score_4_name[y][z]== name && score_4_name[y][z+1] == name){
+                delete_ver(y,z);
+                score_4_name[y][z] == 'c';
+                score_4_name[y][z+1] == 'c';
+
+
+
+            }
+        }
+    }
+    for(y=0;y<num_boxes-1;y++){
+        for(z=0;z<num_boxes;z++){
+            if(score_4_name[y][z]== name && score_4_name[y+1][z] == name){
+                delete_hor(y,z);
+                score_4_name[y][z] == 'c';
+                score_4_name[y+1][z] == 'c';
+
+
+
+            }
+        }
+    }
+
+
+
+}
+
+
+
+void check_score(int *ch,int *row,int *col,int *k1,int *k2,int size,char name){
     int i,j=0;
     *ch=0,*row=-1,*col=-1,*k1==-1,*k2==-1;
-    for(i=0;i<2;i++){
-        for(j=0;j<2;j++){
+    for(i=0;i<size;i++){
+        for(j=0;j<size;j++){
             if(score_4[i][j] ==4 ){
                 score_4[i][j] = 6;
+                score_4_name[i][j]=name;
                 *ch=*ch+1;
                 if(*ch==1){*row=i;*col=j;}
                 else if(*ch==2){*k1=i;*k2=j;}
@@ -131,7 +199,7 @@ int scan_valid_integer(int max_num,int q){
 void color_box(int a1,int a2){
                                 int i;
                                 gotoxy((3+1)+4*(a2),3+2*(a1));for(i=0;i<3;i++)printf("%c",205);
-                                 gotoxy((3+1)+4*(a2),(3+2)+2*(a1));for(i=0;i<3;i++)printf("%c",205);
+                                gotoxy((3+1)+4*(a2),(3+2)+2*(a1));for(i=0;i<3;i++)printf("%c",205);
                                  gotoxy(3+4*(a2),(3+1)+2*(a1));
                                  for(i=0;i<1;i++){
                                         gotoxy(3+4*(a2),(3+i+1)+2*(a1));printf("%c",186);
@@ -141,3 +209,4 @@ void color_box(int a1,int a2){
                                         gotoxy((3+4)+4*(a2),(3+i+1)+2*(a1));printf("%c",186);
                                  }
 }
+#endif
