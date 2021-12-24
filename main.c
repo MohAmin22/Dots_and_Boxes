@@ -67,13 +67,14 @@ int main(){
                                     selection3 = vs_menu(); // the choice from vs menu
                                     switch(selection3){
                                         case 1: // vs computer in (2x2)
+                        // start vs comp 2x2             ////////////////////////////////////////////////////////////////////////////////////////////////
                                             reset();
                                             delete_main_menu(4);
                                             gotoxy(39,17);
 
                                             printf("the first selection");
 
-
+                    // end vs comp 2x2 then break            ////////////////////////////////////////////////////////////////////////////////////////////////
                                         break;
                                         case 2: // vs player in (2x2)
 
