@@ -209,4 +209,132 @@ void color_box(int a1,int a2){
                                         gotoxy((3+4)+4*(a2),(3+i+1)+2*(a1));printf("%c",186);
                                  }
 }
+
+//End of game2x2
+
+//start of Ai
+//determining which box the AI will play in
+void computer (int number_of_boxes){
+int counter1=0;int counter2=0;
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==3){
+            score_4[counter1][counter2]++;
+            edit_drawing(counter1,counter2,number_of_boxes);
+            goto forced;
+
+        }
+
+    }
+}
+
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1 ){
+            score_4[counter1][counter2]++;
+            edit_drawing(counter1,counter2,number_of_boxes);
+            goto forced;
+
+        }
+
+    }
+}
+
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==2){
+            score_4[counter1][counter2]++;
+            edit_drawing(counter1,counter2,number_of_boxes);
+
+        }
+
+    }
+}
+forced ://end of computer turn
+gotoxy(38,30);
+printf("AI WILL BEAT YOU!");
+}
+
+
+
+/*void edit_drawing(int row_score,int col_score,int size_of_box){
+int r = 2*row_score;
+int c = (2*col_score) +1;
+if(grid[r][c] == ' '){
+    grid[r][c] = 205;
+    if(row_score != 0 ) score_4[row_score-1][col_score]++;
+
+
+}else if(grid[r+1][c+1] == ' '){
+        grid[r+1][c+1] = 186;
+        if(col_score != (size_of_box - 1) ) score_4[row_score][col_score+1]++;
+
+
+
+}else if(grid[r+2][c] == ' '){
+        grid[r+2][c] = 205;
+        if(row_score != (size_of_box - 1) ) score_4[row_score+1][col_score]++;
+
+}else if(grid[r-1][c-1] == ' '){
+        grid[r-1][c-1] = 186;
+        if(col_score != 0 ) score_4[row_score][col_score-1]++;
+
+}
+
+
+}
+
+*/
+
+//[1]drawing the choice of computer on console
+//[2]increasing the array score_4
+//[3] using [1] to fill the grid array (simulation array)
+void edit_drawing(int row_score,int col_score,int size_of_box){
+int r = 2*row_score;
+int c = (2*col_score) +1;
+int counter3=0;
+if(grid[r][c] == ' '){          //up
+    grid[r][c] = 205;
+
+    gotoxy((3+1)+4*col_score,3+2*row_score);
+    for(counter3 =0;counter3<3;counter3++) printf("%c",205);
+
+    if(row_score != 0 ) score_4[row_score-1][col_score]++;
+
+
+}else if(grid[r+1][c+1] == ' '){    //Right
+        grid[r+1][c+1] = 186;
+
+        gotoxy((3+4)+4*(col_score),(3+1)+2*(row_score));
+        for(counter3=0;counter3<1;counter3++){
+        gotoxy((3+4)+4*(col_score),(3+counter3+1)+2*(row_score));printf("%c",186);
+        }
+
+        if(col_score != (size_of_box - 1) ) score_4[row_score][col_score+1]++;
+
+
+
+}else if(grid[r+2][c] == ' '){      //Down
+        grid[r+2][c] = 205;
+
+        gotoxy((3+1)+4*(col_score),3+2*(row_score));for(counter3=0;counter3<3;counter3++)printf("%c",205);
+
+        if(row_score != (size_of_box - 1) ) score_4[row_score+1][col_score]++;
+
+}else if(grid[r-1][c-1] == ' '){ //left
+        grid[r-1][c-1] = 186;
+
+            gotoxy(3+4*(col_score),(3+1)+2*(row_score));
+             for(counter3=0;counter3<1;counter3++){
+             gotoxy(3+4*(col_score),(3+counter3+1)+2*(row_score));printf("%c",186);
+             }
+
+
+        if(col_score != 0 ) score_4[row_score][col_score-1]++;
+
+}
+
+
+}
+
 #endif
