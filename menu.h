@@ -2,7 +2,6 @@
 #define MENU
 #include <stdio.h>
 #include <windows.h>
-#include "game5x5.h"
 #include<math.h>
 //the colors
 void red () {
@@ -182,18 +181,6 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 }
 
-//function for deleting the main menu
-void delete_main_menu(int a){
-
-    int j,i;
-    for(j=0;j<a+2;j++)
-    {
-        gotoxy(39,10+j);
-        for(i=1;i<=37;i++)printf(" ");
-    }
-}
-
-
 //game edit:
 
 void game_box(void){
@@ -207,18 +194,13 @@ void game_box(void){
     gotoxy(1,18);
     printf("%c",186);
     for(j=1;j<=5;j++)printf(" ");
-    printf("%c",186);
-    gotoxy(1,19);
-    printf("%c",186);
+    printf("%c",186);gotoxy(1,19);printf("%c",186);
     for(j=1;j<=5;j++)printf(" ");
-    printf("%c",186);
-    gotoxy(1,20);
-    printf("%c",186);
+    printf("%c",186);gotoxy(1,20);printf("%c",186);
     for(j=1;j<=5;j++)printf(" ");
     printf("%c",186);
 
-    gotoxy(1,21);
-    printf("%c",200);
+    gotoxy(1,21);printf("%c",200);
     for(i=1;i<=5;i++)printf("%c",205);
     printf("%c",188);
 }
@@ -264,13 +246,5 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
 }
-void delete_choice_menu(void){
-    int i,j;
-    for(i=0;i<5;i++){
-        gotoxy(1,16+i);
-        for(j=1;j<=7;j++){
-            printf(" ");
-        }
-    }
-}
+
 #endif // end of menu
