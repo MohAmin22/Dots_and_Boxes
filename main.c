@@ -71,6 +71,7 @@ int main(){
         case 3: //the case that the player choice top scorers
         break;
         case 4: //the case that the player choice [4]exit
+            exit(-1);
           break;
 
 
