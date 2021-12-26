@@ -324,7 +324,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
         if(score_4[counter1][counter2]==2){
             score_4[counter1][counter2]++;
             edit_drawing(counter1,counter2,number_of_boxes);
-
+            goto forced;
         }
 
     }
