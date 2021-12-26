@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 //_g for vs player
 int counter_g=0;
@@ -293,6 +294,457 @@ void color_box(int a1,int a2){
 
 //start of Ai
 //determining which box the AI will play in
+
+void computer (int number_of_boxes){
+int counter1=0;int counter2=0;
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==3){
+            score_4[counter1][counter2]++;
+            edit_drawing(counter1,counter2,number_of_boxes);
+            goto forced;
+
+        }
+
+    }
+}
+
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1 ){
+                        if(counter1 == 0 && counter2 == 0){
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }
+
+
+
+                        }else if(counter1 == 0 && counter2 == number_of_boxes-1){
+                                    if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }
+
+
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 == 0){
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == ' '){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+                                    }
+
+
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == ' '){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+                                    }
+
+
+
+                        }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1){
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                           score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                    }
+
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1){
+
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == ' '){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                    }
+
+                        }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1){
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == ' '){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                           score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }
+
+
+                        }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1){
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == ' '){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+
+                                           score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                           score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                                    }
+
+
+                        }else{
+                                if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1){//up
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1-1][counter2]++;
+                                            grid[2*counter1][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,3+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                                }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                            score_4[counter1][counter2]++;
+                                            score_4[counter1+1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                                }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                           score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2+1]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == ' '){//left
+
+                                          score_4[counter1][counter2]++;
+                                            score_4[counter1][counter2-1]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                }
+
+
+                        }
+
+        }
+
+    }
+}
+
+
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+
+
+        if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1){
+
+                        if(counter1 == 0 && counter2 == 0){
+                                if(grid[2*counter1][2*counter2+1] == ' '){ //up
+                                    score_4[counter1][counter2]++;
+                                    grid[2*counter1][2*counter2+1] = 205;
+                                    gotoxy(4+4*counter2,3+2*counter1);
+                                    printf("%c%c%c",205,205,205);
+                                    goto forced;
+
+                                }else if(grid[2*counter1+1][2*counter2] == ' '){ //left
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                }
+
+
+
+                        }else if(counter1 == 0 && counter2 == number_of_boxes-1){
+
+                                if(grid[2*counter1][2*counter2+1] == ' '){ //up
+                                    score_4[counter1][counter2]++;
+                                    grid[2*counter1][2*counter2+1] = 205;
+                                    gotoxy(4+4*counter2,3+2*counter1);
+                                    printf("%c%c%c",205,205,205);
+                                    goto forced;
+
+                                }else if (grid[2*counter1+1][2*counter2+2] == ' '){ //right
+                                            score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+                                }
+
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 == 0){
+
+                               if(grid[2*counter1+1][2*counter2] == ' '){ //left
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                                }else if (grid[2*counter1+2][2*counter2+1] == ' '){ //down
+                                             score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+                                }
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
+
+                                if(grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                                }else if(grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                            score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                                }
+
+                        }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1 &&grid[2*counter1][2*counter2+1] == ' ' ){
+
+                               //up
+
+                                   score_4[counter1][counter2]++;
+                                    grid[2*counter1][2*counter2+1] = 205;
+                                    gotoxy(4+4*counter2,3+2*counter1);
+                                    printf("%c%c%c",205,205,205);
+                                    goto forced;
+
+
+
+
+                        }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1+2][2*counter2+1] == ' '){
+                           //down
+                                            score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+
+
+
+
+                        }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2] == ' '){
+
+                              //left
+
+                                          score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+
+
+
+                        }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2+2] == ' '){
+
+                               //right
+                                          score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2+2] = 186;
+                                            gotoxy(7+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+
+
+
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+}
+
+
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==2){
+            score_4[counter1][counter2]++;
+            edit_drawing(counter1,counter2,number_of_boxes);
+            goto forced;
+        }
+
+    }
+}
+forced ://end of computer turn
+gotoxy(38,27);
+printf("AI WILL BEAT YOU");
+
+}
+/*
 void computer (int number_of_boxes){
 int counter1=0;int counter2=0;
 for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
@@ -330,40 +782,12 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     }
 }
 forced ://end of computer turn
-gotoxy(38,30);
-printf("AI WILL BEAT YOU!");
+gotoxy(38,27);
+printf("AI WILL BEAT YOU");
 }
-
-
-
-/*void edit_drawing(int row_score,int col_score,int size_of_box){
-int r = 2*row_score;
-int c = (2*col_score) +1;
-if(grid[r][c] == ' '){
-    grid[r][c] = 205;
-    if(row_score != 0 ) score_4[row_score-1][col_score]++;
-
-
-}else if(grid[r+1][c+1] == ' '){
-        grid[r+1][c+1] = 186;
-        if(col_score != (size_of_box - 1) ) score_4[row_score][col_score+1]++;
-
-
-
-}else if(grid[r+2][c] == ' '){
-        grid[r+2][c] = 205;
-        if(row_score != (size_of_box - 1) ) score_4[row_score+1][col_score]++;
-
-}else if(grid[r-1][c-1] == ' '){
-        grid[r-1][c-1] = 186;
-        if(col_score != 0 ) score_4[row_score][col_score-1]++;
-
-}
-
-
-}
-
 */
+
+
 
 //[1]drawing the choice of computer on console
 //[2]increasing the array score_4
@@ -395,13 +819,14 @@ if(grid[r][c] == ' '){          //up
 
 }else if(grid[r+2][c] == ' '){      //Down
         grid[r+2][c] = 205;
-
-        gotoxy((3+1)+4*(col_score),3+2*(row_score));for(counter3=0;counter3<3;counter3++)printf("%c",205);
+///////////////y coordinate must be 5+2*row_score
+        gotoxy((3+1)+4*(col_score),5+2*(row_score));for(counter3=0;counter3<3;counter3++)printf("%c",205);
 
         if(row_score != (size_of_box - 1) ) score_4[row_score+1][col_score]++;
 
 }else if(grid[r-1][c-1] == ' '){ //left
-        grid[r-1][c-1] = 186;
+    /////////must be grid[r+1][c-1]
+        grid[r+1][c-1] = 186;
 
             gotoxy(3+4*(col_score),(3+1)+2*(row_score));
              for(counter3=0;counter3<1;counter3++){
