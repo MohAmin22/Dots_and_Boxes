@@ -3,7 +3,36 @@
 #include <stdio.h>
 #include <windows.h>
 #include<math.h>
+#include<time.h>
 //the colors
+/*
+void welcome(void){
+int counter5;
+
+purple();
+
+for (int counter5=0 ; counter5 <10;counter5++){
+printf("\n\n\n\n\n\n");
+printf(" __          __  _\n");
+printf(" \\ \\        / / | |\n");
+printf("  \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___\n");
+printf("   \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\n");
+printf("    \\  /\\  /  __/ | (_| (_) | | | | | |  __/ \n");
+printf("  _  \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|        _   ____ \n");
+printf(" | |        |  __ \\      | |                       | | |  _ \\ \n");
+printf(" | |_ ___   | |  | | ___ | |_ ___    __ _ _ __   __| | | |_) | _____  _____  ___ \n");
+printf(" | __/ _ \\  | |  | |/ _ \\| __/ __|  / _` | '_ \\ / _` | |  _ < / _ \\ \\/ / _ \\/ __|\n");
+printf(" | || (_) | | |__| | (_) | |_\\__ \\ | (_| | | | | (_| | | |_) | (_) >  <  __/\\__ \\\n");
+printf("  \\\__\\___/  |_____/ \\___/ \\__|___/  \\__,_|_| |_|\\__,_| |____/ \\___/_/\\_\\___||___/\n");
+
+system("cls");
+}
+
+reset();
+
+
+}
+*/
 void red () {
   system("");
   printf("\033[1;31m");
@@ -34,7 +63,6 @@ void gotoxy(int x,int y)
 }
 
 //the code of the starting of the main menu
-
 
 void box(int a)
 {
@@ -246,5 +274,137 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
 }
+
+
+
+
+
+
+
+
+void saving(int numberfile,player player1,player player2,int *rem_moves,int size_game,int role){
+ int e,q;
+ //if(numberfile==1){
+        FILE *file1;
+        file1=fopen("filegametest1.txt","w");
+        fprintf(file1,"%s",player1.player_name);fprintf(file1,"\n");
+        if(role==3||role==4){
+                fprintf(file1,"computer");fprintf(file1,"\n");}
+        else
+        {fprintf(file1,"%s",player2.player_name);fprintf(file1,"\n");}
+        fprintf(file1,"%d",player1.score);fprintf(file1,"\n");
+        fprintf(file1,"%d",player2.score);fprintf(file1,"\n");
+        fprintf(file1,"%d",player1.number_of_moves);fprintf(file1,"\n");
+        fprintf(file1,"%d",player2.number_of_moves);fprintf(file1,"\n");
+        fprintf(file1,"%d",*rem_moves);fprintf(file1,"\n");
+        fprintf(file1,"%d",size_game);fprintf(file1,"\n");
+        fprintf(file1,"%d",role);fprintf(file1,"\n");
+
+        for(q=0;q<2*size_game+1;q++){
+            for(e=0;e<2*size_game+1;e++){
+                fprintf(file1,"%c",grid[q][e]);
+            }
+            fprintf(file1,"\n");
+        }
+
+            fprintf(file1,"\n");
+        for(q=0;q<size_game;q++){
+            for(e=0;e<size_game;e++){
+                fprintf(file1,"%d",score_4[q][e]);
+                fprintf(file1," ");
+            }
+        }
+
+            fprintf(file1,"\n");
+         for(q=0;q<size_game;q++){
+            for(e=0;e<size_game;e++){
+                fprintf(file1,"%c",score_4_name[q][e]);
+            }
+        }
+        fclose(file1);
+ //}
+}
+
+
+
+
+
+void loadplayedgame(void){
+    FILE *file1l;
+    file1l=fopen("filegametest1.txt","r");
+
+        int rule;
+        int sizeload;
+
+        fscanf(file1l,"%s",player1.player_name);fscanf(file1l,"\n");
+        fscanf(file1l,"%s",player2.player_name);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&player1.score);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&player2.score);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&player1.number_of_moves);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&player2.number_of_moves);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&Total_remaining);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&sizeload);fscanf(file1l,"\n");
+        fscanf(file1l,"%d",&rule);fscanf(file1l,"\n");
+        int e,q;
+        for(q=0;q<2*sizeload+1;q++){
+            for(e=0;e<2*sizeload+1;e++){
+                fscanf(file1l,"%c",&grid[q][e]);
+            }
+            fscanf(file1l,"\n");
+        }fscanf(file1l,"\n");
+
+        for(q=0;q<sizeload;q++){
+            for(e=0;e<sizeload;e++){
+                fscanf(file1l,"%d",&score_4[q][e]);
+                fscanf(file1l," ");
+            }
+        }
+
+         fscanf(file1l,"\n");
+        for(q=0;q<sizeload;q++){
+            for(e=0;e<sizeload;e++){
+                fscanf(file1l,"%c",&score_4_name[q][e]);
+            }
+        }
+
+    fclose(file1l);
+
+    //printing grid
+    drawing_grid(sizeload);
+        for(q=0;q<2*sizeload+1;q++){
+            for(e=0;e<2*sizeload+1;e++){
+                        if(q%2==0){
+                            if(grid[q][e]=='A'){red();gotoxy(2+2*e,3+q);printf("%c%c%c",205,205,205);reset();}
+                            else if(grid[q][e]=='B'){cyan();gotoxy(2+2*e,3+q);printf("%c%c%c",205,205,205);reset();}
+                        }
+                        else {
+                                    if(grid[q][e]=='A'){red();gotoxy(3+2*e,3+q);printf("%c",186);reset();}
+                                    else if(grid[q][e]=='B'){cyan();gotoxy(3+2*e,3+q);printf("%c",186);reset();}
+
+                        }
+            }
+        }
+
+         for(q=0;q<sizeload;q++){
+            for(e=0;e<sizeload;e++){
+                if(score_4_name[q][e]=='A'){red();gotoxy((3+2)+4*e,(3+1)+2*q);printf("A");color_box(q,e);reset();}
+                else if(score_4_name[q][e]=='B'){cyan();gotoxy((3+2)+4*e,(3+1)+2*q);printf("B");color_box(q,e);reset();}
+            }
+        }
+delete_common(sizeload,'A');
+delete_common(sizeload,'B');
+
+if(rule==3||rule==4)game_loop_vs_AI(sizeload,rule);
+else game_loop_vs_player(sizeload,rule);
+
+
+
+
+}
+
+
+
+
+
 
 #endif // end of menu

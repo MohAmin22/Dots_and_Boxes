@@ -11,6 +11,7 @@ int selection_level_menu=1;
 int selection_vs_menu=1;
 
 int main(){
+    /*welcome();*/
     box(4);
     selection_main_menu=main_menu(); //selection is the variable that contains the player's choice from the main menu
     //return default colour
@@ -34,11 +35,11 @@ int main(){
                                     switch(selection_vs_menu){
                                         case 1:
                                             system("cls");
-                                            game_loop_vs_AI(2);
+                                            game_loop_vs_AI(2,3);
                                         break;
                                         case 2:
                                             system("cls");
-                                            game_loop_vs_player(2);
+                                            game_loop_vs_player(2,0);// the zero for start new game
                                         break;
 
                                     }//end of selection3  2x2
@@ -52,11 +53,11 @@ int main(){
                                     switch(selection_vs_menu){
                                         case 1:
                                             system("cls");
-                                            game_loop_vs_AI(5);
+                                            game_loop_vs_AI(5,3);
                                         break;
                                         case 2:
                                             system("cls");
-                                            game_loop_vs_player(5);
+                                            game_loop_vs_player(5,0);// the zero for start new game
                                         break;
 
                                     }
@@ -66,6 +67,8 @@ int main(){
             break;//break for case 1 in main menu start game
 
         case 2:  //case that player choice [2]load a previous game
+            system("cls");
+            loadplayedgame();
         printf("that is the second case");
         break;
         case 3: //the case that the player choice top scorers
@@ -78,3 +81,4 @@ int main(){
     }
     return 0;
 }
+
