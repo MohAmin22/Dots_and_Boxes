@@ -274,100 +274,123 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
 }
+void saving(int size_game,int role){
+        if(filenumber==1){
+                 FILE *file1;
+                file1=fopen("filegame1.txt","w");
+                fn_save(size_game,role,file1);
+        }
+        else if(filenumber==2){
+                    FILE *file2;
+                    file2=fopen("filegame2.txt","w");
+                    fn_save(size_game,role,file2);
+        }
+        else if(filenumber==3){
+                    FILE *file3;
+                    file3=fopen("filegame3.txt","w");
+                    fn_save(size_game,role,file3);
+        }
+}
 
-
-
-
-
-
-
-
-void saving(int numberfile,player player1,player player2,int *rem_moves,int size_game,int role){
+void fn_save(int size_game,int role,FILE *file){
  int e,q;
- //if(numberfile==1){
-        FILE *file1;
-        file1=fopen("filegametest1.txt","w");
-        fprintf(file1,"%s",player1.player_name);fprintf(file1,"\n");
-        if(role==3||role==4){
-                fprintf(file1,"computer");fprintf(file1,"\n");}
+        fprintf(file,"%s",player1.player_name);fprintf(file,"\n");
+        if(role==3||role==4||role ==5){
+                fprintf(file,"computer");fprintf(file,"\n");}
         else
-        {fprintf(file1,"%s",player2.player_name);fprintf(file1,"\n");}
-        fprintf(file1,"%d",player1.score);fprintf(file1,"\n");
-        fprintf(file1,"%d",player2.score);fprintf(file1,"\n");
-        fprintf(file1,"%d",player1.number_of_moves);fprintf(file1,"\n");
-        fprintf(file1,"%d",player2.number_of_moves);fprintf(file1,"\n");
-        fprintf(file1,"%d",*rem_moves);fprintf(file1,"\n");
-        fprintf(file1,"%d",size_game);fprintf(file1,"\n");
-        fprintf(file1,"%d",role);fprintf(file1,"\n");
+        {fprintf(file,"%s",player2.player_name);fprintf(file,"\n");}
+        fprintf(file,"%d",player1.score);fprintf(file,"\n");
+        fprintf(file,"%d",player2.score);fprintf(file,"\n");
+        fprintf(file,"%d",player1.number_of_moves);fprintf(file,"\n");
+        fprintf(file,"%d",player2.number_of_moves);fprintf(file,"\n");
+        fprintf(file,"%d",Total_remaining);fprintf(file,"\n");
+        fprintf(file,"%d",size_game);fprintf(file,"\n");
+        fprintf(file,"%d",role);fprintf(file,"\n");
 
         for(q=0;q<2*size_game+1;q++){
             for(e=0;e<2*size_game+1;e++){
-                fprintf(file1,"%c",grid[q][e]);
+                fprintf(file,"%c",grid[q][e]);
             }
-            fprintf(file1,"\n");
+            fprintf(file,"\n");
         }
 
-            fprintf(file1,"\n");
+            fprintf(file,"\n");
         for(q=0;q<size_game;q++){
             for(e=0;e<size_game;e++){
-                fprintf(file1,"%d",score_4[q][e]);
-                fprintf(file1," ");
+                fprintf(file,"%d",score_4[q][e]);
+                fprintf(file," ");
             }
         }
 
-            fprintf(file1,"\n");
+            fprintf(file,"\n");
          for(q=0;q<size_game;q++){
             for(e=0;e<size_game;e++){
-                fprintf(file1,"%c",score_4_name[q][e]);
+                fprintf(file,"%c",score_4_name[q][e]);
             }
         }
-        fclose(file1);
- //}
+        fclose(file);
+
 }
 
 
+void loading(void){
+            if(filenumberload==1){
+                 FILE *file1load;
+                file1load=fopen("filegame1.txt","r");
+                fn_load(file1load);
+        }
+        else if(filenumberload==2){
+                    FILE *file2load;
+                    file2load=fopen("filegame2.txt","r");
+                    fn_load(file2load);
+        }
+        else if(filenumberload==3){
+                    FILE *file3load;
+                    file3load=fopen("filegame3.txt","r");
+                    fn_load(file3load);
+        }
 
 
 
-void loadplayedgame(void){
-    FILE *file1l;
-    file1l=fopen("filegametest1.txt","r");
+}
 
+
+void fn_load(FILE *fileload){
         int rule;
         int sizeload;
 
-        fscanf(file1l,"%s",player1.player_name);fscanf(file1l,"\n");
-        fscanf(file1l,"%s",player2.player_name);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&player1.score);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&player2.score);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&player1.number_of_moves);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&player2.number_of_moves);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&Total_remaining);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&sizeload);fscanf(file1l,"\n");
-        fscanf(file1l,"%d",&rule);fscanf(file1l,"\n");
+        fscanf(fileload,"%s",player1.player_name);fscanf(fileload,"\n");
+        fscanf(fileload,"%s",player2.player_name);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&player1.score);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&player2.score);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&player1.number_of_moves);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&player2.number_of_moves);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&Total_remaining);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&sizeload);fscanf(fileload,"\n");
+        fscanf(fileload,"%d",&rule);fscanf(fileload,"\n");
         int e,q;
         for(q=0;q<2*sizeload+1;q++){
             for(e=0;e<2*sizeload+1;e++){
-                fscanf(file1l,"%c",&grid[q][e]);
+                fscanf(fileload,"%c",&grid[q][e]);
             }
-            fscanf(file1l,"\n");
-        }fscanf(file1l,"\n");
+            fscanf(fileload,"\n");
+        }fscanf(fileload,"\n");
 
         for(q=0;q<sizeload;q++){
             for(e=0;e<sizeload;e++){
-                fscanf(file1l,"%d",&score_4[q][e]);
-                fscanf(file1l," ");
+                fscanf(fileload,"%d",&score_4[q][e]);
+                fscanf(fileload," ");
             }
         }
 
-         fscanf(file1l,"\n");
+         fscanf(fileload,"\n");
         for(q=0;q<sizeload;q++){
             for(e=0;e<sizeload;e++){
-                fscanf(file1l,"%c",&score_4_name[q][e]);
+                fscanf(fileload,"%c",&score_4_name[q][e]);
             }
         }
 
-    fclose(file1l);
+    fclose(fileload);
 
     //printing grid
     drawing_grid(sizeload);
@@ -394,7 +417,7 @@ void loadplayedgame(void){
 delete_common(sizeload,'A');
 delete_common(sizeload,'B');
 
-if(rule==3||rule==4)game_loop_vs_AI(sizeload,rule);
+if(rule==3 || rule==4 ||rule ==5)game_loop_vs_AI(sizeload,rule);
 else game_loop_vs_player(sizeload,rule);
 
 

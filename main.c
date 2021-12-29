@@ -10,6 +10,7 @@ int selection_main_menu=1;
 int selection_level_menu=1;
 int selection_vs_menu=1;
 
+
 int main(){
     /*welcome();*/
     box(4);
@@ -67,8 +68,11 @@ int main(){
             break;//break for case 1 in main menu start game
 
         case 2:  //case that player choice [2]load a previous game
+            system("cls");purple();
+            gotoxy(1,11);printf("Enter [1]load first file....[2]load second file....[3]load third file :");reset();
+            filenumberload=scan_valid_integer(3,-7);
             system("cls");
-            loadplayedgame();
+            loading();
         printf("that is the second case");
         break;
         case 3: //the case that the player choice top scorers
