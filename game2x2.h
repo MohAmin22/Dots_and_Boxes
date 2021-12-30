@@ -749,6 +749,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 printf("Player  A name : ");
                                                                                                 gets(player1.player_name);
                                                                                                 cyan();
+                                                                                                gotoxy(30,12);
                                                                                                 printf("Player  B name : ");
                                                                                                 gets(player2.player_name);
                                                                                                 reset();
