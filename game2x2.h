@@ -1082,10 +1082,12 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 after_game:
                                                                                                  print_info(1); // to update info after the final line
                                                                                                 //determining winner
+                                                                                                Ent_new_score();
                                                                                                 gotoxy(1,25);
                                                                                                 purple();
-                                                                                                if(player1.score > player2.score)
+                                                                                                if(player1.score > player2.score){
                                                                                                    printf("The winner is : %s",player1.player_name);
+                                                                                                   }
                                                                                                 else if(player1.score < player2.score)
                                                                                                     printf("The winner is : %s",player2.player_name);
                                                                                                 else if(player1.score == player2.score) printf("There are no winner the game is draw ");

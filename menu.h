@@ -419,13 +419,227 @@ delete_common(sizeload,'B');
 
 if(rule==3 || rule==4 ||rule ==5)game_loop_vs_AI(sizeload,rule);
 else game_loop_vs_player(sizeload,rule);
+}
+
+
+int scores_values[10];
+char names_wvalues[10][100];
+int position=-1;
+
+
+void topscore_names_scores(void){
+        HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+
+        char n[100];
+        int sc=0,i;
+        FILE *name;
+        FILE *score;
+        name=fopen("top_names.txt","r");
+        score=fopen("top_scores.txt","r");
+        SetConsoleTextAttribute(console,11);
+        system("cls");gotoxy(0,0);
+        for(i=1;i<=10;i++){
+                    fscanf(name,"%s",n);fscanf(name,"\n");
+                    fscanf(score,"%d",&sc);fscanf(score,"\n");
+                    printf("[%d] %s              with score : %d\n",i,n,sc);
+        }
+        SetConsoleTextAttribute(console,15);
+        fclose(name);
+        fclose(score);
+}
+
+void Ent_new_score(void){
+    int j,i,news=10;
+
+
+    FILE *name;
+    FILE *score;
+    int temp_score;
+    char temp_name[100];
+    name=fopen("top_names.txt","r");
+    score=fopen("top_scores.txt","r");
+    for(i=0;i<10;i++){
+        fscanf(score,"%d",&scores_values[i]);fscanf(score,"\n");
+        fscanf(name,"%s",names_wvalues[i]);fscanf(name,"\n");
+    }
+    fclose(name);
+    fclose(score);
+    /*
+    for(i=0;i<10;i++){
+            //review two dimensional array of names
+        printf("%s",names_wvalues[i]);printf(" ");
+        printf(": %d",scores_values[i]);printf("\n");
+
+    }
+*/
+    name=fopen("top_names.txt","w");
+    score=fopen("top_scores.txt","w");
+    if(player1.score>player2.score){
+                        for(j=0;j<10;j++){
+                            if((strcmp(player1.player_name,names_wvalues[j]))==0){news=j;goto contin1;}
+                        }
+                        contin1:
+                        if(news==10){
+                                fn_edit_top(player1.player_name,player1.score);
+                                for(i=0;i<10;i++){
+                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                }
+                        }else if(news!=10){
+                                //
+                                if(scores_values[news]<player1.score)
+                                {
+                                    scores_values[news]=player1.score;
+                                            for(i=news-1;i>=0;i--){
+                                                if(scores_values[i+1]>scores_values[i]){
+                                                        temp_score=scores_values[i+1];
+                                                        scores_values[i+1]=scores_values[i];
+                                                        scores_values[i]=temp_score;
+
+                                                        strcpy(temp_name,names_wvalues[i+1]);
+                                                        strcpy(names_wvalues[i+1],names_wvalues[i]);
+                                                        strcpy(names_wvalues[i],temp_name);
+                                                }
+                                            }
 
 
 
+                                            for(i=0;i<10;i++){
+                                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                            }
+                                }else if(scores_values[news]>=player1.score){
+                                    for(i=0;i<10;i++){
+                                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                    }
+
+                                }
+
+                        }
+
+
+    }
+
+
+    else if(player2.score>player1.score){
+
+
+
+
+                    for(j=0;j<10;j++){
+                            if((strcmp(player2.player_name,names_wvalues[j]))==0){news=j;goto contin2;}
+                        }
+                        contin2:
+                        if(news==10){
+                                fn_edit_top(player2.player_name,player2.score);
+                                for(i=0;i<10;i++){
+                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                }
+                        }else if(news!=10){
+                                //
+                                if(scores_values[news]<player2.score)
+                                {
+                                    scores_values[news]=player2.score;
+                                            for(i=news-1;i>=0;i--){
+                                                if(scores_values[i+1]>scores_values[i]){
+                                                        temp_score=scores_values[i+1];
+                                                        scores_values[i+1]=scores_values[i];
+                                                        scores_values[i]=temp_score;
+
+                                                        strcpy(temp_name,names_wvalues[i+1]);
+                                                        strcpy(names_wvalues[i+1],names_wvalues[i]);
+                                                        strcpy(names_wvalues[i],temp_name);
+                                                }
+                                            }
+
+
+
+                                            for(i=0;i<10;i++){
+                                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                            }
+                                }else if(scores_values[news]>=player2.score){
+                                    for(i=0;i<10;i++){
+                                                fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+                                                fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+                                    }
+
+                                }
+
+                        }
+
+
+
+
+
+    /*    fn_edit_top(player2.player_name,ps2);
+        for(i=0;i<10;i++){
+            //review two dimensional array of names
+        fprintf(score,"%d",scores_values[i]);fprintf(score,"\n");
+        fprintf(name,"%s",names_wvalues[i]);fprintf(name,"\n");
+    }
+*/
+    }
+fclose(name);
+fclose(score);
 
 }
 
 
+
+void fn_edit_top(char req_name[],int req_score){
+                        for(i=0;i<10;i++){
+                            if(req_score>scores_values[i]){position=i;goto movetop;}
+                        }
+                        movetop:
+                                if(position!=-1){
+                                            for(i=8;i>=position;i--){
+                                                scores_values[i+1]=scores_values[i];
+                                                strcpy(names_wvalues[i+1],names_wvalues[i]);
+                                            }
+                                            scores_values[position]=req_score;
+                                            //names_wvalues[position][100]=player_name1;
+                                            strcpy(names_wvalues[position],req_name);
+                                }
+}
+
+/*
+90
+80
+70
+60
+50
+40
+30
+20
+10
+0
+
+none1
+none2
+none3
+none4
+none5
+none6
+none7
+none8
+none9
+none10
+
+90
+80
+75
+70
+60
+50
+40
+30
+20
+10
+*/
 
 
 

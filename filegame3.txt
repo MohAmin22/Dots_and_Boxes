@@ -1,23 +1,23 @@
-abdo
 amin
+abdo
+4
+21
+22
+38
 0
-0
-1
-0
-59
 5
 2
-þcþcþcþcþcþ
-ccccccccccc
-þcþcþcþcþcþ
-Acccccccccc
-þcþcþcþcþcþ
-ccccccccccc
-þcþcþcþcþcþ
-ccccccccccc
-þcþcþcþcþcþ
-ccccccccccc
-þcþcþcþcþcþ
+þAþAþBþBþAþ
+BcBcBcBcBcB
+þBþAþBþAþBþ
+BcAcBcBcBcA
+þBþAþBþAþBþ
+AcAcBcBcAcB
+þBþAþAþBþBþ
+BcBcBcBcBcA
+þBþAþAþBþBþ
+BcBcBcBcAcA
+þAþBþAþAþBþ
 
-0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-ccccccccccccccccccccccccc
+6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+BBBBBBBBABBBBABBBBBBBBAAB

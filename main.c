@@ -13,6 +13,7 @@ int selection_vs_menu=1;
 
 int main(){
     /*welcome();*/
+    mainmenu:
     box(4);
     selection_main_menu=main_menu(); //selection is the variable that contains the player's choice from the main menu
     //return default colour
@@ -76,6 +77,21 @@ int main(){
         printf("that is the second case");
         break;
         case 3: //the case that the player choice top scorers
+
+            /*
+            topscore_names_scores();
+
+            gotoxy(1,10);
+            */
+            system("cls");
+            gotoxy(0,1);
+            topscore_names_scores();
+            printf("Enter 1 for the main menu:");
+            int n1;
+             n1=scan_valid_integer(1,2);
+             if(n1==1){system("cls");goto mainmenu;}
+
+            topscore_names_scores();
         break;
         case 4: //the case that the player choice [4]exit
             exit(-1);
