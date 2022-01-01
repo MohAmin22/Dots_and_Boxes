@@ -1,23 +1,23 @@
-amin
 abdo
-4
-21
-22
-38
+amin
 0
+0
+2
+1
+57
 5
 2
-þAþAþBþBþAþ
-BcBcBcBcBcB
-þBþAþBþAþBþ
-BcAcBcBcBcA
-þBþAþBþAþBþ
-AcAcBcBcAcB
-þBþAþAþBþBþ
-BcBcBcBcBcA
-þBþAþAþBþBþ
-BcBcBcBcAcA
-þAþBþAþAþBþ
+þcþcþcþAþcþ
+ccccccccccc
+þcþcþcþcþcþ
+ccccccccccc
+þcþcþcþcþcþ
+ccccccccccc
+þcþcþcþcþcþ
+ccccccccccc
+þcþcþcþcþcþ
+ccccccccccc
+þcþcþcþBþAþ
 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-BBBBBBBBABBBBABBBBBBBBAAB
+0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+ccccccccccccccccccccccccc

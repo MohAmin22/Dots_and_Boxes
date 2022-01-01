@@ -138,7 +138,7 @@ int draw_lines(int r1,int r2 ,int c1, int c2,int size_of_game,char name){
     }else {
         else1:
         reset();
-        gotoxy(1,16);
+        gotoxy(1,18);
         printf("please enter a valid coordinates :");
         return 2;
      }
@@ -767,15 +767,38 @@ void game_loop_vs_player(int size_game,int role){
 
                                                                                                     player_1:
 
-                                                                                                        //
+
+                                                                                                        gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
+                                                                                                        four_choices=scan_valid_integer(4,-3);
+                                                                                                        switch(four_choices){
+                                                                                                        case 1:
+                                                                                                            goto cont1_cs1;
+                                                                                                        break;
+                                                                                                        case 2:
+
+                                                                                                            //undo
+                                                                                                        break;
+                                                                                                        case 3:
+                                                                                                            //redo
+                                                                                                        break;
+                                                                                                        case 4:
+                                                                                                            gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
+                                                                                                            filenumber=scan_valid_integer(3,-3);
+                                                                                                            saving(size_game,1);
+                                                                                                            goto cont1_cs1;
+                                                                                                        }
 
 
-                                                                                                        print_info(1);
-                                                                                                      gotoxy(1,14);
+                                                                                                    cont1_cs1:
+
+
+
+
+                                                                                                      print_info(1);
+                                                                                                      gotoxy(1,16);
                                                                                                       red();
                                                                                                       printf("%s's Turn : \n",player1.player_name);
                                                                                                       printf("Enter R1 R2 C1 C2 : \n");
-
                                                                                                       gotoxy(1,19);printf("Enter row 1:");
                                                                                                       row1=scan_valid_integer(size_game,1);
                                                                                                       gotoxy(1,20);printf("Enter row 2:");
@@ -790,11 +813,11 @@ void game_loop_vs_player(int size_game,int role){
 
                                                                                                      while(1){
                                                                                                          if(draw_lines(row1,row2,col1,col2,size_game,'A') == 1){
-                                                                                                             gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+                                                                                                             gotoxy(1,18);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                              player1.number_of_moves++;
                                                                                                                break;
                                                                                                              }
-                                                                                                         else if(draw_lines(row1,row2,col1,col2,size_game,'A') == 2) goto player_1;
+                                                                                                         else if(draw_lines(row1,row2,col1,col2,size_game,'A') == 2) goto cont1_cs1;
                                                                                                      }
 
 
@@ -813,27 +836,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             reset();
                                                                                                             Total_remaining--;
 
-                                                                                                    gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                        four_choices=scan_valid_integer(4,5);
-                                                                                                        switch(four_choices){
-                                                                                                        case 1:
-                                                                                                            goto cont1_cs1;
-                                                                                                        break;
-                                                                                                        case 2:
-                                                                                                            //undo
-                                                                                                        break;
-                                                                                                        case 3:
-                                                                                                            //redo
-                                                                                                        break;
-                                                                                                        case 4:
-                                                                                                            gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                            filenumber=scan_valid_integer(3,6);
-                                                                                                            saving(size_game,1);
-                                                                                                            goto cont1_cs1;
-                                                                                                        }
-
-
-                                                                                                    cont1_cs1:
 
 
                                                                                                             if(Total_remaining ==0){
@@ -853,32 +855,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         Total_remaining--;
 
 
-
-                                                                                                    gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                        four_choices=scan_valid_integer(4,5);
-                                                                                                        switch(four_choices){
-                                                                                                        case 1:
-                                                                                                            goto cont1_cs2;
-                                                                                                        break;
-                                                                                                        case 2:
-                                                                                                            //undo
-                                                                                                        break;
-                                                                                                        case 3:
-                                                                                                            //redo
-                                                                                                        break;
-                                                                                                        case 4:
-                                                                                                            gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                            filenumber=scan_valid_integer(3,6);
-                                                                                                            saving(size_game,1);
-                                                                                                            goto cont1_cs2;
-                                                                                                        break;
-                                                                                                        }
-
-
-                                                                                                    cont1_cs2:
-
-
-
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
                                                                                                             }
@@ -895,32 +871,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     printf("Time since starting %d : %d",minutes,seconds);
                                                                                                     Total_remaining--;
 
-
-                                                                                                    gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                        four_choices=scan_valid_integer(4,5);
-                                                                                                        switch(four_choices){
-                                                                                                        case 1:
-                                                                                                            goto cont1_cs0;
-                                                                                                        break;
-                                                                                                        case 2:
-                                                                                                            //undo
-                                                                                                        break;
-                                                                                                        case 3:
-                                                                                                            //redo
-                                                                                                        break;
-                                                                                                        case 4:
-                                                                                                            gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                            filenumber=scan_valid_integer(3,6);
-                                                                                                            saving(size_game,2);
-                                                                                                            goto cont1_cs0;
-                                                                                                        break;
-                                                                                                        }
-
-
-                                                                                                    cont1_cs0:
-
-
-
                                                                                                     if(Total_remaining == 0){
                                                                                                         goto after_game;
                                                                                                         break;
@@ -934,16 +884,34 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                    player_2:
 
 
+                                                                                                                    gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
+                                                                                                                    four_choices=scan_valid_integer(4,-3);
+                                                                                                                    switch(four_choices){
+                                                                                                                    case 1:
+                                                                                                                        goto cont2_cs1;
+                                                                                                                    break;
+                                                                                                                    case 2:
+                                                                                                                        //undo
+                                                                                                                    break;
+                                                                                                                    case 3:
+                                                                                                                        //redo
+                                                                                                                    break;
+                                                                                                                    case 4:
+                                                                                                                                gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
+                                                                                                                                filenumber=scan_valid_integer(3,-3);
+                                                                                                                                saving(size_game,2);
+                                                                                                                                goto cont2_cs1;
+                                                                                                                    break;
+                                                                                                                    }
 
+                                                                                                        cont2_cs1:
 
 
                                                                                                       print_info(1);
-                                                                                                      gotoxy(1,14);
+                                                                                                      gotoxy(1,16);
                                                                                                       cyan();
                                                                                                       printf("%s's Turn : \n",player2.player_name);
                                                                                                       printf("Enter R1 R2 C1 C2 : \n");
-
-
                                                                                                         gotoxy(1,19);printf("Enter row 1:");
                                                                                                       row1=scan_valid_integer(size_game,1);
                                                                                                       gotoxy(1,20);printf("Enter row 2:");
@@ -958,11 +926,11 @@ void game_loop_vs_player(int size_game,int role){
 
                                                                                                      while(1){
                                                                                                          if(draw_lines(row1,row2,col1,col2,size_game,'B') == 1){
-                                                                                                             gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+                                                                                                             gotoxy(1,18);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                              player2.number_of_moves++;
                                                                                                                break;
                                                                                                              }
-                                                                                                         else if(draw_lines(row1,row2,col1,col2,size_game,'B') == 2) goto player_2;
+                                                                                                         else if(draw_lines(row1,row2,col1,col2,size_game,'B') == 2) goto cont2_cs1;
                                                                                                      }
 
 
@@ -977,27 +945,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             delete_common(size_game,'B');
                                                                                                             reset();
                                                                                                             Total_remaining--;
-                                                                                                             gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                                    four_choices=scan_valid_integer(4,5);
-                                                                                                                    switch(four_choices){
-                                                                                                                    case 1:
-                                                                                                                        goto cont2_cs1;
-                                                                                                                    break;
-                                                                                                                    case 2:
-                                                                                                                        //undo
-                                                                                                                    break;
-                                                                                                                    case 3:
-                                                                                                                        //redo
-                                                                                                                    break;
-                                                                                                                    case 4:
-                                                                                                                                gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                                                filenumber=scan_valid_integer(3,6);
-                                                                                                                                saving(size_game,2);
-                                                                                                                                goto cont2_cs1;
-                                                                                                                    break;
-                                                                                                                    }
 
-                                                                                                        cont2_cs1:
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
                                                                                                             }
@@ -1013,27 +961,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         delete_common(size_game,'B');
                                                                                                         reset();
                                                                                                         Total_remaining--;
-                                                                                                         gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                                    four_choices=scan_valid_integer(4,5);
-                                                                                                                    switch(four_choices){
-                                                                                                                    case 1:
-                                                                                                                        goto cont2_cs2;
-                                                                                                                    break;
-                                                                                                                    case 2:
-                                                                                                                        //undo
-                                                                                                                    break;
-                                                                                                                    case 3:
-                                                                                                                        //redo
-                                                                                                                    break;
-                                                                                                                    case 4:
-                                                                                                                            gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                                            filenumber=scan_valid_integer(3,6);
-                                                                                                                            saving(size_game,2);
-                                                                                                                        goto cont2_cs2;
-                                                                                                                    break;
-                                                                                                                    }
 
-                                                                                                        cont2_cs2:
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
                                                                                                             }
@@ -1051,28 +979,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     printf("Time since starting %d : %d",minutes,seconds);
 
                                                                                                     Total_remaining--;
-
-                                                                                                    gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                                    four_choices=scan_valid_integer(4,5);
-                                                                                                                    switch(four_choices){
-                                                                                                                    case 1:
-                                                                                                                        goto cont2_cs0;
-                                                                                                                    break;
-                                                                                                                    case 2:
-                                                                                                                        //undo
-                                                                                                                    break;
-                                                                                                                    case 3:
-                                                                                                                        //redo
-                                                                                                                    break;
-                                                                                                                    case 4:
-                                                                                                                        gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                                        filenumber=scan_valid_integer(3,6);
-                                                                                                                        saving(size_game,1);
-                                                                                                                        goto cont2_cs0;
-                                                                                                                    break;
-                                                                                                                    }
-
-                                                                                                        cont2_cs0:
 
                                                                                                    if(Total_remaining == 0){
                                                                                                         goto after_game;
@@ -1128,8 +1034,33 @@ void game_loop_vs_AI(int size_AI,int role){
 
                                                 player1:
 
+
+                                                gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
+                                               four_choices=scan_valid_integer(4,-3);
+                                                  switch(four_choices){
+                                                                                                        case 1:
+                                                                                                            goto cont_1_cs1;
+                                                                                                        break;
+                                                                                                        case 2:
+                                                                                                            //undo
+                                                                                                        break;
+                                                                                                        case 3:
+                                                                                                            //redo
+                                                                                                        break;
+                                                                                                        case 4:
+                                                                                                            gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
+                                                                                                            filenumber=scan_valid_integer(3,-3);
+                                                                                                            saving(size_AI,4);
+                                                                                                            goto cont_1_cs1;
+                                                                                                        break;
+                                                                                                        }
+
+
+                                                  cont_1_cs1:
+
+
                                                   print_info(0);
-                                                  gotoxy(1,14);
+                                                  gotoxy(1,16);
                                                   red();
                                                   printf("%s's Turn : \n",player1.player_name);
                                                   printf("Enter R1 R2 C1 C2 : \n");
@@ -1147,11 +1078,11 @@ void game_loop_vs_AI(int size_AI,int role){
 
                                                  while(1){
                                                      if(draw_lines(row1,row2,col1,col2,size_AI,'A') == 1){
-                                                         gotoxy(1,16);for(counter=0;counter<50;counter++)printf(" ");
+                                                         gotoxy(1,18);for(counter=0;counter<50;counter++)printf(" ");
                                                          player1.number_of_moves++;
                                                            break;
                                                          }
-                                                     else if(draw_lines(row1,row2,col1,col2,size_AI,'A') == 2) goto player1;
+                                                     else if(draw_lines(row1,row2,col1,col2,size_AI,'A') == 2) goto cont_1_cs1;
                                                  }
 
 
@@ -1173,30 +1104,6 @@ void game_loop_vs_AI(int size_AI,int role){
                                                         delete_common(size_AI,'A');
                                                         reset();
                                                         Total_remaining--;
-
-                                                        gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                                                                        four_choices=scan_valid_integer(4,5);
-                                                                                                        switch(four_choices){
-                                                                                                        case 1:
-                                                                                                            goto cont_1_cs1;
-                                                                                                        break;
-                                                                                                        case 2:
-                                                                                                            //undo
-                                                                                                        break;
-                                                                                                        case 3:
-                                                                                                            //redo
-                                                                                                        break;
-                                                                                                        case 4:
-                                                                                                            gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                                                            filenumber=scan_valid_integer(3,6);
-                                                                                                            saving(size_AI,4);
-                                                                                                            goto cont_1_cs1;
-                                                                                                        break;
-                                                                                                        }
-
-
-                                                  cont_1_cs1:
-
                                                         if(Total_remaining ==0){
                                                             goto afterGame;
                                                         }
@@ -1213,27 +1120,6 @@ void game_loop_vs_AI(int size_AI,int role){
                                                     reset();
                                                     Total_remaining--;
 
-                                                      gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                    four_choices=scan_valid_integer(4,5);
-                                                    switch(four_choices){
-                                                       case 1:
-                                                            goto cont_1_cs2;
-                                                       break;
-                                                      case 2:
-                                                                    //undo
-                                                            break;
-                                                             case 3:
-                                                                    //redo
-                                                           break;
-                                                           case 4:
-                                                                gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                filenumber=scan_valid_integer(3,6);
-                                                                saving(size_AI,4);
-                                                                goto cont_1_cs2;
-                                                                break;
-                                                            }
-                                                        cont_1_cs2:
-
 
                                                         if(Total_remaining ==0){
                                                             goto afterGame;
@@ -1248,30 +1134,6 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 gotoxy(35,7);
                                                 printf("Time since starting %d : %d",minutes,seconds);
                                                 Total_remaining--;
-
-                                                     gotoxy(1,23);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                                    four_choices=scan_valid_integer(4,5);
-                                                    switch(four_choices){
-                                                       case 1:
-                                                            goto cont_1_cs0;
-                                                       break;
-                                                      case 2:
-                                                                    //undo
-                                                            break;
-                                                             case 3:
-                                                                    //redo
-                                                           break;
-                                                           case 4:
-                                                                gotoxy(1,24);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
-                                                                filenumber=scan_valid_integer(3,6);
-                                                                saving(size_AI,5);
-                                                                goto cont_1_cs0;
-                                                                break;
-                                                            }
-
-
-                                                        cont_1_cs0:
-
                                                 if(Total_remaining == 0){
                                                     goto afterGame;
                                                     break;
@@ -1340,8 +1202,10 @@ void game_loop_vs_AI(int size_AI,int role){
                                             //determining winner
                                             gotoxy(1,25);
                                             purple();
-                                            if(player1.score > player2.score)
+                                            if(player1.score > player2.score){
                                                printf("The winner is : %s",player1.player_name);
+                                               Ent_new_score();
+                                               }
                                             else if(player1.score < player2.score)
                                                 printf("The winner is : %s",player2.player_name);
                                             else if(player1.score == player2.score) printf("There are no winner the game is draw ");
