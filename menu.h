@@ -607,7 +607,33 @@ void fn_edit_top(char req_name[],int req_score){
 }
 
 
+void print_after_undo(int sizeload){
+    int e,q;
+    drawing_grid(sizeload);
+        for(q=0;q<2*sizeload+1;q++){
+            for(e=0;e<2*sizeload+1;e++){
+                        if(q%2==0){
+                            if(grid[q][e]=='A'){red();gotoxy(2+2*e,3+q);printf("%c%c%c",205,205,205);reset();}
+                            else if(grid[q][e]=='B'){cyan();gotoxy(2+2*e,3+q);printf("%c%c%c",205,205,205);reset();}
+                            else if(grid[q][e]=='C'){gotoxy(2+2*e,3+q);printf("   ");}
+                        }
+                        else {
+                                    if(grid[q][e]=='A'){red();gotoxy(3+2*e,3+q);printf("%c",186);reset();}
+                                    else if(grid[q][e]=='B'){cyan();gotoxy(3+2*e,3+q);printf("%c",186);reset();}
+                                    else if(grid[q][e]=='C'){gotoxy(3+2*e,3+q);printf(" ");}
+                        }
+            }
+        }
 
+         for(q=0;q<sizeload;q++){
+            for(e=0;e<sizeload;e++){
+                if(score_4_name[q][e]=='A'){red();gotoxy((3+2)+4*e,(3+1)+2*q);printf("A");color_box(q,e);reset();}
+                else if(score_4_name[q][e]=='B'){cyan();gotoxy((3+2)+4*e,(3+1)+2*q);printf("B");color_box(q,e);reset();}
+            }
+        }
+delete_common(sizeload,'A');
+delete_common(sizeload,'B');
+}
 
 
 #endif // end of menu

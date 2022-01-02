@@ -8,7 +8,7 @@
 
 //start of vs com definitions
 
-int counter=0,i=0;
+int counter=0,i=0,roles_counter=0,largest_role=0,fileundonum=1,no_undos=0;
 int Total_remaining=12;
 int checkScore =2;
 int row1,row2,col1,col2;
@@ -17,6 +17,12 @@ int row_cc=0,col_cc=0,row_cc1=0;col_cc1=0;
 clock_t start,end1,end2, diff,seconds,minutes;
 int filenumber=0;
 int filenumberload=0;
+
+
+int score_4 [9][9]={0};
+char score_4_name [9][9];
+char grid[20][20]={0};
+char roles_AorB[100];
 typedef struct {
    int score;
    int number_of_moves ;
@@ -27,7 +33,13 @@ typedef struct {
 player player1 = {.score=0,.number_of_moves =0};
 player player2 = {.score=0,.number_of_moves =0};
 
+void riv(int sizegame){
+int q;
+for(q=0;q<2*sizegame*(sizegame+1);q++){
+    roles_AorB[q]='C';
+}
 
+}
 void print_info(int z){
 gotoxy(35,3);
 printf("The number of moves of %s : %d",player1.player_name,player1.number_of_moves);
@@ -47,9 +59,7 @@ printf("The number of Remaining lines : %d " ,Total_remaining);
 //end of vs comp definitions
 
 
-int score_4 [9][9]={0};
-char score_4_name [9][9];
-char grid[20][20]={0} ;
+
 void s4n(int n){
 int a,b;
 for (a=0;a<n;a++){
@@ -735,6 +745,7 @@ void game_loop_vs_player(int size_game,int role){
 //start of game:
                                                                                                 int e,q;
                                                                                                 reset();
+                                                                                                opcl();
                                                                                                 if(role==0){goto start_game;}
                                                                                                 else if(role==1){goto player_1;}
                                                                                                 else if(role==2){goto player_2;}
@@ -756,6 +767,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 system("cls");
                                                                                                 drawing_grid(size_game);
                                                                                                 arr_start_grid(size_game);
+                                                                                                riv(size_game);
                                                                                                 s4n(size_game);
                                                                                                 printf("\n");
                                                                                                 //  Game loop
@@ -767,21 +779,37 @@ void game_loop_vs_player(int size_game,int role){
 
                                                                                                     player_1:
 
-
+                                                                                                        //scan_print_file(0,'w');
                                                                                                         gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
                                                                                                         four_choices=scan_valid_integer(4,-3);
                                                                                                         switch(four_choices){
                                                                                                         case 1:
+                                                                                                            //continue
+                                                                                                            scan_print_file(0,'w');
+                                                                                                                if(roles_counter!=largest_role){
+                                                                                                                                moving_for_undo(2*size_game*(size_game+1)-Total_remaining+1);
+                                                                                                                                largest_role=roles_counter;
+                                                                                                                }
+
+                                                                                                           roles_AorB[roles_counter]='A';roles_counter++;largest_role++;
+
                                                                                                             goto cont1_cs1;
                                                                                                         break;
                                                                                                         case 2:
-
                                                                                                             //undo
+                                                                                                            if(roles_AorB[roles_counter]=='C')scan_print_file(0,'w');
+                                                                                                            roles_counter--;
+                                                                                                            scan_print_file((2*size_game*(size_game+1)-Total_remaining)*8-7,'r');
+                                                                                                            print_after_undo(size_game);
+                                                                                                            print_info(1);
+                                                                                                            if(roles_AorB[roles_counter]=='A')goto player_1;
+                                                                                                            else if(roles_AorB[roles_counter]=='B')goto player_2;
                                                                                                         break;
                                                                                                         case 3:
                                                                                                             //redo
                                                                                                         break;
                                                                                                         case 4:
+                                                                                                            //saving
                                                                                                             gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
                                                                                                             filenumber=scan_valid_integer(3,-3);
                                                                                                             saving(size_game,1);
@@ -797,6 +825,8 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                     for(e=0;e<11;e++){
                                                                                                                         printf("%c ",grid[q][e]);
                                                                                                                     }printf("\n");
+
+
                                                                                                                 }
 
 
@@ -827,6 +857,8 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                      }
 
 
+                                                                                                    //scan_print_file(0,'w');
+
 
 
 
@@ -840,7 +872,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             delete_common(size_game,'A');
                                                                                                             reset();
                                                                                                             Total_remaining--;
-
+                                                                                                        //scan_print_file(0,'w');
 
 
                                                                                                             if(Total_remaining ==0){
@@ -858,7 +890,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         delete_common(size_game,'A');
                                                                                                         reset();
                                                                                                         Total_remaining--;
-
+                                                                                                        //scan_print_file(0,'w');
 
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
@@ -875,7 +907,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     gotoxy(35,7);
                                                                                                     printf("Time since starting %d : %d",minutes,seconds);
                                                                                                     Total_remaining--;
-
+                                                                                                    //scan_print_file(0,'w');
                                                                                                     if(Total_remaining == 0){
                                                                                                         goto after_game;
                                                                                                         break;
@@ -888,18 +920,35 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     //**player2
                                                                                                    player_2:
 
-
-                                                                                                                    gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
+                                                                                                                    //scan_print_file(0,'w');
+                                                                                                                    gotoxy(1,15);printf("for continue[1]....undo[2]....redo[3]....save game[4]:");
                                                                                                                     four_choices=scan_valid_integer(4,-3);
                                                                                                                     switch(four_choices){
                                                                                                                     case 1:
+                                                                                                                        //continue
+                                                                                                                            scan_print_file(0,'w');
+                                                                                                                            if(roles_counter!=largest_role){
+                                                                                                                                    moving_for_undo(2*size_game*(size_game+1)-Total_remaining+1);
+                                                                                                                                        largest_role=roles_counter;
+                                                                                                                            }
+
+
+                                                                                                                        roles_AorB[roles_counter]='B';roles_counter++;largest_role++;
                                                                                                                         goto cont2_cs1;
                                                                                                                     break;
                                                                                                                     case 2:
                                                                                                                         //undo
+                                                                                                                        if(roles_AorB[roles_counter]=='C')scan_print_file(0,'w');
+                                                                                                                        roles_counter--;
+                                                                                                                        scan_print_file((2*size_game*(size_game+1)-Total_remaining)*8-7,'r');
+                                                                                                                        print_after_undo(size_game);
+                                                                                                                        print_info(1);
+                                                                                                                            if(roles_AorB[roles_counter]=='A')goto player_1;
+                                                                                                                            else if(roles_AorB[roles_counter]=='B')goto player_2;
                                                                                                                     break;
                                                                                                                     case 3:
                                                                                                                         //redo
+
                                                                                                                     break;
                                                                                                                     case 4:
                                                                                                                                 gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
@@ -912,12 +961,16 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         cont2_cs1:
 
 
-                                                                                                                  for(q=0;q<11;q++){
+                                                                                                            for(q=0;q<11;q++){
                                                                                                                         gotoxy(40,20+q);
                                                                                                                     for(e=0;e<11;e++){
                                                                                                                         printf("%c ",grid[q][e]);
                                                                                                                     }printf("\n");
+
+
                                                                                                                 }
+
+
 
 
                                                                                                       print_info(1);
@@ -947,7 +1000,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                      }
 
 
-
+                                                                                                        //scan_print_file(0,'w');
 
                                                                                                       check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1,size_game,'B');
                                                                                                     if( checkScore == 1 ){
@@ -959,7 +1012,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             delete_common(size_game,'B');
                                                                                                             reset();
                                                                                                             Total_remaining--;
-
+                                                                                                            //scan_print_file(0,'w');
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
                                                                                                             }
@@ -975,7 +1028,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         delete_common(size_game,'B');
                                                                                                         reset();
                                                                                                         Total_remaining--;
-
+                                                                                                        //scan_print_file(0,'w');
                                                                                                             if(Total_remaining ==0){
                                                                                                                 goto after_game;
                                                                                                             }
@@ -993,7 +1046,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     printf("Time since starting %d : %d",minutes,seconds);
 
                                                                                                     Total_remaining--;
-
+                                                                                                    //scan_print_file(0,'w');
                                                                                                    if(Total_remaining == 0){
                                                                                                         goto after_game;
                                                                                                         break;
@@ -1226,6 +1279,75 @@ void game_loop_vs_AI(int size_AI,int role){
 
                                             printf("the first selection");
 
+
+}
+
+
+char line[256];
+char score_4_edit[5][5];
+int num1_temp;
+void opcl(void){
+    FILE *op;
+    op=fopen("undo1.txt","w");
+    fclose(op);
+}
+void scan_print_file(int x,char rw){
+    if(rw=='r'){
+            FILE *undo1;undo1=fopen("undo1.txt","r");
+            getline_scanfromfile(x,undo1);
+    }else if(rw=='w'){
+            FILE *undo1;undo1=fopen("undo1.txt","a");
+            getline_printinfile(undo1);
+    }
+}
+void getline_scanfromfile(int x,FILE *undo){
+    int e,q;
+    for(e=1;e<x;e++){fscanf(undo,"%s",line);fscanf(undo,"\n");}
+    //for grid scaning
+            for(q=0;q<11;q++){for(e=0;e<11;e++){fscanf(undo,"%c",&grid[q][e]);}}fscanf(undo,"\n");
+            for(q=0;q<5;q++){for(e=0;e<5;e++){fscanf(undo,"%c",&score_4_edit[q][e]);}}fscanf(undo,"\n");
+            for(q=0;q<5;q++){for(e=0;e<5;e++){fscanf(undo,"%c",&score_4_name[q][e]);}}fscanf(undo,"\n");
+    //for total remaining
+            fscanf(undo,"%d",&Total_remaining);fscanf(undo,"\n");
+            fscanf(undo,"%d",&(player1.number_of_moves));fscanf(undo,"\n");
+            fscanf(undo,"%d",&(player2.number_of_moves));fscanf(undo,"\n");
+            fscanf(undo,"%d",&(player1.score));fscanf(undo,"\n");
+            fscanf(undo,"%d",&(player2.score));fscanf(undo,"\n");
+fclose(undo);
+    for(q=0;q<5;q++){for(e=0;e<5;e++){score_4[q][e]=score_4_edit[q][e]-48;}}
+}
+void getline_printinfile(FILE *undo){
+        int e,q;
+    //edit of score4
+    for(q=0;q<5;q++){for(e=0;e<5;e++){score_4_edit[q][e]=score_4[q][e]+48;}}
+    //for arrays req
+            for(q=0;q<11;q++){for(e=0;e<11;e++){fprintf(undo,"%c",grid[q][e]);}}fprintf(undo,"\n");
+            for(q=0;q<5;q++){for(e=0;e<5;e++){fprintf(undo,"%c",score_4_edit[q][e]);}}fprintf(undo,"\n");
+            for(q=0;q<5;q++){for(e=0;e<5;e++){fprintf(undo,"%c",score_4_name[q][e]);}}fprintf(undo,"\n");
+    //for number req
+            fprintf(undo,"%d",Total_remaining);fprintf(undo,"\n");
+            fprintf(undo,"%d",(player1.number_of_moves));fprintf(undo,"\n");
+            fprintf(undo,"%d",(player2.number_of_moves));fprintf(undo,"\n");
+            fprintf(undo,"%d",(player1.score));fprintf(undo,"\n");
+            fprintf(undo,"%d",(player2.score));fprintf(undo,"\n");
+fclose(undo);
+}
+void moving_for_undo(int endoftext){
+    FILE *undo1;FILE *undo2;
+    undo1=fopen("undo1.txt","r");undo2=fopen("undo2.txt","w");
+    int e,q;
+ for(q=0;q<endoftext;q++){
+    for(e=0;e<3;e++){fscanf(undo1,"%s",line);fscanf(undo1,"\n");fprintf(undo2,"%s",line);fprintf(undo2,"\n");}
+    for(e=0;e<5;e++){fscanf(undo1,"%d",&num1_temp);fscanf(undo1,"\n");fprintf(undo2,"%d",num1_temp);fprintf(undo2,"\n");}
+    }
+    fclose(undo1);fclose(undo2);
+    FILE *undo3;FILE *undo4;
+    undo3=fopen("undo1.txt","w");undo4=fopen("undo2.txt","r");
+ for(q=0;q<endoftext;q++){
+    for(e=0;e<3;e++){fscanf(undo4,"%s",line);fscanf(undo4,"\n");fprintf(undo3,"%s",line);fprintf(undo3,"\n");}
+    for(e=0;e<5;e++){fscanf(undo4,"%d",&num1_temp);fscanf(undo4,"\n");fprintf(undo3,"%d",num1_temp);fprintf(undo3,"\n");}
+    }
+    fclose(undo3);fclose(undo4);
 
 }
 
