@@ -63,11 +63,11 @@ void arr_start_grid(int n){
 
 int k,j;
 for(k=0;k<(2*n+1);k++){
-    if(k%2==1){for(j=0;j<(2*n+1);j++)grid[k][j]='c';}
+    if(k%2==1){for(j=0;j<(2*n+1);j++)grid[k][j]='C';}
     else{
             for(j=0;j<(2*n+1);j++){
-                if(j%2==0)grid[k][j]=254;
-                else grid[k][j]='c';
+                if(j%2==0)grid[k][j]='D';
+                else grid[k][j]='C';
             }
     }
 }
@@ -95,7 +95,7 @@ int draw_lines(int r1,int r2 ,int c1, int c2,int size_of_game,char name){
 
     if (r1 ==r2 && abs(c1-c2)==1){
         ct= c1>c2 ? c2 : c1;
-            if(grid[(r1-1)*2][(ct-1)*2+1]=='c'){
+            if(grid[(r1-1)*2][(ct-1)*2+1]=='C'){
                  c= c1>c2 ? c2 : c1;
                 indr =3+2*(r1-1);
                 indc =3+4*(c-1);
@@ -117,7 +117,7 @@ int draw_lines(int r1,int r2 ,int c1, int c2,int size_of_game,char name){
     }
     else if(c1 ==c2 && abs(r1-r2)==1){
         rt= r1>r2 ? r2 : r1;
-        if(grid[(rt-1)*2+1][(c1-1)*2]=='c'){
+        if(grid[(rt-1)*2+1][(c1-1)*2]=='C'){
          r= r1>r2 ? r2 : r1;
         indc =3+4*(c1-1);
         indr =3+2*(r-1);
@@ -274,7 +274,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
         if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1 ){
                         if(counter1 == 0 && counter2 == 0){
-                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -282,7 +282,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             printf("%c",186);
                                             goto forced;
 
-                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                             score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -295,7 +295,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
                         }else if(counter1 == 0 && counter2 == number_of_boxes-1){
-                                    if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                    if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
                                             grid[2*counter1+1][2*counter2] = name;
@@ -304,7 +304,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                             score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -317,7 +317,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
                         }else if(counter1 == number_of_boxes-1 && counter2 == 0){
-                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -326,7 +326,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'c'){//up
+                                    }else if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'C'){//up
                                             score_4[counter1][counter2]++;
                                             score_4[counter1-1][counter2]++;
                                             grid[2*counter1][2*counter2+1] = name;
@@ -338,7 +338,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
                         }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
-                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'c'){//up
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'C'){//up
                                             score_4[counter1][counter2]++;
                                             score_4[counter1-1][counter2]++;
                                             grid[2*counter1][2*counter2+1] = name;
@@ -346,7 +346,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             printf("%c%c%c",205,205,205);
                                             goto forced;
 
-                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
                                             grid[2*counter1+1][2*counter2] = name;
@@ -358,7 +358,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
                         }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1){
-                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                    if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -367,7 +367,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                            score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -377,7 +377,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
 
-                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
                                             grid[2*counter1+1][2*counter2] = name;
@@ -390,7 +390,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
                         }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1){
 
-                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'c'){//up
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'C'){//up
                                             score_4[counter1][counter2]++;
                                             score_4[counter1-1][counter2]++;
                                             grid[2*counter1][2*counter2+1] = name;
@@ -398,7 +398,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             printf("%c%c%c",205,205,205);
                                             goto forced;
 
-                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -408,7 +408,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
 
-                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
                                             grid[2*counter1+1][2*counter2] = name;
@@ -419,7 +419,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                     }
 
                         }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1){
-                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'c'){//up
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'C'){//up
                                             score_4[counter1][counter2]++;
                                             score_4[counter1-1][counter2]++;
                                             grid[2*counter1][2*counter2+1] = name;
@@ -428,7 +428,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                    }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                             score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -436,7 +436,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             printf("%c",186);
                                             goto forced;
 
-                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                            score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -448,7 +448,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
                         }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1){
-                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'c'){//up
+                                    if(score_4[counter1-1][counter2] != 2 && grid[2*counter1][2*counter2+1] == 'C'){//up
                                             score_4[counter1][counter2]++;
                                             score_4[counter1-1][counter2]++;
                                             grid[2*counter1][2*counter2+1] = name;
@@ -457,7 +457,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                    }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
 
                                            score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
@@ -467,7 +467,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                    }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                            score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -488,7 +488,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 //**********
 
-                                }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                }else if(score_4[counter1+1][counter2] != 2 && grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                             score_4[counter1][counter2]++;
                                             score_4[counter1+1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -497,7 +497,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                }else if(score_4[counter1][counter2+1] != 2 && grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                            score_4[counter1][counter2]++;
                                             score_4[counter1][counter2+1]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
@@ -505,7 +505,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             printf("%c",186);
                                             goto forced;
 
-                                }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'c'){//left
+                                }else if(score_4[counter1][counter2-1] != 2 && grid[2*counter1+1][2*counter2] == 'C'){//left
 
                                           score_4[counter1][counter2]++;
                                             score_4[counter1][counter2-1]++;
@@ -533,14 +533,14 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
         if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1){
 
                         if(counter1 == 0 && counter2 == 0){
-                                if(grid[2*counter1][2*counter2+1] == 'c'){ //up
+                                if(grid[2*counter1][2*counter2+1] == 'C'){ //up
                                     score_4[counter1][counter2]++;
                                     grid[2*counter1][2*counter2+1] = name;
                                     gotoxy(4+4*counter2,3+2*counter1);
                                     printf("%c%c%c",205,205,205);
                                     goto forced;
 
-                                }else if(grid[2*counter1+1][2*counter2] == 'c'){ //left
+                                }else if(grid[2*counter1+1][2*counter2] == 'C'){ //left
                                            score_4[counter1][counter2]++;
                                             grid[2*counter1+1][2*counter2] = name;
                                             gotoxy(3+4*counter2,4+2*counter1);
@@ -553,14 +553,14 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
                         }else if(counter1 == 0 && counter2 == number_of_boxes-1){
 
-                                if(grid[2*counter1][2*counter2+1] == 'c'){ //up
+                                if(grid[2*counter1][2*counter2+1] == 'C'){ //up
                                     score_4[counter1][counter2]++;
                                     grid[2*counter1][2*counter2+1] = name;
                                     gotoxy(4+4*counter2,3+2*counter1);
                                     printf("%c%c%c",205,205,205);
                                     goto forced;
 
-                                }else if (grid[2*counter1+1][2*counter2+2] == 'c'){ //right
+                                }else if (grid[2*counter1+1][2*counter2+2] == 'C'){ //right
                                             score_4[counter1][counter2]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
                                             gotoxy(7+4*counter2,4+2*counter1);
@@ -571,14 +571,14 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
                         }else if(counter1 == number_of_boxes-1 && counter2 == 0){
 
-                               if(grid[2*counter1+1][2*counter2] == 'c'){ //left
+                               if(grid[2*counter1+1][2*counter2] == 'C'){ //left
                                            score_4[counter1][counter2]++;
                                             grid[2*counter1+1][2*counter2] = name;
                                             gotoxy(3+4*counter2,4+2*counter1);
                                             printf("%c",186);
                                             goto forced;
 
-                                }else if (grid[2*counter1+2][2*counter2+1] == 'c'){ //down
+                                }else if (grid[2*counter1+2][2*counter2+1] == 'C'){ //down
                                              score_4[counter1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
                                             gotoxy(4+4*counter2,5+2*counter1);
@@ -588,7 +588,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
                         }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
 
-                                if(grid[2*counter1+1][2*counter2+2] == 'c'){//right
+                                if(grid[2*counter1+1][2*counter2+2] == 'C'){//right
                                            score_4[counter1][counter2]++;
                                             grid[2*counter1+1][2*counter2+2] = name;
                                             gotoxy(7+4*counter2,4+2*counter1);
@@ -596,7 +596,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
                                             goto forced;
 
 
-                                }else if(grid[2*counter1+2][2*counter2+1] == 'c'){//down
+                                }else if(grid[2*counter1+2][2*counter2+1] == 'C'){//down
                                             score_4[counter1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
                                             gotoxy(4+4*counter2,5+2*counter1);
@@ -606,7 +606,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
                                 }
 
-                        }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1 &&grid[2*counter1][2*counter2+1] == 'c'){
+                        }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1 &&grid[2*counter1][2*counter2+1] == 'C'){
 
                                //up
 
@@ -619,7 +619,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
 
-                        }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1+2][2*counter2+1] == 'c'){
+                        }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1+2][2*counter2+1] == 'C'){
                            //down
                                             score_4[counter1][counter2]++;
                                             grid[2*counter1+2][2*counter2+1] = name;
@@ -632,7 +632,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
 
-                        }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2] == 'c'){
+                        }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2] == 'C'){
 
                               //left
 
@@ -646,7 +646,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
 
 
-                        }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2+2] == 'c'){
+                        }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2+2] == 'C'){
 
                                //right
                                           score_4[counter1][counter2]++;
@@ -686,7 +686,7 @@ void edit_drawing(int row_score,int col_score,int size_of_box,char name){
 int r = 2*row_score;
 int c = (2*col_score) +1;
 int counter3=0;
-if(grid[r][c] == 'c'){          //up
+if(grid[r][c] == 'C'){          //up
     grid[r][c] = name;
 
     gotoxy((3+1)+4*col_score,3+2*row_score);
@@ -695,7 +695,7 @@ if(grid[r][c] == 'c'){          //up
     if(row_score != 0 ) score_4[row_score-1][col_score]++;
 
 
-}else if(grid[r+1][c+1] == 'c'){    //Right
+}else if(grid[r+1][c+1] == 'C'){    //Right
         grid[r+1][c+1] = name;
 
         gotoxy((3+4)+4*(col_score),(3+1)+2*(row_score));
@@ -707,14 +707,14 @@ if(grid[r][c] == 'c'){          //up
 
 
 
-}else if(grid[r+2][c] == 'c'){      //Down
+}else if(grid[r+2][c] == 'C'){      //Down
         grid[r+2][c] = name;
 ///////////////y coordinate must be 5+2*row_score
         gotoxy((3+1)+4*(col_score),5+2*(row_score));for(counter3=0;counter3<3;counter3++)printf("%c",205);
 
         if(row_score != (size_of_box - 1) ) score_4[row_score+1][col_score]++;
 
-}else if(grid[r-1][c-1] == 'c'){ //left
+}else if(grid[r-1][c-1] == 'C'){ //left
     /////////must be grid[r+1][c-1]
         grid[r+1][c-1] = name;
 
@@ -792,6 +792,12 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     cont1_cs1:
 
 
+                                                                                                                for(q=0;q<11;q++){
+                                                                                                                        gotoxy(40,20+q);
+                                                                                                                    for(e=0;e<11;e++){
+                                                                                                                        printf("%c ",grid[q][e]);
+                                                                                                                    }printf("\n");
+                                                                                                                }
 
 
                                                                                                       print_info(1);
@@ -819,7 +825,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                              }
                                                                                                          else if(draw_lines(row1,row2,col1,col2,size_game,'A') == 2) goto cont1_cs1;
                                                                                                      }
-
 
 
 
@@ -907,6 +912,14 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         cont2_cs1:
 
 
+                                                                                                                  for(q=0;q<11;q++){
+                                                                                                                        gotoxy(40,20+q);
+                                                                                                                    for(e=0;e<11;e++){
+                                                                                                                        printf("%c ",grid[q][e]);
+                                                                                                                    }printf("\n");
+                                                                                                                }
+
+
                                                                                                       print_info(1);
                                                                                                       gotoxy(1,16);
                                                                                                       cyan();
@@ -932,6 +945,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                              }
                                                                                                          else if(draw_lines(row1,row2,col1,col2,size_game,'B') == 2) goto cont2_cs1;
                                                                                                      }
+
 
 
 
@@ -1086,9 +1100,9 @@ void game_loop_vs_AI(int size_AI,int role){
                                                  }
 
 
-                                                         for(q=0;q<size_AI;q++){
+                                                         for(q=0;q<size_AI*2 +1;q++){
                                                                 gotoxy(19,20+q);
-                                                                for(e=0;e<size_AI;e++){
+                                                                for(e=0;e<size_AI*2 +1;e++){
                                                                                     printf("%c ",grid[q][e]);
                                                                 }
                                                         }
@@ -1141,7 +1155,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 }
                                                 AI:
                                                     print_info(0);
-                                                    gotoxy(1,14);
+                                                    gotoxy(1,16);
                                                     cyan();
                                                     printf("%s's Turn : \n",player2.player_name);
                                                     computer(size_AI,'B');/********************************************/

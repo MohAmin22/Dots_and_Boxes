@@ -606,40 +606,6 @@ void fn_edit_top(char req_name[],int req_score){
                                 }
 }
 
-/*
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-
-none1
-none2
-none3
-none4
-none5
-none6
-none7
-none8
-none9
-none10
-
-90
-80
-75
-70
-60
-50
-40
-30
-20
-10
-*/
 
 
 
