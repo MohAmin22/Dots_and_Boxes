@@ -229,7 +229,7 @@ int scan_valid_integer(int max_num,int q){
         gets(input);
         char x = input[0];
         int y = strlen(input);
-        if(y==1 && (x-48)>=1 && (x-48)<= max_num +1){
+        if(y==1 && (x-48)>=1 && (x-48)<= max_num){
             gotoxy(1,19+(q-1));
             printf("                                                                                                                                        ");
             return (x-48);
@@ -807,6 +807,22 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         break;
                                                                                                         case 3:
                                                                                                             //redo
+                                                                                                                if(roles_AorB[roles_counter]!='C'){
+                                                                                                                    roles_counter++;
+                                                                                                                    scan_print_file((2*size_game*(size_game+1)-Total_remaining)*8+9,'r');
+                                                                                                                    print_after_undo(size_game);
+                                                                                                                    print_info(1);
+                                                                                                                    if(roles_AorB[roles_counter]=='A')goto player_1;
+                                                                                                                    else if(roles_AorB[roles_counter]=='B')goto player_2;
+                                                                                                                    else if(roles_AorB[roles_counter]=='C' && roles_AorB[roles_counter-1]=='A')goto player_1;
+                                                                                                                    else if(roles_AorB[roles_counter]=='C' && roles_AorB[roles_counter-1]=='B')goto player_2;
+                                                                                                                }else {
+                                                                                                                    gotoxy(35,13);
+                                                                                                                    gotoxy(40,20);
+                                                                                                                    printf("%d:%c %d:%c",roles_counter,largest_role,roles_AorB[roles_counter],roles_AorB[largest_role]);
+                                                                                                                    printf("there are no redo                                                                     ");
+                                                                                                                    goto player_1;
+                                                                                                                }
                                                                                                         break;
                                                                                                         case 4:
                                                                                                             //saving
@@ -818,8 +834,9 @@ void game_loop_vs_player(int size_game,int role){
 
 
                                                                                                     cont1_cs1:
-
-
+                                                                                                    gotoxy(40,20);
+                                                                                                    printf("%d %d",roles_counter,largest_role);
+                                                                                                    /*
                                                                                                                 for(q=0;q<11;q++){
                                                                                                                         gotoxy(40,20+q);
                                                                                                                     for(e=0;e<11;e++){
@@ -828,7 +845,7 @@ void game_loop_vs_player(int size_game,int role){
 
 
                                                                                                                 }
-
+                                                                                                    */
 
                                                                                                       print_info(1);
                                                                                                       gotoxy(1,16);
@@ -836,13 +853,13 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                       printf("%s's Turn : \n",player1.player_name);
                                                                                                       printf("Enter R1 R2 C1 C2 : \n");
                                                                                                       gotoxy(1,19);printf("Enter row 1:");
-                                                                                                      row1=scan_valid_integer(size_game,1);
+                                                                                                      row1=scan_valid_integer(size_game+1,1);
                                                                                                       gotoxy(1,20);printf("Enter row 2:");
-                                                                                                      row2=scan_valid_integer(size_game,2);
+                                                                                                      row2=scan_valid_integer(size_game+1,2);
                                                                                                       gotoxy(1,21);printf("Enter col 1:");
-                                                                                                      col1=scan_valid_integer(size_game,3);
+                                                                                                      col1=scan_valid_integer(size_game+1,3);
                                                                                                       gotoxy(1,22);printf("Enter col 2:");
-                                                                                                      col2=scan_valid_integer(size_game,4);
+                                                                                                      col2=scan_valid_integer(size_game+1,4);
 
 
 
@@ -931,8 +948,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                                     moving_for_undo(2*size_game*(size_game+1)-Total_remaining+1);
                                                                                                                                         largest_role=roles_counter;
                                                                                                                             }
-
-
                                                                                                                         roles_AorB[roles_counter]='B';roles_counter++;largest_role++;
                                                                                                                         goto cont2_cs1;
                                                                                                                     break;
@@ -948,6 +963,20 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                     break;
                                                                                                                     case 3:
                                                                                                                         //redo
+                                                                                                                    if(roles_AorB[roles_counter]!='C'){
+                                                                                                                                        roles_counter++;
+                                                                                                                                        scan_print_file((2*size_game*(size_game+1)-Total_remaining)*8+9,'r');
+                                                                                                                                        print_after_undo(size_game);
+                                                                                                                                        print_info(1);
+                                                                                                                                        if(roles_AorB[roles_counter]=='A')goto player_1;
+                                                                                                                                        else if(roles_AorB[roles_counter]=='B')goto player_2;
+                                                                                                                                        else if(roles_AorB[roles_counter]=='C' && roles_AorB[roles_counter-1]=='A')goto player_1;
+                                                                                                                                        else if(roles_AorB[roles_counter]=='C' && roles_AorB[roles_counter-1]=='B')goto player_2;
+                                                                                                                                        }else {
+                                                                                                                                        gotoxy(20,15);
+                                                                                                                                        printf("there are no redo                                                                     ");
+                                                                                                                                        goto player_2;
+                                                                                                                                    }
 
                                                                                                                     break;
                                                                                                                     case 4:
@@ -960,8 +989,10 @@ void game_loop_vs_player(int size_game,int role){
 
                                                                                                         cont2_cs1:
 
-
-                                                                                                            for(q=0;q<11;q++){
+                                                                                                    gotoxy(40,20);
+                                                                                                    printf("%d %d",roles_counter,largest_role);
+                                                                                                    /*
+                                                                                                                for(q=0;q<11;q++){
                                                                                                                         gotoxy(40,20+q);
                                                                                                                     for(e=0;e<11;e++){
                                                                                                                         printf("%c ",grid[q][e]);
@@ -969,7 +1000,7 @@ void game_loop_vs_player(int size_game,int role){
 
 
                                                                                                                 }
-
+                                                                                                    */
 
 
 
@@ -979,13 +1010,13 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                       printf("%s's Turn : \n",player2.player_name);
                                                                                                       printf("Enter R1 R2 C1 C2 : \n");
                                                                                                         gotoxy(1,19);printf("Enter row 1:");
-                                                                                                      row1=scan_valid_integer(size_game,1);
+                                                                                                      row1=scan_valid_integer(size_game+1,1);
                                                                                                       gotoxy(1,20);printf("Enter row 2:");
-                                                                                                      row2=scan_valid_integer(size_game,2);
+                                                                                                      row2=scan_valid_integer(size_game+1,2);
                                                                                                       gotoxy(1,21);printf("Enter col 1:");
-                                                                                                      col1=scan_valid_integer(size_game,3);
+                                                                                                      col1=scan_valid_integer(size_game+1,3);
                                                                                                       gotoxy(1,22);printf("Enter col 2:");
-                                                                                                      col2=scan_valid_integer(size_game,4);
+                                                                                                      col2=scan_valid_integer(size_game+1,4);
 
 
 
@@ -1109,6 +1140,9 @@ void game_loop_vs_AI(int size_AI,int role){
                                                                                                             goto cont_1_cs1;
                                                                                                         break;
                                                                                                         case 2:
+
+
+
                                                                                                             //undo
                                                                                                         break;
                                                                                                         case 3:
@@ -1133,13 +1167,13 @@ void game_loop_vs_AI(int size_AI,int role){
                                                   printf("Enter R1 R2 C1 C2 : \n");
 
                                                   gotoxy(1,19);printf("Enter row 1:");
-                                                  row1=scan_valid_integer(size_AI,1);
+                                                  row1=scan_valid_integer(size_AI+1,1);
                                                   gotoxy(1,20);printf("Enter row 2:");
-                                                  row2=scan_valid_integer(size_AI,2);
+                                                  row2=scan_valid_integer(size_AI+1,2);
                                                   gotoxy(1,21);printf("Enter col 1:");
-                                                  col1=scan_valid_integer(size_AI,3);
+                                                  col1=scan_valid_integer(size_AI+1,3);
                                                   gotoxy(1,22);printf("Enter col 2:");
-                                                  col2=scan_valid_integer(size_AI,4);
+                                                  col2=scan_valid_integer(size_AI+1,4);
 
 
 
