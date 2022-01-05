@@ -231,27 +231,21 @@ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is 
                         //down
                         score_4[r1-1][c-1]--;
 
-
                     }else if(score_4[r1-2][c-1] == 6 &&  score_4[r1-1][c-1] == 6 ){
                         //up
                             score_4[r1-2][c-1] = 3;
                             score_4_name[r1-2][c-1] = 'c';
                             gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-2));printf(" ");
-
                         //down
                             score_4[r1-1][c-1] = 3;
                             score_4_name[r1-1][c-1] = 'c';
                             gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-1));printf(" ");
-
-
                     }
                   //score_4[r1-2][c-1]++;//the up box
                   //score_4[r1-1][c-1]++;//the down box
                  }
-
     }
     else if(c1 ==c2){
-
         rt= r1>r2 ? r2 : r1;
          r= r1>r2 ? r2 : r1;
         indc =3+4*(c1-1);
@@ -267,9 +261,7 @@ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is 
                 }else if(score_4[r-1][0] != 6){
                     score_4[r-1][0]--;
                 }
-
                 //score_4[r-1][0]++;
-
         }else if(c1 == (size_of_game+1)){
 
                     if(score_4[r-1][c1-2] == 6){
@@ -277,24 +269,17 @@ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is 
                         score_4_name[r-1][c1-2] ='c';
                         gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf(" ");
 
-
                     }else if(score_4[r-1][c1-2] != 6){
-
                         score_4[r-1][c1-2]--;
-
                     }
-
 
                     //score_4[r-1][c1-2]++;
         }else{
-
             if(score_4[r-1][c1-2] == 6 && score_4[r-1][c1-1] != 6){
                     //left
                     score_4[r-1][c1-2] = 3;
                     score_4_name[r-1][c1-2]='c';
                     gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf(" ");
-
-
                     //right
                      score_4[r-1][c1-1]--;
 
@@ -307,40 +292,22 @@ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is 
                     score_4_name[r-1][c1-1] = 'c';
                     gotoxy((3+2)+4*(c1-1),(3+1)+2*(r-1));printf(" ");
 
-
-
-
-
             }else if(score_4[r-1][c1-2] != 6 && score_4[r-1][c1-1] != 6){
                    //left
                    score_4[r-1][c1-2]--;
-
-
                     //right
                     score_4[r-1][c1-1]--;
-
-
-
             }else if(score_4[r-1][c1-2] == 6 && score_4[r-1][c1-1] == 6){
                    //left
                     score_4[r-1][c1-2] = 3;
                     score_4_name[r-1][c1-2] = 'c';
                      gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf(" ");
-
                     //right
                     score_4[r-1][c1-1] = 3;
                     score_4_name[r-1][c1-1] = 'c';
                     gotoxy((3+2)+4*(c1-1),(3+1)+2*(r-1));printf(" ");
 
-
-
             }
-
-
-
-
-
-
                   //score_4[r-1][c1-2]++;//left
                   //score_4[r-1][c1-1]++;//right
         }
@@ -350,10 +317,198 @@ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is 
 
 
 
+}
 
+
+void redo_1(int r1,int r2,int c1,int c2,int size_of_game,char name){
+    if(name == 'A'){
+        red();
+
+    }else if(name == 'B') {
+        cyan();
+    }
+
+ int indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  indc is index of x axis , indr is the index of y axis
+    int i=0,ct=0,rt=0;
+
+
+    if (r1 ==r2 ){
+             ct= c1>c2 ? c2 : c1;
+             c= c1>c2 ? c2 : c1;
+                indr =3+2*(r1-1);
+                indc =3+4*(c-1);
+                gotoxy(indc+1,indr);
+                for(i=0;i<3;i++)  printf("%c",205);
+                grid[(r1-1)*2][(c-1)*2+1]=name;
+
+                if(r1==1){
+                    if(score_4[0][c-1] == 3){
+                         score_4[0][c-1] = 6;
+                           score_4_name[0][c-1]=name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(0));printf("%c",name);
+
+                    }else if(score_4[0][c-1] != 3){
+                        score_4[0][c-1]++;
+                    }
+                    //score_4[0][c-1]++;
+
+                }else if(r1==(size_of_game+1)){
+                    if(score_4[r1-2][c-1] == 3 ){
+                        score_4[r1-2][c-1] = 6;
+                        score_4_name[r1-2][c-1] = name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-2));printf("%c",name);
+
+
+                    }else if(score_4[r1-2][c-1] != 3 ){
+                        score_4[r1-2][c-1]++;
+
+                    }
+
+                    //score_4[r1-2][c-1]++;
+                }else {
+                    if(score_4[r1-2][c-1] == 3 && score_4[r1-1][c-1] !=3){
+                        //up
+
+                        score_4[r1-2][c-1] = 6;
+                        score_4_name[r1-2][c-1] = name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-2));printf("%c",name);
+
+
+
+                        //down
+                        score_4[r1-1][c-1]++;
+
+                    }else if(score_4[r1-2][c-1] != 3 && score_4[r1-1][c-1] ==3){
+                       //up
+                       score_4[r1-2][c-1]++;
+
+
+                        //down
+                        score_4[r1-1][c-1] = 6;
+                        score_4_name[r1-1][c-1] = name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-1));printf("%c",name);
+
+                    }else if(score_4[r1-2][c-1] != 3 && score_4[r1-1][c-1] !=3){
+                        //up
+                            score_4[r1-2][c-1]++;
+
+                        //down
+                        score_4[r1-1][c-1]++;
+
+                    }else if(score_4[r1-2][c-1] == 3 && score_4[r1-1][c-1] ==3){
+
+                         //up
+
+                        score_4[r1-2][c-1] = 6;
+                        score_4_name[r1-2][c-1] = name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-2));printf("%c",name);
+
+                        //down
+                        score_4[r1-1][c-1] = 6;
+                        score_4_name[r1-1][c-1] = name;
+                        gotoxy((3+2)+4*(c-1),(3+1)+2*(r1-1));printf("%c",name);
+                    }
+
+
+                  //score_4[r1-2][c-1]++;//up
+                  //score_4[r1-1][c-1]++;//down
+                }
+
+    }
+    else if(c1 ==c2 ){
+        rt= r1>r2 ? r2 : r1;
+        r= r1>r2 ? r2 : r1;
+        indc =3+4*(c1-1);
+        indr =3+2*(r-1);
+        for(i=0;i<1;i++){gotoxy(indc,indr+1+i); printf("%c",186);}
+        grid[(r-1)*2+1][(c1-1)*2]=name;
+
+
+         if(c1==1){
+
+                if(score_4[r-1][0] == 3 ){
+                        score_4[r-1][0] = 6;
+                        score_4_name[r-1][0] = name;
+                        gotoxy((3+2)+4*(0),(3+1)+2*(r-1));printf("%c",name);
+
+                }else if(score_4[r-1][0] != 3 ){
+                            score_4[r-1][0]++;
+
+
+                }
+
+              //  score_4[r-1][0]++;//right
+         }else if(c1==(size_of_game+1)){
+
+
+                if( score_4[r-1][c1-2] == 3 ){
+
+                    score_4[r-1][c1-2] = 6;
+                    score_4_name[r-1][c1-2] = name;
+                    gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf("%c",name);
+
+
+                }else if( score_4[r-1][c1-2] != 3 ){
+                        score_4[r-1][c1-2]++;
+
+
+                }
+
+                    //score_4[r-1][c1-2]++;//left
+        }else {
+                    if(score_4[r-1][c1-2] == 3 && score_4[r-1][c1-1] !=3){
+
+                        //left
+                        score_4[r-1][c1-2] = 6;
+                        score_4_name[r-1][c1-2] = name;
+                        gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf("%c",name);
+
+
+                        //right
+                            score_4[r-1][c1-1] ++;
+
+                    }else if(score_4[r-1][c1-2] != 3 && score_4[r-1][c1-1] ==3){
+                       //left
+                        score_4[r-1][c1-2]++;
+
+                        //right
+                        score_4[r-1][c1-1] = 6;
+                        score_4_name[r-1][c1-1] = name;
+                        gotoxy((3+2)+4*(c1-1),(3+1)+2*(r-1));printf("%c",name);
+
+
+
+                    }else if(score_4[r-1][c1-2] != 3 && score_4[r-1][c1-1] !=3){
+
+
+                       //left
+                        score_4[r-1][c1-2]++;
+
+                        //right
+                        score_4[r-1][c1-1]++;
+                    }else if(score_4[r-1][c1-2] == 3 && score_4[r-1][c1-1] ==3){
+
+
+                       //left
+                       score_4[r-1][c1-2] = 6;
+                        score_4_name[r-1][c1-2] = name;
+                        gotoxy((3+2)+4*(c1-2),(3+1)+2*(r-1));printf("%c",name);
+
+                        //right
+                        score_4[r-1][c1-1] = 6;
+                        score_4_name[r-1][c1-1] = name;
+                        gotoxy((3+2)+4*(c1-1),(3+1)+2*(r-1));printf("%c",name);
+
+                    }
+
+                  //score_4[r-1][c1-2]++;//left
+                  //score_4[r-1][c1-1]++;// right
+                }
 
 }
 
+reset();
+}
 /////////for deleting the repeated line in both two boxes
 
 
@@ -973,6 +1128,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 gotoxy(35,7);
                                                                                                 printf("Time since starting %d : %d",minutes,seconds);
                                                                                                 Total_remaining=2*size_game*(size_game+1);
+                                                                                                undo[0][9]=2*size_game*(size_game+1);
                                                                                                 while(Total_remaining>0){
 
                                                                                                     player_1:
@@ -1014,6 +1170,27 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         break;
                                                                                                         case 3:
                                                                                                             //redo
+                                                                                                            if(undo[undo_index][3] == 0 && undo[undo_index][9] == 0){
+                                                                                                                gotoxy(35,25);printf("You can not make redo");
+                                                                                                                goto player_1;
+                                                                                                            }
+                                                                                                            redo_1(undo[undo_index][1],undo[undo_index][2],undo[undo_index][3],undo[undo_index][4],size_game,undo[undo_index][0]);
+                                                                                                            player1.score=undo[undo_index][5];
+                                                                                                            player2.score=undo[undo_index][6];
+                                                                                                            player1.number_of_moves=undo[undo_index][7];
+                                                                                                            player2.number_of_moves=undo[undo_index][8];
+                                                                                                            Total_remaining = undo[undo_index][9];
+                                                                                                            print_info(1);
+                                                                                                            undo_index++;
+                                                                                                            //
+                                                                                                            if(undo[undo_index][0] == 'A'){
+                                                                                                               goto player_1;
+
+                                                                                                            }else if(undo[undo_index][0] == 'B'){
+                                                                                                            goto player_2;
+                                                                                                            }
+                                                                                                            //
+
 
                                                                                                         break;
                                                                                                         case 4:
@@ -1068,7 +1245,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             Total_remaining--;
 
                                                                                                             //info of the role
-                                                                                                            undo[undo_index][0]='A';
+                                                                                                            undo[undo_index][0]='A';undo[undo_index+1][0]='A';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
@@ -1118,7 +1295,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         Total_remaining--;
 
                                                                                                             //info of the role
-                                                                                                            undo[undo_index][0]='A';
+                                                                                                            undo[undo_index][0]='A';undo[undo_index+1][0]='A';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
@@ -1167,7 +1344,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     //info of the role
 
 
-                                                                                                              undo[undo_index][0]='A';
+                                                                                                              undo[undo_index][0]='A';undo[undo_index+1][0]='B';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
@@ -1245,7 +1422,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                             print_info(1);
                                                                                                                             if(undo[undo_index][0] == 'A'){
                                                                                                                                 goto player_1;
-
                                                                                                                             }else if(undo[undo_index][0] == 'B'){
                                                                                                                                 goto player_2;
                                                                                                                             }
@@ -1256,6 +1432,26 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                     break;
                                                                                                                     case 3:
                                                                                                                         //redo
+                                                                                                                        if(undo[undo_index][3] == 0 && undo[undo_index][9] == 0){
+                                                                                                                            gotoxy(35,25);printf("You can not make redo");
+                                                                                                                            goto player_2;
+                                                                                                                        }
+                                                                                                                        redo_1(undo[undo_index][1],undo[undo_index][2],undo[undo_index][3],undo[undo_index][4],size_game,undo[undo_index][0]);
+                                                                                                                        player1.score=undo[undo_index][5];
+                                                                                                                        player2.score=undo[undo_index][6];
+                                                                                                                        player1.number_of_moves=undo[undo_index][7];
+                                                                                                                        player2.number_of_moves=undo[undo_index][8];
+                                                                                                                        Total_remaining = undo[undo_index][9];
+                                                                                                                        print_info(1);
+                                                                                                                        undo_index++;
+                                                                                                                        //
+                                                                                                                        if(undo[undo_index][0] == 'A'){
+                                                                                                                           goto player_1;
+
+                                                                                                                       }else if(undo[undo_index][0] == 'B'){
+                                                                                                                            goto player_2;
+                                                                                                                        }
+                                                                                                                        //
 
 
                                                                                                                     break;
@@ -1314,7 +1510,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             Total_remaining--;
 
                                                                                                               //info of the role
-                                                                                                            undo[undo_index][0]='B';
+                                                                                                            undo[undo_index][0]='B';undo[undo_index+1][0]='B';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
@@ -1363,7 +1559,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         Total_remaining--;
 
                                                                                                              //info of the role
-                                                                                                            undo[undo_index][0]='B';
+                                                                                                            undo[undo_index][0]='B';undo[undo_index+1][0]='B';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
@@ -1413,7 +1609,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     //undo[undo_index][9]= Total_remaining;
                                                                                                     Total_remaining--;
                                                                                                              //info of the role
-                                                                                                            undo[undo_index][0]='B';
+                                                                                                            undo[undo_index][0]='B';undo[undo_index+1][0]='A';
                                                                                                             undo[undo_index][1]=row1;
                                                                                                             undo[undo_index][2]=row2;
                                                                                                             undo[undo_index][3]=col1;
