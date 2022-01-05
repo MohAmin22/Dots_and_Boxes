@@ -11,7 +11,7 @@
       "stopAtEntry": false,
       "cwd": "d:/Dots_and_Boxes",
       "environment": [],
-      "program": "d:/Dots_and_Boxes/build/Debug/outDebug",
+      "program": "d:/Dots_and_Boxes/main.exe",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/Program Files/CodeBlocks/MinGW/bin/gdb.exe",

@@ -13,6 +13,11 @@ int selection_vs_menu=1;
 
 int main(){
     /*welcome();*/
+    for(i=0;i<+60;i++){
+   for(j=0;j<10;j++){
+        undo[i][j] = 0;
+        }
+    }
     mainmenu:
     box(4);
     selection_main_menu=main_menu(); //selection is the variable that contains the player's choice from the main menu
