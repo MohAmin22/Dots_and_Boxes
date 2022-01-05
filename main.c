@@ -4,15 +4,16 @@
 #include <conio.h>
 #include<math.h>
 #include <time.h>
-#include "game2x2.h"
+#include "game_loop_and_AI.h"
 #include "menu.h"
+#include "save_load_topscores.h"
 int selection_main_menu=1;
 int selection_level_menu=1;
 int selection_vs_menu=1;
 
 
 int main(){
-    /*welcome();*/
+    welcome();
     for(i=0;i<+60;i++){
    for(j=0;j<10;j++){
         undo[i][j] = 0;

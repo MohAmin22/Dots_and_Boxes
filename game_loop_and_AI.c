@@ -1,10 +1,6 @@
-#ifndef GAME2X2
-#define GAME2X2
+#include "game_loop_and_AI.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
+
 int counter=0,i=0,roles_counter=0,largest_role=0,fileundonum=1,no_undos=0,j=0;
 int k=0;o=0;
 // undo
@@ -1097,7 +1093,6 @@ void game_loop_vs_player(int size_game,int role){
 //start of game:
                                                                                                 int e,q;
                                                                                                 reset();
-                                                                                                opcl();
                                                                                                 if(role==0){goto start_game;}
                                                                                                 else if(role==1){goto player_1;}
                                                                                                 else if(role==2){goto player_2;}
@@ -1699,22 +1694,14 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 player1:
 
 
-                                                gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");
-                                               four_choices=scan_valid_integer(4,-3);
+                                                gotoxy(1,15);printf("for continue [1]....save game[2] :");
+                                               four_choices=scan_valid_integer(2,-3);
                                                   switch(four_choices){
                                                                                                         case 1:
                                                                                                             goto cont_1_cs1;
                                                                                                         break;
+
                                                                                                         case 2:
-
-
-
-                                                                                                            //undo
-                                                                                                        break;
-                                                                                                        case 3:
-                                                                                                            //redo
-                                                                                                        break;
-                                                                                                        case 4:
                                                                                                             gotoxy(1,15);purple();printf("Enter [1]first file ....[2]second file....[3]third file :");reset();
                                                                                                             filenumber=scan_valid_integer(3,-3);
                                                                                                             saving(size_AI,4);
@@ -1753,12 +1740,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                  }
 
 
-                                                         for(q=0;q<size_AI*2 +1;q++){
-                                                                gotoxy(19,20+q);
-                                                                for(e=0;e<size_AI*2 +1;e++){
-                                                                                    printf("%c ",grid[q][e]);
-                                                                }
-                                                        }
+
 
 
                                                 check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1,size_AI,'A');
@@ -1854,6 +1836,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 gotoxy(35,7);
                                                 printf("Time since starting %d : %d",minutes,seconds);
                                                 Total_remaining--;
+                                                reset();
                                                 if(Total_remaining == 0){
                                                     goto afterGame;
                                                     break;
@@ -1886,36 +1869,14 @@ void game_loop_vs_AI(int size_AI,int role){
 char line[256];
 char score_4_edit[5][5];
 int num1_temp;
-void opcl(void){
-    FILE *op;
-    op=fopen("undo1.txt","w");
-    fclose(op);
-}
+
 void scan_print_file(int x,char rw,int reqsize){
-    if(rw=='r'){
-            FILE *undo1;undo1=fopen("undo1.txt","r");
-            getline_scanfromfile(x,undo1,reqsize);
-    }else if(rw=='w'){
+   if(rw=='w'){
             FILE *undo1;undo1=fopen("undo1.txt","a");
             getline_printinfile(undo1,reqsize);
     }
 }
-void getline_scanfromfile(int x,FILE *undo,int reqsize){
-    int e,q;
-    for(e=1;e<x;e++){fscanf(undo,"%s",line);fscanf(undo,"\n");}
-    //for grid scaning
-            for(q=0;q<reqsize*2 +1;q++){for(e=0;e<reqsize*2 +1;e++){fscanf(undo,"%c",&grid[q][e]);}}fscanf(undo,"\n");
-            for(q=0;q<reqsize;q++){for(e=0;e<reqsize;e++){fscanf(undo,"%c",&score_4_edit[q][e]);}}fscanf(undo,"\n");
-            for(q=0;q<reqsize;q++){for(e=0;e<reqsize;e++){fscanf(undo,"%c",&score_4_name[q][e]);}}fscanf(undo,"\n");
-    //for total remaining
-            fscanf(undo,"%d",&Total_remaining);fscanf(undo,"\n");
-            fscanf(undo,"%d",&(player1.number_of_moves));fscanf(undo,"\n");
-            fscanf(undo,"%d",&(player2.number_of_moves));fscanf(undo,"\n");
-            fscanf(undo,"%d",&(player1.score));fscanf(undo,"\n");
-            fscanf(undo,"%d",&(player2.score));fscanf(undo,"\n");
-fclose(undo);
-    for(q=0;q<reqsize;q++){for(e=0;e<reqsize;e++){score_4[q][e]=score_4_edit[q][e]-48;}}
-}
+
 void getline_printinfile(FILE *undo,int reqsize){
         int e,q;
     //edit of score4
@@ -1932,23 +1893,5 @@ void getline_printinfile(FILE *undo,int reqsize){
             fprintf(undo,"%d",(player2.score));fprintf(undo,"\n");
 fclose(undo);
 }
-void moving_for_undo(int endoftext){
-    FILE *undo1;FILE *undo2;
-    undo1=fopen("undo1.txt","r");undo2=fopen("undo2.txt","w");
-    int e,q;
- for(q=0;q<endoftext;q++){
-    for(e=0;e<3;e++){fscanf(undo1,"%s",line);fscanf(undo1,"\n");fprintf(undo2,"%s",line);fprintf(undo2,"\n");}
-    for(e=0;e<5;e++){fscanf(undo1,"%d",&num1_temp);fscanf(undo1,"\n");fprintf(undo2,"%d",num1_temp);fprintf(undo2,"\n");}
-    }
-    fclose(undo1);fclose(undo2);
-    FILE *undo3;FILE *undo4;
-    undo3=fopen("undo1.txt","w");undo4=fopen("undo2.txt","r");
- for(q=0;q<endoftext;q++){
-    for(e=0;e<3;e++){fscanf(undo4,"%s",line);fscanf(undo4,"\n");fprintf(undo3,"%s",line);fprintf(undo3,"\n");}
-    for(e=0;e<5;e++){fscanf(undo4,"%d",&num1_temp);fscanf(undo4,"\n");fprintf(undo3,"%d",num1_temp);fprintf(undo3,"\n");}
-    }
-    fclose(undo3);fclose(undo4);
 
-}
 
-#endif
