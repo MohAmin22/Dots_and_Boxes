@@ -1052,8 +1052,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     }
 }
 forced ://end of computer turn
-gotoxy(38,27);
-printf("AI WILL BEAT YOU");
+gotoxy(38,27);printf("   ");
 
 }
 
@@ -1658,7 +1657,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 player1:
                                                         gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                         gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
-                                                        if(Total_remaining=2*size_AI*(size_AI+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(2,15,1);}
+                                                        if(Total_remaining==2*size_AI*(size_AI+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(2,15,1);}
                                                         else{gotoxy(1,15);printf("for continue [1]....save game[2] :");four_choices=scan_valid_integer(2,15,0);}
                                                           switch(four_choices){
                                                                                                         case 1:
