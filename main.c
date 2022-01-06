@@ -13,7 +13,7 @@ int selection_vs_menu=1;
 
 
 int main(){
-    welcome();
+    //welcome();
     for(i=0;i<+60;i++){
    for(j=0;j<10;j++){
         undo[i][j] = 0;
@@ -75,26 +75,22 @@ int main(){
             break;//break for case 1 in main menu start game
 
         case 2:  //case that player choice [2]load a previous game
-            system("cls");purple();
+            loading:
+            system("cls");cyan();
             gotoxy(1,11);printf("Enter [1]load first file....[2]load second file....[3]load third file :");reset();
-            filenumberload=scan_valid_integer(3,-7);
+            filenumberload=scan_valid_integer(3,11,0);
             system("cls");
             loading();
-        printf("that is the second case");
+            if(backing_in_load==1){system("cls");goto mainmenu;}
+            else if(backing_in_load==2){system("cls");goto loading;}
         break;
         case 3: //the case that the player choice top scorers
-
-            /*
-            topscore_names_scores();
-
-            gotoxy(1,10);
-            */
             system("cls");
             gotoxy(0,1);
             topscore_names_scores();
             printf("Enter 1 for the main menu:");
             int n1;
-             n1=scan_valid_integer(1,2);
+             n1=scan_valid_integer(1,2,0);
              if(n1==1){system("cls");goto mainmenu;}
 
             topscore_names_scores();

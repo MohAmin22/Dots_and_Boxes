@@ -20,10 +20,8 @@ void saving(int size_game,int role){
 void fn_save(int size_game,int role,FILE *file){
  int e,q;
         fprintf(file,"%s",player1.player_name);fprintf(file,"\n");
-        if(role==3||role==4||role ==5){
-                fprintf(file,"computer");fprintf(file,"\n");}
-        else
-        {fprintf(file,"%s",player2.player_name);fprintf(file,"\n");}
+        if(role==3||role==4||role ==5){fprintf(file,"computer");fprintf(file,"\n");}
+        else{fprintf(file,"%s",player2.player_name);fprintf(file,"\n");}
         fprintf(file,"%d",player1.score);fprintf(file,"\n");
         fprintf(file,"%d",player2.score);fprintf(file,"\n");
         fprintf(file,"%d",player1.number_of_moves);fprintf(file,"\n");
@@ -57,26 +55,37 @@ void fn_save(int size_game,int role,FILE *file){
 
 }
 
-
 void loading(void){
             if(filenumberload==1){
                  FILE *file1load;
                 file1load=fopen("filegame1.txt","r");
-                fn_load(file1load);
+                if(file1load==NULL){gotoxy(0,11);cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                else if (file1load !=NULL  ) {
+                        int temp;fseek (file1load, 0, SEEK_END);temp = ftell(file1load);
+                        if (temp==0) {gotoxy(0,11);cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                        else{fclose(file1load);file1load=fopen("filegame1.txt","r");fn_load(file1load);}
+                }
         }
         else if(filenumberload==2){
                     FILE *file2load;
                     file2load=fopen("filegame2.txt","r");
-                    fn_load(file2load);
+                    if(file2load==NULL){gotoxy(0,11);cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                    else if (file2load !=NULL  ) {
+                        int temp;fseek (file2load, 0, SEEK_END);temp = ftell(file2load);
+                        if (temp==0) {gotoxy(0,11);cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                        else{fclose(file2load);file2load=fopen("filegame2.txt","r");fn_load(file2load);}
+                }
         }
         else if(filenumberload==3){
                     FILE *file3load;
                     file3load=fopen("filegame3.txt","r");
-                    fn_load(file3load);
+                    if(file3load==NULL){gotoxy(0,11); cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                    else if (file3load !=NULL  ) {
+                        int temp;fseek (file3load, 0, SEEK_END);temp = ftell(file3load);
+                        if (temp==0) {gotoxy(0,11);cyan();printf("the file is empty\nEnter [1]for mainmenu...Enter[2]for select another folder: ");backing_in_load=scan_valid_integer(2,12,0);}
+                        else{fclose(file3load);file3load=fopen("filegame3.txt","r");fn_load(file3load);}
+                }
         }
-
-
-
 }
 
 

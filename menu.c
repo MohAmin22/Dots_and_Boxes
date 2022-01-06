@@ -28,16 +28,23 @@ reset();
 
 }
 
-void red () {
-  system("");
-  printf("\033[1;31m");
+void red (void) {
+ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ SetConsoleTextAttribute(console,12);
+}
+void red_box(void) {
+ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ SetConsoleTextAttribute(console,192);
 }
 
 void cyan (void) {
-      system("");
-  printf("\033[0;36m");
+  HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ SetConsoleTextAttribute(console,9);
 }
-
+void cyan_box (void) {
+  HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ SetConsoleTextAttribute(console,144);
+}
 void purple(void) {
       system("");
     printf("\033[0;35m");
@@ -84,15 +91,15 @@ void box(int a)
 
 int main_menu(void)
 {
-
-HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-
+     SetConsoleTextAttribute(console,9);
+    gotoxy(50,8);printf("/*Main..Menu*/");
 
     do
     {
-        SetConsoleTextAttribute(console,15);
+             SetConsoleTextAttribute(console,15);
 
         gotoxy(40,11);printf("          [1]start game");
         gotoxy(40,12);printf("          [2]load game");
@@ -101,10 +108,10 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
         switch(pos)
         {
-            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
-            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("          [2]load game");break;
-            case 3:SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
-            case 4:SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
+            case 1: SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("          [1]start game");break;
+            case 2: SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("          [2]load game");break;
+            case 3: SetConsoleTextAttribute(console,12);gotoxy(40,13);printf("          [3]top scores");break;
+            case 4: SetConsoleTextAttribute(console,12);gotoxy(40,14);printf("          [4]exit");break;
         }
         ch=getch();
         if(ch==72)
@@ -119,7 +126,6 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         }
 
     }while(ch!=13);
-    gotoxy(39,16);printf("please wait the terminal is killed");
     return pos;
 
 }
@@ -127,23 +133,22 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 
 int level_menu(void)
 {
-
-HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-
-
+        SetConsoleTextAttribute(console,9);
+     gotoxy(50,8);printf("/*level..Menu*/");
     do
     {
-        SetConsoleTextAttribute(console,15);
+         SetConsoleTextAttribute(console,15);
 
         gotoxy(40,11);printf("       [1]Beginner mode(2x2)");
         gotoxy(40,12);printf("       [2]Expert mode(5x5)");
 
         switch(pos)
         {
-            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Beginner mode(2x2)");break;
-            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Expert mode(5x5)");break;
+            case 1: SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Beginner mode(2x2)");break;
+            case 2: SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Expert mode(5x5)");break;
 
         }
         ch=getch();
@@ -159,7 +164,6 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         }
 
     }while(ch!=13);
-    gotoxy(39,16);printf("please wait the terminal is killed");
     return pos;
 
 }
@@ -167,23 +171,22 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 //the menu of vs
 int vs_menu(void)
 {
-
-HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     int pos=1;
     char ch;
-
+     SetConsoleTextAttribute(console,9);
+    gotoxy(50,8);printf("/*vs..Menu*/");
 
     do
     {
-        SetConsoleTextAttribute(console,15);
-
+         SetConsoleTextAttribute(console,15);
         gotoxy(40,11);printf("       [1]Vs Computer");
         gotoxy(40,12);printf("       [2]Vs Player");
 
         switch(pos)
         {
-            case 1:SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Vs Computer");break;
-            case 2:SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Vs Player");break;
+            case 1: SetConsoleTextAttribute(console,12);gotoxy(40,11);printf("       [1]Vs Computer");break;
+            case 2: SetConsoleTextAttribute(console,12);gotoxy(40,12);printf("       [2]Vs Player");break;
 
         }
         ch=getch();
@@ -199,73 +202,6 @@ HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
         }
 
     }while(ch!=13);
-    gotoxy(39,16);
     return pos;
-
-}
-
-//game edit:
-
-void game_box(void){
-    int i,j;
-    //start of box
-    gotoxy(1,17);
-    printf("%c",201);
-    for(i=1;i<=5;i++)printf("%c",205);
-    printf("%c",187);
-
-    gotoxy(1,18);
-    printf("%c",186);
-    for(j=1;j<=5;j++)printf(" ");
-    printf("%c",186);gotoxy(1,19);printf("%c",186);
-    for(j=1;j<=5;j++)printf(" ");
-    printf("%c",186);gotoxy(1,20);printf("%c",186);
-    for(j=1;j<=5;j++)printf(" ");
-    printf("%c",186);
-
-    gotoxy(1,21);printf("%c",200);
-    for(i=1;i<=5;i++)printf("%c",205);
-    printf("%c",188);
-}
-
-int choice_menu(void)
-{
-
-HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    int pos=1;
-    char ch;
-
-
-    do
-    {
-        SetConsoleTextAttribute(console,15);
-
-        gotoxy(2,18);printf(" [1] ");
-        gotoxy(2,19);printf(" [2] ");
-        gotoxy(2,20);printf(" [3] ");
-        switch(pos)
-        {
-            case 1:SetConsoleTextAttribute(console,12);gotoxy(2,18);printf(" [1] ");break;
-            case 2:SetConsoleTextAttribute(console,12);gotoxy(2,19);printf(" [2] ");break;
-            case 3:SetConsoleTextAttribute(console,12);gotoxy(2,20);printf(" [3] ");break;
-
-        }
-        ch=getch();
-        if(ch==72)
-        {
-            pos--;
-            if(pos==0)pos=3;
-        }
-        if(ch==80)
-        {
-            pos++;
-            if(pos==4)pos=1;
-        }
-
-    }while(ch!=13);
-    gotoxy(1,21);
-    reset();
-    return pos;
-
 
 }

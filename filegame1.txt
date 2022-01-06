@@ -1,17 +1,17 @@
-fg
-ghgh
-1
+abdo
+amin
 0
-4
+0
 2
-6
+1
+9
 2
 2
-DADBD
-BCACC
-DADAD
+DBDCD
+ACCCC
+DADCD
 CCCCC
 DCDCD
 
-6 3 1 1 
-Accc
+3 0 1 0 
+cccc

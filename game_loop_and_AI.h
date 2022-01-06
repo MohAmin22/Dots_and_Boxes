@@ -21,7 +21,7 @@ void delete_ver(int y,int z);
 void delete_hor(int y,int z);
 void delete_common(int num_boxes,char name);
 void check_score(int *ch,int *row,int *col,int *k1,int *k2,int size,char name);
-int scan_valid_integer(int max_num,int q);
+int scan_valid_integer(int max_num,int q,int start);
 void color_box(int a1,int a2);
 //start of Ai
 //determining which box the AI will play in
