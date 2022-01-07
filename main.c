@@ -13,13 +13,17 @@ int selection_vs_menu=1;
 
 
 int main(){
-    //welcome();
+    
+    mainmenu:
+   
+    undo_index=1;
+    redo_index=1;
     for(i=0;i<+60;i++){
-   for(j=0;j<10;j++){
+       for(j=0;j<10;j++){
         undo[i][j] = 0;
         }
     }
-    mainmenu:
+    system("cls");
     box(4);
     selection_main_menu=main_menu(); //selection is the variable that contains the player's choice from the main menu
     //return default colour
@@ -44,10 +48,18 @@ int main(){
                                         case 1:
                                             system("cls");
                                             game_loop_vs_AI(2,3);
+                                             if(aftergamechoice==1)goto mainmenu;
+                                            else if(aftergamechoice==2)goto topScorers;
                                         break;
                                         case 2:
                                             system("cls");
                                             game_loop_vs_player(2,0);// the zero for start new game
+                                            if(aftergamechoice==1){
+                                                goto mainmenu;
+                                                }  
+                                            else if(aftergamechoice==2){
+                                                goto topScorers;
+                                                }
                                         break;
 
                                     }//end of selection3  2x2
@@ -62,10 +74,14 @@ int main(){
                                         case 1:
                                             system("cls");
                                             game_loop_vs_AI(5,3);
+                                            if(aftergamechoice==1)goto mainmenu;
+                                            else if(aftergamechoice==2)goto topScorers;
                                         break;
                                         case 2:
                                             system("cls");
                                             game_loop_vs_player(5,0);// the zero for start new game
+                                            if(aftergamechoice==1)goto mainmenu;
+                                            else if(aftergamechoice==2)goto topScorers;
                                         break;
 
                                     }
@@ -76,7 +92,11 @@ int main(){
 
         case 2:  //case that player choice [2]load a previous game
             loading:
-            system("cls");cyan();
+            system("cls");
+            gotoxy(25,5);
+            red();
+            printf("/*loading*/");
+            cyan();
             gotoxy(1,11);printf("Enter [1]load first file....[2]load second file....[3]load third file :");reset();
             filenumberload=scan_valid_integer(3,11,0);
             system("cls");
@@ -85,6 +105,7 @@ int main(){
             else if(backing_in_load==2){system("cls");goto loading;}
         break;
         case 3: //the case that the player choice top scorers
+            topScorers:
             system("cls");
             gotoxy(0,1);
             topscore_names_scores();

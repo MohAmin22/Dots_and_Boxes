@@ -25,6 +25,7 @@ clock_t start,end1,end2, diff,seconds,minutes;
 int filenumber=0;
 int filenumberload=0;
 int backing_in_load=0;
+int aftergamechoice=0;
 
 
 
@@ -1231,8 +1232,17 @@ if(grid[r][c] == 'C'){          //up
 }
 
 void game_loop_vs_player(int size_game,int role){
-//start of game:
+//start of game:                                                                             
                                                                                                 int e,q;
+                                                                                                for(e=0;e<9;e++){
+                                                                                                    for(q=0;q<9;q++){
+                                                                                                         score_4 [e][q]= 0;                                                   
+                                                                                                    }
+                                                                                                } 
+                                                                                                
+                                                                                                player player1 = {.score=0,.number_of_moves =0};
+                                                                                                player player2 = {.score=0,.number_of_moves =0};
+                                                                                                
                                                                                                 reset();
                                                                                                 if(role==0){undo[0][9]=2*size_game*(size_game+1);goto start_game;}
                                                                                                 else if(role==1){
@@ -1727,12 +1737,23 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 else if(player1.score < player2.score)
                                                                                                     printf("The winner is : %s",player2.player_name);
                                                                                                 else if(player1.score == player2.score) printf("There are no winner the game is draw ");
+                                                                                                reset();
+                                                                                                gotoxy(1,26);
+                                                                                                printf("Enter [1]main menu..[2]topscorers:");
+                                                                                                aftergamechoice=scan_valid_integer(2,26,0);
 //end of game
 }
 
 void game_loop_vs_AI(int size_AI,int role){
-                                            reset();
                                             int e,q;
+                                            for(e=0;e<9;e++){
+                                                for(q=0;q<9;q++){
+                                                  score_4 [e][q]= 0;                                                   
+                                                }
+                                            } 
+                                            player player1 = {.score=0,.number_of_moves =0};
+                                            player player2 = {.score=0,.number_of_moves =0};
+                                            reset();
 
                                              if(role==3){goto startgame;}
                                             else if(role==4){goto player1;}
@@ -1906,8 +1927,12 @@ void game_loop_vs_AI(int size_AI,int role){
                                                Ent_new_score();
                                                }
                                             else if(player1.score < player2.score)
-                                                printf("The winner is : %s",player2.player_name);
+                                                printf("The winner is : computer");
                                             else if(player1.score == player2.score) printf("There are no winner the game is draw ");
+                                            reset();
+                                            gotoxy(1,26);
+                                            printf("Enter [1]main menu..[2]topscorers:");
+                                            aftergamechoice=scan_valid_integer(2,26,0);
 }
 
 
