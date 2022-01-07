@@ -1142,6 +1142,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                 while(Total_remaining>0){
                                                                                         player_1:
                                                                                                         print_info(1);
+                                                                                                        Sleep(10);
                                                                                                         gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         if(Total_remaining==2*size_game*(size_game+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(4,15,1);}
@@ -1162,9 +1163,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                                 player1.number_of_moves=undo[undo_index-1][7];
                                                                                                                                 player2.number_of_moves=undo[undo_index-1][8];
                                                                                                                                 Total_remaining = undo[undo_index-1][9];
-                                                                                                                                gotoxy(35,25);
-
-                                                                                                                                printf("total = %d : undo[%d][9]= %d",Total_remaining,undo_index,undo[undo_index][9]);
                                                                                                                                 print_info(1);
 
                                                                                                                                 if(undo[undo_index][0] == 'A'){
@@ -1173,7 +1171,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                                     goto player_2;
                                                                                                                                 }
                                                                                                                         }else if(undo_index==1){
-                                                                                                                                    gotoxy(25,15);printf("\"You can not make undo\"");
+                                                                                                                                    gotoxy(25,16);printf("\"You can not make undo\"");
                                                                                                                                     if(undo[undo_index][0] == 'A'){goto player_1;}
                                                                                                                                     else if(undo[undo_index][0] == 'B'){goto player_2;}
                                                                                                                         }
@@ -1181,7 +1179,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         case 3:
                                                                                                             //redo
                                                                                                             if(undo[undo_index][3] == 0 && undo[undo_index][9] == 0){
-                                                                                                                    gotoxy(35,25);printf("You can not make redo");
+                                                                                                                    gotoxy(25,16);printf("\"You can not make redo\"");
                                                                                                                     goto player_1;
                                                                                                             }
                                                                                                                 redo_1(undo[undo_index][1],undo[undo_index][2],undo[undo_index][3],undo[undo_index][4],size_game,undo[undo_index][0]);
@@ -1356,6 +1354,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             }
                                                                                             player_2:
                                                                                                                     print_info(1);
+                                                                                                                    Sleep(10);
                                                                                                                     gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(1,15);printf("for continue[1]....undo[2]....redo[3]....save game[4]:");
@@ -1376,8 +1375,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                                         player1.number_of_moves=undo[undo_index-1][7];
                                                                                                                                         player2.number_of_moves=undo[undo_index-1][8];
                                                                                                                                         Total_remaining = undo[undo_index-1][9];
-                                                                                                                                        gotoxy(35,25);
-                                                                                                                                        printf("total = %d : undo[%d][9]= %d",Total_remaining,undo_index,undo[undo_index][9]);
                                                                                                                                         print_info(1);
                                                                                                                                         if(undo[undo_index][0] == 'A'){
                                                                                                                                             goto player_1;
@@ -1386,8 +1383,8 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                                         }
 
                                                                                                                                     }else if(undo_index==1){
-                                                                                                                                                gotoxy(25,15);
-                                                                                                                                                printf("You can not make undo");
+                                                                                                                                                gotoxy(25,16);
+                                                                                                                                                printf("\"You can not make undo\"");
                                                                                                                                                 if(undo[undo_index][0] == 'A'){
                                                                                                                                                                     goto player_1;
                                                                                                                                                                 }else if(undo[undo_index][0] == 'B'){
@@ -1398,7 +1395,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                     case 3:
                                                                                                                         //redo
                                                                                                                                     if(undo[undo_index][3] == 0 && undo[undo_index][9] == 0){
-                                                                                                                                        gotoxy(35,25);printf("You can not make redo");
+                                                                                                                                        gotoxy(25,16);printf("\"You can not make redo\"");
                                                                                                                                         goto player_2;
                                                                                                                                     }
                                                                                                                                     redo_1(undo[undo_index][1],undo[undo_index][2],undo[undo_index][3],undo[undo_index][4],size_game,undo[undo_index][0]);
@@ -1456,16 +1453,11 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                       check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1,size_game,'B');
                                                                                                     if( checkScore == 1 ){
                                                                                                             player2.score++;
-                                                                                                            //change the color of the box:
-                                                                                                            //cyan();
-                                                                                                           // color_box(row_cc,col_cc);
+
                                                                                                             cyan_box();
                                                                                                             gotoxy((3+1)+4*(col_cc),(3+1)+2*(row_cc));printf(" B ");
-                                                                                                            //delete_common(size_game,'B');
                                                                                                             reset();
-                                                                                                            //undo[undo_index][9]= Total_remaining;
                                                                                                             Total_remaining--;
-
                                                                                                               //info of the role
                                                                                                             undo[undo_index][0]='B';undo[undo_index+1][0]='B';
                                                                                                             undo[undo_index][1]=row1;
@@ -1505,15 +1497,10 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                     }
                                                                                                     if(checkScore==2){
                                                                                                         player2.score+=2;
-                                                                                                        //cyan();
-                                                                                                        //color_box(row_cc,col_cc);
                                                                                                         cyan_box();
                                                                                                         gotoxy((3+1)+4*(col_cc),(3+1)+2*(row_cc));printf(" B ");
-                                                                                                       // color_box(row_cc1,col_cc1);
                                                                                                         gotoxy((3+1)+4*(col_cc1),(3+1)+2*(row_cc1));printf(" B ");
-                                                                                                       // delete_common(size_game,'B');
                                                                                                         reset();
-                                                                                                        //undo[undo_index][9]= Total_remaining;
                                                                                                         Total_remaining--;
 
                                                                                                              //info of the role
@@ -1619,10 +1606,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 else if(player1.score < player2.score)
                                                                                                     printf("The winner is : %s",player2.player_name);
                                                                                                 else if(player1.score == player2.score) printf("There are no winner the game is draw ");
-
-
-
-
 //end of game
 }
 
