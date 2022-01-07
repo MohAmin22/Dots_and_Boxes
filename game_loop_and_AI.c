@@ -1040,6 +1040,127 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     }
 }
 
+/////////////////////////////////////////////////////////////
+for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
+    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
+        if(score_4[counter1][counter2]==2){
+                if(counter1 == 0 && counter2 == 0){
+                        if(grid[2*counter1][2*counter2+1] == ' ' ){//up
+                                score_4[counter1][counter2]++;
+                                    grid[2*counter1][2*counter2+1] = 205;
+                                    gotoxy(4+4*counter2,3+2*counter1);
+                                    printf("%c%c%c",205,205,205);
+                                    goto forced;
+
+                        }else if(grid[2*counter1+1][2*counter2] == ' '){//left
+                                          score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+                        }
+
+                }else if(counter1 == 0 && counter2 == number_of_boxes-1){
+
+                        if(grid[2*counter1][2*counter2+1] == ' ' ){//up
+                                     score_4[counter1][counter2]++;
+                                        grid[2*counter1][2*counter2+1] = 205;
+                                        gotoxy(4+4*counter2,3+2*counter1);
+                                        printf("%c%c%c",205,205,205);
+                                        goto forced;
+
+
+                        }else if(grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                        score_4[counter1][counter2]++;
+                                        grid[2*counter1+1][2*counter2+2] = 186;
+                                        gotoxy(7+4*counter2,4+2*counter1);
+                                        printf("%c",186);
+                                        goto forced;
+
+
+                        }
+
+                }else if(counter1 == number_of_boxes-1 && counter2 == 0){
+                        if(grid[2*counter1+1][2*counter2] == ' '){//left
+                                          score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                        }else if(grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+
+                        }
+
+
+                }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
+                            if(grid[2*counter1+2][2*counter2+1] == ' '){//down
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+
+                            }else if(grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                        score_4[counter1][counter2]++;
+                                        grid[2*counter1+1][2*counter2+2] = 186;
+                                        gotoxy(7+4*counter2,4+2*counter1);
+                                        printf("%c",186);
+                                        goto forced;
+
+
+                            }
+
+
+
+                }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1][2*counter2+1] == ' '){//up
+
+                                     score_4[counter1][counter2]++;
+                                        grid[2*counter1][2*counter2+1] = 205;
+                                        gotoxy(4+4*counter2,3+2*counter1);
+                                        printf("%c%c%c",205,205,205);
+                                        goto forced;
+
+                }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1+2][2*counter2+1] == ' '){//down
+
+                                          score_4[counter1][counter2]++;
+                                            grid[2*counter1+2][2*counter2+1] = 205;
+                                            gotoxy(4+4*counter2,5+2*counter1);
+                                            printf("%c%c%c",205,205,205);
+                                            goto forced;
+
+                }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2] == ' '){//left
+                                           score_4[counter1][counter2]++;
+                                            grid[2*counter1+1][2*counter2] = 186;
+                                            gotoxy(3+4*counter2,4+2*counter1);
+                                            printf("%c",186);
+                                            goto forced;
+
+
+                }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2+2] == ' '){//right
+                                         score_4[counter1][counter2]++;
+                                        grid[2*counter1+1][2*counter2+2] = 186;
+                                        gotoxy(7+4*counter2,4+2*counter1);
+                                        printf("%c",186);
+                                        goto forced;
+
+
+                }
+        }
+
+    }
+}
+///////////////////////////////////////////////////////////////
 
 for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
@@ -1142,7 +1263,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                 while(Total_remaining>0){
                                                                                         player_1:
                                                                                                         print_info(1);
-                                                                                                        Sleep(10);
+                                                                                                        Sleep(50);
                                                                                                         gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         if(Total_remaining==2*size_game*(size_game+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(4,15,1);}
@@ -1354,7 +1475,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             }
                                                                                             player_2:
                                                                                                                     print_info(1);
-                                                                                                                    Sleep(10);
+                                                                                                                    Sleep(50);
                                                                                                                     gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(1,15);printf("for continue[1]....undo[2]....redo[3]....save game[4]:");
