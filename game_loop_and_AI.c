@@ -44,7 +44,11 @@ player2.number_of_moves =0;
 player2.score = 0;
 }
 
-
+void open_close(void){
+FILE *file;
+file = fopen("debugging.txt","w");
+fclose(file);
+}
 void print_info(int z){
 gotoxy(35,3);
 printf("The number of moves of %s : %d",player1.player_name,player1.number_of_moves);
@@ -1245,6 +1249,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                          score_4 [e][q]= 0;
                                                                                                     }
                                                                                                 }
+                                                                                                open_close();
 
 
                                                                                                 reset();
@@ -1753,6 +1758,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                   score_4 [e][q]= 0;
                                                 }
                                             }
+                                            open_close();
 
                                             reset();
 
@@ -1787,6 +1793,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                                         else{gotoxy(1,15);printf("for continue [1]....save game[2] :");four_choices=scan_valid_integer(2,15,0);}
                                                           switch(four_choices){
                                                                                                         case 1:
+                                                                                                            debug_file();
                                                                                                             goto cont_1_cs1;
                                                                                                         break;
 
