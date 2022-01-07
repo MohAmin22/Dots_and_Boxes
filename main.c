@@ -12,10 +12,13 @@ int selection_level_menu=1;
 int selection_vs_menu=1;
 
 
+
 int main(){
-    
+
     mainmenu:
-   
+
+  reset_moves();
+
     undo_index=1;
     redo_index=1;
     for(i=0;i<+60;i++){
@@ -56,7 +59,7 @@ int main(){
                                             game_loop_vs_player(2,0);// the zero for start new game
                                             if(aftergamechoice==1){
                                                 goto mainmenu;
-                                                }  
+                                                }
                                             else if(aftergamechoice==2){
                                                 goto topScorers;
                                                 }

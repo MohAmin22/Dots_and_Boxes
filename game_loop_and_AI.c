@@ -37,6 +37,12 @@ typedef struct {
 player player1 = {.score=0,.number_of_moves =0};
 player player2 = {.score=0,.number_of_moves =0};
 
+void reset_moves(void){
+player1.number_of_moves =0;
+player1.score = 0;
+player2.number_of_moves =0;
+player2.score = 0;
+}
 
 
 void print_info(int z){
@@ -1232,17 +1238,15 @@ if(grid[r][c] == 'C'){          //up
 }
 
 void game_loop_vs_player(int size_game,int role){
-//start of game:                                                                             
+//start of game:
                                                                                                 int e,q;
                                                                                                 for(e=0;e<9;e++){
                                                                                                     for(q=0;q<9;q++){
-                                                                                                         score_4 [e][q]= 0;                                                   
+                                                                                                         score_4 [e][q]= 0;
                                                                                                     }
-                                                                                                } 
-                                                                                                
-                                                                                                player player1 = {.score=0,.number_of_moves =0};
-                                                                                                player player2 = {.score=0,.number_of_moves =0};
-                                                                                                
+                                                                                                }
+
+
                                                                                                 reset();
                                                                                                 if(role==0){undo[0][9]=2*size_game*(size_game+1);goto start_game;}
                                                                                                 else if(role==1){
@@ -1273,7 +1277,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                 while(Total_remaining>0){
                                                                                         player_1:
                                                                                                         print_info(1);
-                                                                                                        Sleep(50);
                                                                                                         gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         if(Total_remaining==2*size_game*(size_game+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(4,15,1);}
@@ -1485,7 +1488,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                             }
                                                                                             player_2:
                                                                                                                     print_info(1);
-                                                                                                                    Sleep(50);
                                                                                                                     gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                                     gotoxy(1,15);printf("for continue[1]....undo[2]....redo[3]....save game[4]:");
@@ -1748,11 +1750,10 @@ void game_loop_vs_AI(int size_AI,int role){
                                             int e,q;
                                             for(e=0;e<9;e++){
                                                 for(q=0;q<9;q++){
-                                                  score_4 [e][q]= 0;                                                   
+                                                  score_4 [e][q]= 0;
                                                 }
-                                            } 
-                                            player player1 = {.score=0,.number_of_moves =0};
-                                            player player2 = {.score=0,.number_of_moves =0};
+                                            }
+
                                             reset();
 
                                              if(role==3){goto startgame;}
