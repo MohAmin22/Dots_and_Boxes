@@ -1,4 +1,9 @@
 # Dots_and_Boxes
+This is final project for the first semester in faculty of engineering Alexandria university, Programming 1 using C language, developed by Mohamed Elsayed Amin
+and abdelrahman abdelmotlb.
+
+User manual :
+
 when you start a game, choose game 2x2 or 5x5 then choosing vs computer or 2 players
 After selecting required choices, for starting game and time enter your names and enter 
 1 and then enter row1 ,row2,col1,col2 of desired line. After entering the inputs, the line 
