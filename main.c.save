@@ -16,7 +16,7 @@ int selection_vs_menu=1;
 int main(){
 
     mainmenu:
-    reset_moves();
+    reset
     undo_index=1;
     redo_index=1;
     for(i=0;i<+60;i++){
@@ -98,10 +98,8 @@ int main(){
             cyan();
             gotoxy(1,11);printf("Enter [1]load first file....[2]load second file....[3]load third file :");reset();
             filenumberload=scan_valid_integer(3,11,0);
-            system("cls");aftergamechoice=0;
+            system("cls");
             loading();
-             if(aftergamechoice==1)goto mainmenu;
-            else if(aftergamechoice==2)goto topScorers;
             if(backing_in_load==1){system("cls");goto mainmenu;}
             else if(backing_in_load==2){system("cls");goto loading;}
         break;

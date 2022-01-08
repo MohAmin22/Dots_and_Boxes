@@ -1244,7 +1244,7 @@ if(grid[r][c] == 'C'){          //up
 void game_loop_vs_player(int size_game,int role){
 //start of game:
                                                                                                 int e,q;
-
+                                                                                                
                                                                                                 open_close();
 
 
@@ -1268,11 +1268,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 cyan();printf("Player  B name :"); scanf("%s",player2.player_name);
                                                                                                 reset();system("cls");
                                                                                                 drawing_grid(size_game);arr_start_grid(size_game);arr_start_name(size_game);printf("\n");
-                                                                                                for(e=0;e<9;e++){
-                                                                                                    for(q=0;q<9;q++){
-                                                                                                         score_4 [e][q]= 0;
-                                                                                                    }
-                                                                                                }
                                                                                                 //  Game loop
                                                                                                 start = clock();
                                                                                                 gotoxy(35,7);
@@ -1753,7 +1748,13 @@ void game_loop_vs_player(int size_game,int role){
 
 void game_loop_vs_AI(int size_AI,int role){
                                             int e,q;
+                                            for(e=0;e<9;e++){
+                                                for(q=0;q<9;q++){
+                                                  score_4 [e][q]= 0;
+                                                }
+                                            }
                                             open_close();
+
                                             reset();
 
                                              if(role==3){goto startgame;}
@@ -1771,11 +1772,6 @@ void game_loop_vs_AI(int size_AI,int role){
                                             drawing_grid(size_AI);
                                             arr_start_grid(size_AI);
                                             arr_start_name(size_AI);
-                                             for(e=0;e<9;e++){
-                                                for(q=0;q<9;q++){
-                                                  score_4 [e][q]= 0;
-                                                }
-                                            }
                                             printf("\n");
                                             //game loop
                                             start = clock();
