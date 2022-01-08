@@ -6,10 +6,11 @@
 #include <math.h>
 #include <time.h>
 
-void riv(int sizegame);
 void print_info(int z);
+void open_close(void);
+void reset_moves(void);
 //end of vs comp definitions
-void s4n(int n);
+void arr_start_name(int n);
 void arr_start_grid(int n);
 void drawing_grid(int a);
 int draw_lines(int r1,int r2 ,int c1, int c2,int size_of_game,char name);
@@ -32,6 +33,5 @@ void computer (int number_of_boxes,char name);
 void edit_drawing(int row_score,int col_score,int size_of_box,char name);
 void game_loop_vs_player(int size_game,int role);
 void game_loop_vs_AI(int size_AI,int role);
-void scan_print_file(int x,char rw,int reqsize);
-void getline_printinfile(FILE *undo,int reqsize);
+void debug_file(int reqsize);
 #endif

@@ -1,0 +1,200 @@
+Function redo_1(integer r1,r2,c1,c2,size_of_game,character name)
+ integer indc=0,indr=0,c=0,r=0; // the index when start drawing the lines ,  integer indc is index of x axis , integer indr is the index of y axis
+  integer i=0,ct=0,rt=0;
+
+
+     if r1 ==r2   then
+             ct= c2 if c1 > c2 else c1
+             c= c2 if c1 > c2 else c1
+                integer indr =3+2*(r1-1);
+                integer indc =3+4*(c-1);
+                Function gotoxy(indc+1,indr);
+                if name=='A' then call red();
+                else if name=='B' then call cyan();
+                for i=0:3 do  display "ascii 205"
+                array grid[(r1-1)*2][(c-1)*2+1]=name;
+
+                if r1==1  then
+                    if array score_4[0][c-1] == 3  then
+                            array score_4[0][c-1] = 6;
+                            array score_4_name[0][c-1]=name;
+                            if name=='A' then call red_box();
+                            else if name=='B' then call cyan_box();
+                            Function gotoxy((3+1)+4*(c-1),(3+1)+2*(0));printf(" %c ",name);
+
+                     elif array score_4[0][c-1] != 3  then
+                        array score_4[0][c-1]++;
+                    
+                   
+
+                 elif r1==(size_of_game+1)  then
+                    if array score_4[r1-2][c-1] == 3   then
+                        array score_4[r1-2][c-1] = 6;
+                        array score_4_name[r1-2][c-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c-1),(3+1)+2*(r1-2));printf(" %c ",name);
+
+
+                     elif array score_4[r1-2][c-1] != 3   then
+                        array score_4[r1-2][c-1]++;
+
+                    
+
+                   
+                else then
+                    if array score_4[r1-2][c-1] == 3 && array score_4[r1-1][c-1] !=3  then
+                        //up
+
+                        array score_4[r1-2][c-1] = 6;
+                        array score_4_name[r1-2][c-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c-1),(3+1)+2*(r1-2));printf(" %c ",name);
+
+
+
+                        //down
+                        array score_4[r1-1][c-1]++;
+
+                     elif array score_4[r1-2][c-1] != 3 && array score_4[r1-1][c-1] ==3  then
+                       //up
+                       array score_4[r1-2][c-1]++;
+
+
+                        //down
+                        array score_4[r1-1][c-1] = 6;
+                        array score_4_name[r1-1][c-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c-1),(3+1)+2*(r1-1));printf(" %c ",name);
+
+                     elif array score_4[r1-2][c-1] != 3 && array score_4[r1-1][c-1] !=3  then
+                        //up
+                            array score_4[r1-2][c-1]++;
+
+                        //down
+                        array score_4[r1-1][c-1]++;
+
+                     elif array score_4[r1-2][c-1] == 3 && array score_4[r1-1][c-1] ==3  then
+
+                         //up
+
+                        array score_4[r1-2][c-1] = 6;
+                        array score_4_name[r1-2][c-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c-1),(3+1)+2*(r1-2));printf(" %c ",name);
+
+                        //down
+                        array score_4[r1-1][c-1] = 6;
+                        array score_4_name[r1-1][c-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c-1),(3+1)+2*(r1-1));printf(" %c ",name);
+                    
+
+
+                  
+    
+    else if c1 ==c2   then
+        rt= r2 if r1 > r2 else r1
+        r= r2 if r1 > r2 else r1
+        integer indc =3+4*(c1-1);
+        integer indr =3+2*(r-1);
+        if name=='A' then call red();
+        else if name=='B' then call cyan();
+        for i=0 : 1 do Function gotoxy(indc,indr+1+i); printf("%c",186);
+        array grid[(r-1)*2+1][(c1-1)*2]=name;
+
+
+         if c1==1  then
+
+                if array score_4[r-1][0] == 3   then
+                        array score_4[r-1][0] = 6;
+                        array score_4_name[r-1][0] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(0),(3+1)+2*(r-1));printf(" %c ",name);
+
+                 elif array score_4[r-1][0] != 3   then
+                            array score_4[r-1][0]++;
+
+
+                
+
+              //  array score_4[r-1][0]++;//right
+          elif c1==(size_of_game+1)  then
+
+
+                if  array score_4[r-1][c1-2] == 3   then
+
+                    array score_4[r-1][c1-2] = 6;
+                    array score_4_name[r-1][c1-2] = name;
+                    if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                    Function gotoxy((3+1)+4*(c1-2),(3+1)+2*(r-1));printf(" %c ",name);
+
+
+                 elif  array score_4[r-1][c1-2] != 3   then
+                        array score_4[r-1][c1-2]++;
+
+
+                
+
+                    //array score_4[r-1][c1-2]++;//left
+        else then
+                    if array score_4[r-1][c1-2] == 3 && array score_4[r-1][c1-1] !=3  then
+
+                        //left
+                        array score_4[r-1][c1-2] = 6;
+                        array score_4_name[r-1][c1-2] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c1-2),(3+1)+2*(r-1));printf(" %c ",name);
+
+
+                        //right
+                            array score_4[r-1][c1-1] ++;
+
+                     elif array score_4[r-1][c1-2] != 3 && array score_4[r-1][c1-1] ==3  then
+                       //left
+                        array score_4[r-1][c1-2]++;
+
+                        //right
+                        array score_4[r-1][c1-1] = 6;
+                        array score_4_name[r-1][c1-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c1-1),(3+1)+2*(r-1));printf(" %c ",name);
+
+
+
+                     elif array score_4[r-1][c1-2] != 3 && array score_4[r-1][c1-1] !=3  then
+
+
+                       //left
+                        array score_4[r-1][c1-2]++;
+
+                        //right
+                        array score_4[r-1][c1-1]++;
+                     elif array score_4[r-1][c1-2] == 3 && array score_4[r-1][c1-1] ==3  then
+
+
+                       //left
+                       array score_4[r-1][c1-2] = 6;
+                        array score_4_name[r-1][c1-2] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c1-2),(3+1)+2*(r-1));printf(" %c ",name);
+
+                        //right
+                        array score_4[r-1][c1-1] = 6;
+                        array score_4_name[r-1][c1-1] = name;
+                        if name=='A'then call red_box();
+                        else if name=='B'then call cyan_box();
+                        Function gotoxy((3+1)+4*(c1-1),(3+1)+2*(r-1));printf(" %c ",name);
+
+                    
+
+  end of function redo_1

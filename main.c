@@ -16,6 +16,7 @@ int selection_vs_menu=1;
 int main(){
 
     mainmenu:
+    
     reset_moves();
     undo_index=1;
     redo_index=1;
@@ -118,6 +119,7 @@ int main(){
         break;
         case 4: //the case that the player choice [4]exit
             exit(-1);
+
           break;
 
 

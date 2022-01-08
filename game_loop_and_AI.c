@@ -7,7 +7,6 @@ int k=0;o=0;
 int score_4 [9][9]={0};
 char score_4_name [9][9];
 char grid[20][20]={0};
-char roles_AorB[100];
 char undo[61][11];//I use 7 digits but the eigth for \0
 
 
@@ -1264,6 +1263,8 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 goto player_2;}
 
                                                                                 start_game:
+                                                                                                seconds = 0;
+                                                                                                minutes = 0;
                                                                                                 red();printf("Player  A name :");scanf("%s",player1.player_name);
                                                                                                 cyan();printf("Player  B name :"); scanf("%s",player2.player_name);
                                                                                                 reset();system("cls");
@@ -1761,6 +1762,8 @@ void game_loop_vs_AI(int size_AI,int role){
                                             else if(role==5){goto AI;}
 
                                             startgame:
+                                            seconds = 0;
+                                            minutes =0;
 
                                             red();
                                             printf("Player  A name :");
