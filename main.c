@@ -16,7 +16,7 @@ int selection_vs_menu=1;
 int main(){
 
     mainmenu:
-    
+    reset();
     reset_moves();
     undo_index=1;
     redo_index=1;
@@ -101,7 +101,7 @@ int main(){
             filenumberload=scan_valid_integer(3,11,0);
             system("cls");aftergamechoice=0;
             loading();
-             if(aftergamechoice==1)goto mainmenu;
+            if(aftergamechoice==1)goto mainmenu;
             else if(aftergamechoice==2)goto topScorers;
             if(backing_in_load==1){system("cls");goto mainmenu;}
             else if(backing_in_load==2){system("cls");goto loading;}

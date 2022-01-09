@@ -1,3 +1,5 @@
+
+
 #include "game_loop_and_AI.h"
 
 
@@ -75,6 +77,14 @@ for (a=0;a<n;a++){
     }
 }
 
+}
+void arr_start_score(int n){
+    int e,q;
+          for(e=0;e<n;e++){
+                      for(q=0;q<n;q++){
+                                 score_4 [e][q]= 0;
+                       }
+           }
 }
 void arr_start_grid(int n){
 
@@ -915,141 +925,6 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 }
 
 
-for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
-    for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
-
-
-        if(score_4[counter1][counter2]==0 ||score_4[counter1][counter2]==1){
-
-                        if(counter1 == 0 && counter2 == 0){
-                                if(grid[2*counter1][2*counter2+1] == 'C'){ //up
-                                    score_4[counter1][counter2]++;
-                                    grid[2*counter1][2*counter2+1] = name;
-                                    gotoxy(4+4*counter2,3+2*counter1);
-                                    printf("%c%c%c",205,205,205);
-                                    goto forced;
-
-                                }else if(grid[2*counter1+1][2*counter2] == 'C'){ //left
-                                           score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2] = name;
-                                            gotoxy(3+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-
-                                }
-
-
-
-                        }else if(counter1 == 0 && counter2 == number_of_boxes-1){
-
-                                if(grid[2*counter1][2*counter2+1] == 'C'){ //up
-                                    score_4[counter1][counter2]++;
-                                    grid[2*counter1][2*counter2+1] = name;
-                                    gotoxy(4+4*counter2,3+2*counter1);
-                                    printf("%c%c%c",205,205,205);
-                                    goto forced;
-
-                                }else if (grid[2*counter1+1][2*counter2+2] == 'C'){ //right
-                                            score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2+2] = name;
-                                            gotoxy(7+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-                                }
-
-
-                        }else if(counter1 == number_of_boxes-1 && counter2 == 0){
-
-                               if(grid[2*counter1+1][2*counter2] == 'C'){ //left
-                                           score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2] = name;
-                                            gotoxy(3+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-
-                                }else if (grid[2*counter1+2][2*counter2+1] == 'C'){ //down
-                                             score_4[counter1][counter2]++;
-                                            grid[2*counter1+2][2*counter2+1] = name;
-                                            gotoxy(4+4*counter2,5+2*counter1);
-                                            printf("%c%c%c",205,205,205);
-                                            goto forced;
-                                }
-
-                        }else if(counter1 == number_of_boxes-1 && counter2 == number_of_boxes-1){
-
-                                if(grid[2*counter1+1][2*counter2+2] == 'C'){//right
-                                           score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2+2] = name;
-                                            gotoxy(7+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-
-
-                                }else if(grid[2*counter1+2][2*counter2+1] == 'C'){//down
-                                            score_4[counter1][counter2]++;
-                                            grid[2*counter1+2][2*counter2+1] = name;
-                                            gotoxy(4+4*counter2,5+2*counter1);
-                                            printf("%c%c%c",205,205,205);
-                                            goto forced;
-
-
-                                }
-
-                        }else if(counter1 == 0 && counter2 != 0 && counter2 != number_of_boxes-1 &&grid[2*counter1][2*counter2+1] == 'C'){
-
-                               //up
-
-                                   score_4[counter1][counter2]++;
-                                    grid[2*counter1][2*counter2+1] = name;
-                                    gotoxy(4+4*counter2,3+2*counter1);
-                                    printf("%c%c%c",205,205,205);
-                                    goto forced;
-
-
-
-
-                        }else if(counter1 == number_of_boxes-1 && counter2 != 0 && counter2 != number_of_boxes-1&&grid[2*counter1+2][2*counter2+1] == 'C'){
-                           //down
-                                            score_4[counter1][counter2]++;
-                                            grid[2*counter1+2][2*counter2+1] = name;
-                                            gotoxy(4+4*counter2,5+2*counter1);
-                                            printf("%c%c%c",205,205,205);
-                                            goto forced;
-
-
-
-
-
-
-                        }else if(counter2 == 0 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2] == 'C'){
-
-                              //left
-
-                                          score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2] = name;
-                                            gotoxy(3+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-
-
-
-
-
-                        }else if(counter2 == number_of_boxes-1 && counter1 != 0 && counter1 != number_of_boxes-1&&grid[2*counter1+1][2*counter2+2] == 'C'){
-
-                               //right
-                                          score_4[counter1][counter2]++;
-                                            grid[2*counter1+1][2*counter2+2] = name;
-                                            gotoxy(7+4*counter2,4+2*counter1);
-                                            printf("%c",186);
-                                            goto forced;
-
-
-                        }
-        }
-    }
-}
-
 /////////////////////////////////////////////////////////////
 for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
     for(counter2 =0 ;counter2 < number_of_boxes;counter2++){
@@ -1170,6 +1045,7 @@ for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
 
     }
 }
+
 ///////////////////////////////////////////////////////////////
 
 for(counter1 =0 ;counter1 < number_of_boxes;counter1++){
@@ -1245,8 +1121,6 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                 int e,q;
 
                                                                                                 open_close();
-
-
                                                                                                 reset();
                                                                                                 if(role==0){undo[0][9]=2*size_game*(size_game+1);goto start_game;}
                                                                                                 else if(role==1){
@@ -1265,15 +1139,15 @@ void game_loop_vs_player(int size_game,int role){
                                                                                 start_game:
                                                                                                 seconds = 0;
                                                                                                 minutes = 0;
-                                                                                                red();printf("Player  A name :");scanf("%s",player1.player_name);
-                                                                                                cyan();printf("Player  B name :"); scanf("%s",player2.player_name);
+                                                                                                red();printf("Player  A name : ");scanf("%s",player1.player_name);
+                                                                                                cyan();printf("Player  B name : "); scanf("%s",player2.player_name);
                                                                                                 reset();system("cls");
-                                                                                                drawing_grid(size_game);arr_start_grid(size_game);arr_start_name(size_game);printf("\n");
-                                                                                                for(e=0;e<9;e++){
-                                                                                                    for(q=0;q<9;q++){
-                                                                                                         score_4 [e][q]= 0;
-                                                                                                    }
-                                                                                                }
+                                                                                                drawing_grid(size_game);
+                                                                                                arr_start_grid(size_game);
+                                                                                                arr_start_name(size_game);
+                                                                                                arr_start_score(size_game);
+                                                                                                printf("\n");
+
                                                                                                 //  Game loop
                                                                                                 start = clock();
                                                                                                 gotoxy(35,7);
@@ -1285,12 +1159,12 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                         print_info(1);
                                                                                                         gotoxy(0,16);for(counter=0;counter<50;counter++)printf(" ");
                                                                                                         gotoxy(0,17);for(counter=0;counter<50;counter++)printf(" ");
-                                                                                                        if(Total_remaining==2*size_game*(size_game+1)){gotoxy(1,15);printf("Enter [1]for start game:");four_choices=scan_valid_integer(4,15,1);}
+                                                                                                        if(Total_remaining==2*size_game*(size_game+1)){gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");four_choices=scan_valid_integer(4,15,1);}
                                                                                                         else {gotoxy(1,15);printf("for continue [1]....undo[2]....redo[3]....save game[4] :");four_choices=scan_valid_integer(4,15,0);}
                                                                                                         switch(four_choices){
                                                                                                         case 1:
                                                                                                             //continue
-                                                                                                            debug_file(size_game);
+                                                                                                            //debug_file(size_game);
                                                                                                             goto cont1_cs1;
                                                                                                         break;
                                                                                                         case 2:
@@ -1501,7 +1375,7 @@ void game_loop_vs_player(int size_game,int role){
                                                                                                                     switch(four_choices){
                                                                                                                     case 1:
                                                                                                                         //continue
-                                                                                                                        debug_file(size_game);
+                                                                                                                        //debug_file(size_game);
                                                                                                                         goto cont2_cs1;
                                                                                                                     break;
                                                                                                                     case 2:
@@ -1763,8 +1637,7 @@ void game_loop_vs_AI(int size_AI,int role){
 
                                             startgame:
                                             seconds = 0;
-                                            minutes =0;
-
+                                           minutes = 0;
                                             red();
                                             printf("Player  A name :");
                                             scanf("%s",player1.player_name);
@@ -1774,11 +1647,7 @@ void game_loop_vs_AI(int size_AI,int role){
                                             drawing_grid(size_AI);
                                             arr_start_grid(size_AI);
                                             arr_start_name(size_AI);
-                                             for(e=0;e<9;e++){
-                                                for(q=0;q<9;q++){
-                                                  score_4 [e][q]= 0;
-                                                }
-                                            }
+                                            arr_start_score(size_AI);
                                             printf("\n");
                                             //game loop
                                             start = clock();
@@ -1854,11 +1723,8 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 if(checkScore==2){
                                                     player1.score+=2;
                                                     red_box();
-                                                    //color_box(row_cc,col_cc);
                                                     gotoxy((3+1)+4*(col_cc),(3+1)+2*(row_cc));printf(" A ");
-                                                    //color_box(row_cc1,col_cc1);
                                                     gotoxy((3+1)+4*(col_cc1),(3+1)+2*(row_cc1));printf(" A ");
-                                                    //delete_common(size_AI,'A');
                                                     reset();
                                                     Total_remaining--;
                                                         if(Total_remaining ==0){
@@ -1881,15 +1747,13 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 }
                                                 AI:
                                                     print_info(0);gotoxy(1,16);cyan();
-                                                    computer(size_AI,'B');
+                                                    computer(size_AI,'B');debug_file(size_AI);
                                                     check_score(&checkScore,&row_cc,&col_cc,&row_cc1,&col_cc1,size_AI,'B');
                                                     if( checkScore == 1 ){
                                                             player2.score++;
                                                             //change the color of the box:
                                                             cyan_box();
-                                                            //color_box(row_cc,col_cc);
                                                             gotoxy((3+1)+4*(col_cc),(3+1)+2*(row_cc));printf(" B ");
-                                                            //delete_common(size_AI,'B');
                                                             reset();
                                                             Total_remaining--;
                                                             if(Total_remaining ==0){
@@ -1900,11 +1764,8 @@ void game_loop_vs_AI(int size_AI,int role){
                                                 if(checkScore==2){
                                                             player2.score+=2;
                                                             cyan_box();
-                                                            //color_box(row_cc,col_cc);
                                                             gotoxy((3+1)+4*(col_cc),(3+1)+2*(row_cc));printf(" B ");
-                                                            //color_box(row_cc1,col_cc1);
                                                             gotoxy((3+1)+4*(col_cc1),(3+1)+2*(row_cc1));printf(" B ");
-                                                            //delete_common(size_AI,'B');
                                                             reset();
                                                             Total_remaining--;
                                                                 if(Total_remaining ==0){
@@ -1944,7 +1805,6 @@ void game_loop_vs_AI(int size_AI,int role){
                                             printf("Enter [1]main menu..[2]topscorers:");
                                             aftergamechoice=scan_valid_integer(2,26,0);
 }
-
 
 char score_4_edit[5][5];
 void debug_file(int reqsize){

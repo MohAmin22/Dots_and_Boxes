@@ -21,13 +21,13 @@ void cyan_box (void) {
  SetConsoleTextAttribute(console,144);
 }
 void purple(void) {
-      system("");
-    printf("\033[0;35m");
+  HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(console,10);
 }
 
 void reset (void) {
-    system("");
-  printf("\033[0m");
+  HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(console,15);
 }
 
 

@@ -169,7 +169,7 @@ void topscore_names_scores(void){
         FILE *score;
         name=fopen("top_names.txt","r");
         score=fopen("top_scores.txt","r");
-        SetConsoleTextAttribute(console,11);
+        SetConsoleTextAttribute(console,10);
         system("cls");gotoxy(0,0);
         for(i=1;i<=10;i++){
                     fscanf(name,"%s",n);fscanf(name,"\n");
